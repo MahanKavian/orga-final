@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import "@/styles/icons.css";
 import type {AppProps} from "next/app";
-import {Jost, Lobster_Two} from "next/dist/compiled/@next/font/dist/google";
+import {Jost, Lobster_Two} from "next/font/google";
 import {NextFont} from "next/dist/compiled/@next/font";
 
 const jost: NextFont = Jost({
