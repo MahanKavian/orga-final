@@ -3,6 +3,7 @@ import "@/styles/icons.css";
 import type {AppProps} from "next/app";
 import {Jost, Lobster_Two} from "next/font/google";
 import {NextFont} from "next/dist/compiled/@next/font";
+import {Layouts} from "@/components";
 
 const jost: NextFont = Jost({
     subsets: ["latin"],
@@ -28,7 +29,9 @@ export default function App({Component, pageProps}: AppProps) {
                   }
                 `}
             </style>
-            <Component {...pageProps} />
+            <Layouts>
+                <Component {...pageProps} />
+            </Layouts>
         </>
     )
 }
