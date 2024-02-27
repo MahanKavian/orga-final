@@ -45,7 +45,7 @@ export function Footer({}: Props) {
                         </div>
                     </div>
                 </Section>
-                <Section className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-y-7 gap-x-3"}>
+                <Section className={"mb-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-y-7 gap-x-3"}>
                     <div className={"flex flex-col gap-1 font-normal text-sm text-silver-500"}>
                         <ImageView src={"/assets/images/Logo.png"} className={"mb-3"} alt={"OrgaFresh"} width={140}
                                    height={83}/>
@@ -112,7 +112,6 @@ export function Footer({}: Props) {
                             </li>
                         </ul>
                     </div>
-
                 </Section>
                 <Section className={"mb-0 flex justify-end"}>
                     <IconBox icon={"icon-back-to-top"}
