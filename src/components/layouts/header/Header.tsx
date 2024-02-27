@@ -7,17 +7,7 @@ interface Props {
 }
 
 export function Header({}: Props) {
-    const [showMenuOption, setShowMenuOption] = useState<boolean>(true);
 
-    if (typeof window !== 'undefined') {
-        window.addEventListener('scroll', () => {
-            if (window.document.documentElement.scrollTop > 50) {
-                setShowMenuOption(false);
-            } else {
-                setShowMenuOption(true);
-            }
-        });
-    }
     return (
         <header>
             <div className="bg-cream overflow-hidden">
@@ -76,15 +66,18 @@ export function Header({}: Props) {
             {
                 showMenuOption
                     ?
-                    <div className={"w-full bg-primary-300 shadow-md p-3"}>
-                        <Section className="bg-primary flex justify-between gap-4 items-center">
-                            <IconBox icon={"icon-burger-menu-header text-[24px] text-white"} link={'#'} linkClassName={"md:hidden"}/>
+                    <div className={"w-full bg-primary-300 shadow-md py-3"}>
+                        <Section className="bg-primary mb-0 flex justify-between gap-4 items-center">
+                            <IconBox icon={"icon-burger-menu-header text-[24px] text-white"} link={'#'}
+                                     linkClassName={"md:hidden"}/>
                             <ul className="hidden md:flex gap-7">
                                 <li className="navbar-item">
                                     <Link href="#" className="text-white">Home</Link>
                                 </li>
                                 <li className="navbar-item">
-                                    <Link href="#" className="text-white flex items-center gap-2">Shop</Link>
+                                    <Link href="#" className="text-white flex items-center gap-2">
+                                        Shop
+                                    </Link>
                                 </li>
                                 <li className="navbar-item">
                                     <Link href="#" className="text-white">About</Link>
@@ -96,11 +89,12 @@ export function Header({}: Props) {
                                     <Link href="#" className="text-white">Contact</Link>
                                 </li>
                             </ul>
+
                             <Link href="tel:9584739004" className="text-white" title="contact to us">
-                                <span className="flex items-center">
-                                    <span>Hotline:</span>
-                                    <span className="font-semibold ml-2">(+800) 345 678</span>
-                                </span>
+                            <span className="flex items-center">
+                                <span>Hotline:</span>
+                                <span className="font-semibold ml-2">(+800) 345 678</span>
+                            </span>
                             </Link>
                         </Section>
                     </div>
