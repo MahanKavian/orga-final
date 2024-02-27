@@ -49,7 +49,7 @@ export function IconBox({
                     &&
                     <span
                         className={`${hideTitleMobile ? 'hidden xl:inline-block' : 'inline-block'} ${titleClassName}`}>
-                                 {title}
+                        {title}
                     </span>
                 }
             </Link>
