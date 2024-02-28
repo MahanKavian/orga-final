@@ -8,16 +8,14 @@ import {RightHeroMock} from "@/mock/RightHeroMock";
 export function Hero() {
     return (
         <section className="bg-[#F5F5F5] py-4">
-            <Section className="flex gap-4 justify-between container mx-auto max-h-[580px] overflow-hidden">
+            <Section className="flex gap-4 justify-between mx-auto max-h-[580px] overflow-hidden">
                 <div className="hidden xl:block w-[250px] flex-shrink-0 flex-grow-0" id="Categuries_container">
                     <CateguriesMenu/>
                 </div>
                 <div className="flex-shrink flex-grow max-h-[470px] overflow-hidden">
                         <Swiper
                             modules={[ Autoplay, Pagination]}
-                            autoplay={{
-                                delay: 5000
-                            }}
+                            autoplay={{delay: 5000}}
                             pagination={{clickable:false}}
                         >
                         {
@@ -57,7 +55,7 @@ export function Hero() {
                     }
                     </div>
             </Section>
-            <Section className="container m-auto mt-4">
+            <Section className="m-auto mt-4">
                     <div className="bg-white grid grid-cols-2 lg:grid-cols-4 p-4">
                         <div className="flex gap-4 items-center p-4">
                             <div>

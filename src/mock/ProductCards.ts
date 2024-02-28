@@ -1,0 +1,57 @@
+export const ProductCards = [
+    {
+        img: "/assets/images/banner.png",
+        categury: "burger",
+        link: "#",
+        title: "food",
+        price: 22,
+        sale_price: 24,
+        rate: 4,
+    },
+    {
+        img: "/assets/images/pizza-p-3.png",
+        categury: "pizza",
+        link: "#",
+        title: "best pizza",
+        price: 34,
+        sale_price: 32,
+        rate: 5,
+        badge: "Hot"
+    },
+    {
+        img: "/assets/images/salad-p-1.png",
+        categury: "salad",
+        link: "#",
+        title: "best salad",
+        price: 25,
+        sale_price: 13,
+        rate: 4,
+    },
+    {
+        img: "/assets/images/pizza-p-1.png",
+        categury: "pizza",
+        link: "#",
+        title: "best food",
+        price: 25,
+        sale_price: 12,
+        rate: 3,
+        badge: "Hot"
+    },
+    {
+        img: "/assets/images/cake-p-2.png",
+        categury: "cake",
+        link: "#",
+        title: "food",
+        price: 13,
+        sale_price: 10,
+        rate: 3,
+    },
+    {
+        img: "/assets/images/burger-p-1.png",
+        categury: "burger",
+        link: "#",
+        title: "food",
+        price: 32,
+        rate: 5,
+    },
+]
