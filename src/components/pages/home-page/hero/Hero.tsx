@@ -1,4 +1,4 @@
-import {CateguriesMenu, ImageView, Section} from "@/components";
+import {CategoriesMenu, ImageView, Section} from "@/components";
 import Link from "next/link";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules"
@@ -10,7 +10,7 @@ export function Hero() {
         <section className="bg-[#F5F5F5] py-4">
             <Section className="flex gap-4 justify-between container mx-auto max-h-[580px] overflow-hidden">
                 <div className="hidden xl:block w-[250px] flex-shrink-0 flex-grow-0" id="Categuries_container">
-                    <CateguriesMenu/>
+                    <CategoriesMenu/>
                 </div>
                 <div className="flex-shrink flex-grow max-h-[470px] overflow-hidden">
                         <Swiper
@@ -48,7 +48,7 @@ export function Hero() {
                                     <div className="absolute top-0 left-0 w-full h-full flex flex-col gap-1 justify-center z-10 text-white p-4">
                                         <p>Only</p>
                                         <span className="text-link text-2xl font-[500]">{cardItem.price}$</span>
-                                        <p className="text-3xl font-[500] font-[Lobster]">{cardItem.categury}</p>
+                                        <p className="text-3xl font-[500] font-[Lobster]">{cardItem.title}</p>
                                         <Link href={cardItem.link} className="border-b-4 border-b-[#FDA72F] p-2 w-fit">Order Now</Link>
                                     </div>
                                 </div>
