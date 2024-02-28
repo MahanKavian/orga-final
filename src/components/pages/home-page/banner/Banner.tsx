@@ -1,4 +1,5 @@
 import {ImageView} from "@/components";
+import Link from "next/link";
 
 interface Props {
 
@@ -26,10 +27,10 @@ export function Banner({}: Props) {
                         <p className="text-[15px] font-normal text-white mb-8 lg:text-[13px] 2xl:text-[15px]">
                             Made with meat, vegetables and cheese
                         </p>
-                        <a href="#"
+                        <Link href="#"
                            className="bg-white py-2 px-5 text-sm rounded-sm font-normal tracking-[2px] text-silver-500 uppercase ">
                             Order now
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -52,10 +53,10 @@ export function Banner({}: Props) {
                         <p className="text-[15px] font-normal text-white mb-8 lg:text-[13px] 2xl:text-[15px]">
                             Made with meat, vegetables and cheese
                         </p>
-                        <a href="#"
+                        <Link href="#"
                            className="bg-white py-2 px-5 text-sm font-normal rounded-sm font-jost tracking-[2px] text-silver-500 uppercase ">
                             Order now
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
