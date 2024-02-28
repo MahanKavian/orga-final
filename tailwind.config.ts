@@ -34,6 +34,7 @@ const config: Config = {
                 },
                 'black': "#000000",
                 cream: "#FCEEE7",
+                red: "#AB0E17",
                 silver: {
                     'transparent': "rgba(255,255,255,0.1)",
                     100: "#F5F5F5",
@@ -50,7 +51,8 @@ const config: Config = {
                 },
                 blue: {
                     100: "#D0E2E2",
-                    200: "#1AB2C6"
+                    200: "#1AB2C6",
+                    300: "#046DB0"
                 },
                 yellow: "#FDA72F"
             },
