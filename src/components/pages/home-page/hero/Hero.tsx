@@ -8,17 +8,17 @@ import {RightHeroMock} from "@/mock/RightHeroMock";
 export function Hero() {
     return (
         <section className="bg-[#F5F5F5] py-4">
-            <Section className="flex gap-4 justify-between container mx-auto max-h-[580px] overflow-hidden">
+            <Section className="flex gap-4 justify-between mx-auto max-h-[580px] overflow-hidden">
                 <div className="hidden xl:block w-[250px] flex-shrink-0 flex-grow-0" id="Categuries_container">
                     <CategoriesMenu/>
                 </div>
                 <div className="flex-shrink flex-grow max-h-[470px] overflow-hidden">
-                        <Swiper
-                            modules={[ Autoplay, Pagination]}
-                            autoplay={{
-                                delay: 5000
-                            }}
-                            pagination={{clickable:false}}
+                    <Swiper
+                        modules={[ Autoplay, Pagination]}
+                        autoplay={{
+                            delay: 5000
+                        }}
+                        pagination={{clickable:true}}
                         >
                         {
                             HeroMock.map((item, index)=>{
@@ -62,7 +62,6 @@ export function Hero() {
                         <div className="flex gap-5 items-center p-4">
                             <div>
                                 <IconBox icon={"icon-free-shipping text-[52px]"}/>
-
                             </div>
                             <div>
                                 <p className="text-md sm:text-xl">Free Shipping</p>
@@ -72,7 +71,6 @@ export function Hero() {
                         <div className="flex gap-5 items-center p-4">
                             <div>
                                 <IconBox icon={"icon-security-payment text-[52px]"}/>
-
                             </div>
                             <div>
                                 <p className="text-md sm:text-xl">Security Payment</p>
