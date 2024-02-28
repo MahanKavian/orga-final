@@ -47,9 +47,9 @@ export function Hero() {
                                     <ImageView src={cardItem.img} className="block h-full w-full" alt={"pizza"} width={398} height={266}/>
                                     <div className="absolute top-0 left-0 w-full h-full flex flex-col gap-1 justify-center z-10 text-white p-4">
                                         <p>Only</p>
-                                        <span className="text-link text-2xl font-[500]">{cardItem.price}$</span>
-                                        <p className="text-3xl font-[500] font-[Lobster]">{cardItem.title}</p>
-                                        <Link href={cardItem.link} className="border-b-4 border-b-[#FDA72F] p-2 w-fit">Order Now</Link>
+                                        <span className="text-link text-2xl font-medium">{cardItem.price}$</span>
+                                        <p className="text-heading2 font-medium font-lobster">{cardItem.title}</p>
+                                        <Link href={cardItem.link} className="border-b-4 text-lg border-b-yellow p-2 w-fit">Order Now</Link>
                                     </div>
                                 </div>
                             )

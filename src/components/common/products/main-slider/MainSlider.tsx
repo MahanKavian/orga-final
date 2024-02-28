@@ -34,6 +34,7 @@ export function MainSlider({}: Props) {
                     slidesPerView={1.05}
                     spaceBetween={10}
                     modules={[Navigation]}
+                    className={"py-5"}
                     navigation={{
                         nextEl: ".dishes-prev",
                         prevEl: ".dishes-next"
@@ -68,7 +69,7 @@ export function MainSlider({}: Props) {
                     {
                         ProductCards.map((card, index)=>{
                             return(
-                                <SwiperSlide key={index}>
+                                <SwiperSlide key={index} className={"my-3"}>
                                     <MainProductCard card={card}/>
                                 </SwiperSlide>
                             )
