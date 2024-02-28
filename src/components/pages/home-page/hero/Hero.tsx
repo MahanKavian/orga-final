@@ -8,14 +8,16 @@ import {RightHeroMock} from "@/mock/RightHeroMock";
 export function Hero() {
     return (
         <section className="bg-[#F5F5F5] py-4">
-            <Section className="flex gap-4 justify-between mx-auto max-h-[580px] overflow-hidden">
+            <Section className="flex gap-4 justify-between container mx-auto max-h-[580px] overflow-hidden">
                 <div className="hidden xl:block w-[250px] flex-shrink-0 flex-grow-0" id="Categuries_container">
                     <CateguriesMenu/>
                 </div>
                 <div className="flex-shrink flex-grow max-h-[470px] overflow-hidden">
                         <Swiper
                             modules={[ Autoplay, Pagination]}
-                            autoplay={{delay: 5000}}
+                            autoplay={{
+                                delay: 5000
+                            }}
                             pagination={{clickable:false}}
                         >
                         {
@@ -24,11 +26,11 @@ export function Hero() {
                                     <SwiperSlide key={index}>
                                         <div className={"relative"}>
                                             <ImageView src={item.src} className="block h-full w-full" alt={"pizza"} width={690} height={460}/>
-                                            <div className="absolute left-0 top-0 w-full md:w-1/2 h-full flex flex-col gap-5 p-10 justify-center items-center sm:items-start z-10">
-                                                <p className="text-sm md:text-base font-bold text-white">{item.title}</p>
-                                                <p className="text-xl md:text-2xl lg:text-3xl font-[600] text-white">{item.categury}</p>
-                                                <p className="text-sm md:text-base font-bold text-white">{`Dscount of only ${item.price} / ${item.weight} ${item.unit}`}</p>
-                                                <Link href={item.link} className="text-lg p-2 px-4 bg-yellow rounded-sm w-fit font-bold text-white">Order Now</Link>
+                                            <div className="absolute left-0 top-0 w-full md:w-1/2 xl:w-full h-full flex flex-col gap-5 p-10 justify-center items-center sm:items-start z-10">
+                                                <h1 className="text-sm md:text-base xl:text-xl font-medium text-white">{item.des}</h1>
+                                                <p className="text-heading5 md:text-4xl lg:text-heading3 xl:text-heading2 font-[600] text-white">{item.title}</p>
+                                                <p className="text-sm md:text-base xl:text-xl font-normal text-white">{`Discount of only ${item.price} / ${item.weight} ${item.unit}`}</p>
+                                                <Link href={item.link} className="text-md py-2 tracking-[1px] uppercase px-4 bg-yellow rounded-sm w-fit font-normal text-white">Order Now</Link>
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -55,7 +57,7 @@ export function Hero() {
                     }
                     </div>
             </Section>
-            <Section className="m-auto mt-4">
+            <Section className="container m-auto mt-4">
                     <div className="bg-white grid grid-cols-2 lg:grid-cols-4 p-4">
                         <div className="flex gap-4 items-center p-4">
                             <div>

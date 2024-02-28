@@ -1,7 +1,7 @@
 import {IconBox} from "@/components";
 import {CateguriesMenuMock} from "@/mock/CateguriesMenuMock";
 
-export function CateguriesMenu(){
+export function CategoriesMenu(){
     return(
         <ul className="flex flex-col h-full py-2 bg-white justify-between">
             {
