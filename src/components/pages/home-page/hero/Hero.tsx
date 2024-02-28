@@ -1,4 +1,4 @@
-import {CategoriesMenu, ImageView, Section} from "@/components";
+import {CategoriesMenu, IconBox, ImageView, Section} from "@/components";
 import Link from "next/link";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules"
@@ -59,36 +59,38 @@ export function Hero() {
             </Section>
             <Section className="container m-auto mt-4">
                     <div className="bg-white grid grid-cols-2 lg:grid-cols-4 p-4">
-                        <div className="flex gap-4 items-center p-4">
+                        <div className="flex gap-5 items-center p-4">
                             <div>
-                                <ImageView src="/assets/icons/shipping_icon.svg" className="block max-w-[50px]" alt={"pic"} width={55} height={100}/>
+                                <IconBox icon={"icon-free-shipping text-[52px]"}/>
+
                             </div>
                             <div>
                                 <p className="text-md sm:text-xl">Free Shipping</p>
                                 <p className="hidden sm:block text-sm">Free Shipping On All Us</p>
                             </div>
                         </div>
-                        <div className="flex gap-4 items-center p-4">
+                        <div className="flex gap-5 items-center p-4">
                             <div>
-                                <ImageView src="/assets/icons/security_payment_icon.svg" className="block max-w-[55px]" alt={"pic"} width={55} height={100}/>
+                                <IconBox icon={"icon-security-payment text-[52px]"}/>
+
                             </div>
                             <div>
                                 <p className="text-md sm:text-xl">Security Payment</p>
                                 <p className="hidden sm:block text-sm">We Ensure Secure Payment</p>
                             </div>
                         </div>
-                        <div className="flex gap-4 items-center p-4">
+                        <div className="flex gap-5 items-center p-4">
                             <div>
-                                <ImageView src="/assets/icons/money_return_icon.svg" className="block max-w-[55px]" alt={"pic"} width={55} height={100}/>
+                                <IconBox icon={"icon-mony-returns text-[52px]"}/>
                             </div>
                             <div>
                                 <p className="text-md sm:text-xl">Money Returns</p>
                                 <p className="hidden sm:block text-sm">Return It Within 30 Days</p>
                             </div>
                         </div>
-                        <div className="flex gap-4 items-center p-4">
+                        <div className="flex gap-5 items-center p-4">
                             <div>
-                                <ImageView src="/assets/icons/headset_user_icon.svg" className="block max-w-[55px]" alt={"pic"} width={55} height={100}/>
+                                <IconBox icon={"icon-support text-[52px]"}/>
                             </div>
                             <div>
                                 <p className="text-md sm:text-xl">Support 24 / 7</p>
