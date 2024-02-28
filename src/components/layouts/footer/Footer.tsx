@@ -114,8 +114,7 @@ export function Footer({}: Props) {
                     </div>
                 </Section>
                 <Section className={"mb-0 flex justify-end"}>
-                    <IconBox icon={"icon-back-to-top"}
-                             iconClassName={"text-[32px] hover:text-primary-300 hover:cursor-pointer transition"}/>
+                    <IconBox icon={"icon-back-to-top"} iconClassName={"text-[32px] hover:text-primary-300 hover:cursor-pointer transition"} link={"#top"}/>
                 </Section>
             </div>
             <div className={"w-full bg-green-300 py-3"}>

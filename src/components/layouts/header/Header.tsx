@@ -8,7 +8,7 @@ interface Props {
 export function Header({}: Props) {
 
     return (
-        <header>
+        <header id={"top"}>
             <div className="bg-cream overflow-hidden">
                 <Section className="flex items-center gap-4 mb-0">
                     <ul className="flex gap-3">
