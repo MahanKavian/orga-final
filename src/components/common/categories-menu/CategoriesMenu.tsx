@@ -1,6 +1,6 @@
 import {IconBox} from "@/components";
 
-export function CateguriesMenu(){
+export function CategoriesMenu(){
     return(
         <ul className="flex flex-col h-full py-2 bg-white justify-between">
             <li className="flex justify-between p-1 px-4 items-center hover:text-primary-100 transition">

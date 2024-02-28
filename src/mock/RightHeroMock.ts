@@ -1,8 +1,8 @@
 export const RightHeroMock =[
     {
         img: "/assets/images/hero-one.jpg",
-        title: "TOMATO ",
-        categury: "Salad Fresh",
+        des: "TOMATO ",
+        title: "Salad Fresh",
         price: 45,
         weight: 3,
         unit: "pices",
@@ -10,8 +10,8 @@ export const RightHeroMock =[
     },
     {
         img: "/assets/images/hero-two.jpg",
-        title: "COCUMBER",
-        categury: "Vegetable ",
+        des: "COCUMBER",
+        title: "Vegetable ",
         price: 26,
         weight: 9,
         unit: "pics",

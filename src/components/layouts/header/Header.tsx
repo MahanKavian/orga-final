@@ -63,44 +63,38 @@ export function Header({}: Props) {
                              linkClassName={"hover:text-primary-200 transition text-silver-500"} link={'#'}/>
                 </div>
             </Section>
-            {
-                showMenuOption
-                    ?
-                    <div className={"w-full bg-primary-300 shadow-md py-3"}>
-                        <Section className="bg-primary mb-0 flex justify-between gap-4 items-center">
-                            <IconBox icon={"icon-burger-menu-header text-[24px] text-white"} link={'#'}
-                                     linkClassName={"md:hidden"}/>
-                            <ul className="hidden md:flex gap-7">
-                                <li className="navbar-item">
-                                    <Link href="#" className="text-white">Home</Link>
-                                </li>
-                                <li className="navbar-item">
-                                    <Link href="#" className="text-white flex items-center gap-2">
-                                        Shop
-                                    </Link>
-                                </li>
-                                <li className="navbar-item">
-                                    <Link href="#" className="text-white">About</Link>
-                                </li>
-                                <li className="navbar-item">
-                                    <Link href="#" className="text-white">Blog</Link>
-                                </li>
-                                <li className="navbar-item">
-                                    <Link href="#" className="text-white">Contact</Link>
-                                </li>
-                            </ul>
+            <div className={"w-full bg-primary-300 shadow-md py-3"}>
+                <Section className="bg-primary mb-0 flex justify-between gap-4 items-center">
+                    <IconBox icon={"icon-burger-menu-header text-[24px] text-white"} link={'#'}
+                             linkClassName={"md:hidden"}/>
+                    <ul className="hidden md:flex gap-7">
+                        <li className="navbar-item">
+                            <Link href="#" className="text-white">Home</Link>
+                        </li>
+                        <li className="navbar-item">
+                            <Link href="#" className="text-white flex items-center gap-2">
+                                Shop
+                            </Link>
+                        </li>
+                        <li className="navbar-item">
+                            <Link href="#" className="text-white">About</Link>
+                        </li>
+                        <li className="navbar-item">
+                            <Link href="#" className="text-white">Blog</Link>
+                        </li>
+                        <li className="navbar-item">
+                            <Link href="#" className="text-white">Contact</Link>
+                        </li>
+                    </ul>
 
-                            <Link href="tel:9584739004" className="text-white" title="contact to us">
+                    <Link href="tel:9584739004" className="text-white" title="contact to us">
                             <span className="flex items-center">
                                 <span>Hotline:</span>
                                 <span className="font-semibold ml-2">(+800) 345 678</span>
                             </span>
-                            </Link>
-                        </Section>
-                    </div>
-                    :
-                    <></>
-            }
+                    </Link>
+                </Section>
+            </div>
         </header>
     );
 }
