@@ -29,7 +29,7 @@ export function Hero() {
                                             <ImageView src={item.src} className="block h-full w-full" alt={"pizza"} width={690} height={460}/>
                                             <div className="absolute left-0 top-0 w-full md:w-1/2 xl:w-full h-full flex flex-col gap-5 p-10 justify-center items-center sm:items-start z-10">
                                                 <h1 className="text-sm md:text-base xl:text-xl font-medium text-white">{item.des}</h1>
-                                                <p className="text-heading5 md:text-2xl lg:text-heading3 xl:text-heading2 font-[600] text-white">{item.title}</p>
+                                                <p className="text-heading5 md:text-4xl lg:text-heading3 xl:text-heading2 font-[600] text-white">{item.title}</p>
                                                 <p className="text-sm md:text-base xl:text-xl font-normal text-white">{`Discount of only ${item.price} / ${item.weight} ${item.unit}`}</p>
                                                 <Link href={item.link} className="text-md py-2 tracking-[1px] uppercase px-4 bg-yellow rounded-sm w-fit font-normal text-white">Order Now</Link>
                                             </div>
