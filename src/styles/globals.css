@@ -34,3 +34,6 @@
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+.dishes_card:hover .dishes_card_link{
+    display: flex;
+}

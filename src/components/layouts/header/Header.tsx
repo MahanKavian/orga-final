@@ -1,6 +1,5 @@
 import {IconBox, ImageView, Section} from "@/components";
 import Link from "next/link";
-import {useState} from "react";
 
 interface Props {
 
@@ -41,7 +40,8 @@ export function Header({}: Props) {
             </div>
             <Section className="flex items-center justify-between p-2 py-5 gap-4 mb-0">
                 <Link href={'#'}>
-                    <ImageView src={'/assets/images/Logo2.png'} className={'w-[150px]'} alt={"Orga Fresh"} width={150} height={55}/>
+                    <ImageView src={'/assets/images/Logo2.png'} className={'w-[150px]'} alt={"Orga Fresh"}
+                               width={150} height={55}/>
                 </Link>
                 <div>
                     <form action={"#"}

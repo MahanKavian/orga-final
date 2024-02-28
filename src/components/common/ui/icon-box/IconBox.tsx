@@ -32,7 +32,7 @@ export function IconBox({
 
     if (link) {
         return (
-            <Link href={link ?? '#'} className={`flex items-center gap-2 ${linkClassName}`}>
+            <Link href={link} className={`flex items-center gap-2 ${linkClassName}`}>
                 {
                     badge
                         ?
