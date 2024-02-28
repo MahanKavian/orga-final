@@ -10,14 +10,16 @@ interface Props {
 }
 export function MainSlider({}: Props) {
     return (
-        <Section className="py-10 mx-auto p-2 flex flex-col gap-8">
-            <h2 className="w-full text-center font-lobster text-dark-gray text-3xl lg:text-4xl mb-4 flex-wrap">New Dishes</h2>
-            <ul className="w-full flex justify-center gap-3 gap-y-6 flex-wrap items-center">
+        <div className="py-10 p-2 flex flex-col">
+            <h3 className="w-full text-center font-lobster font-medium font-Jost text-heading2 text-silver-500 mb-10">
+                New Dishes
+            </h3>
+            <ul className="w-full flex justify-center gap-3 gap-y-6 flex-wrap items-center mb-10">
                 {
                     CateguriesMenuMock.map((item, index)=>{
                         return(
                             <li key={index}>
-                                <Link href={item.link} className="py-1 px-3 border-2 border-blue-silver text-md font-jost bg-white text-dark-gray hover:border-primary hover:text-white hover:bg-primary-100  transition duration-200">
+                                <Link href={item.link} className="py-1 px-3 border-2 border-blue-silver text-md font-jost bg-white text-dark-gray hover:border-primary hover:text-white hover:bg-primary-100 hover:border-primary-300 transition duration-200">
                                     {item.title}
                                 </Link>
                             </li>
@@ -27,11 +29,12 @@ export function MainSlider({}: Props) {
             </ul>
             <div className="flex items-center gap-3">
                 <span className="hidden icon-left-arrow dishes-prev text-3xl text-dark-silver hover:text-primary transition hover:cursor-pointer px-1 md:inline-flex"></span>
-                <IconBox icon={"icon-arrow-left"} iconClassName={"hidden dishes-prev text-3xl text-dark-silver hover:text-primary-100 transition hover:cursor-pointer px-1 md:inline-flex"}/>
+                <IconBox icon={"icon-arrow-left"} iconClassName={"hidden dishes-prev text-3xl text-silver-300 hover:text-primary-300 transition hover:cursor-pointer px-1 md:inline-flex"}/>
                 <Swiper
                     slidesPerView={1.05}
                     spaceBetween={10}
                     modules={[Navigation]}
+                    className={"py-5"}
                     navigation={{
                         nextEl: ".dishes-prev",
                         prevEl: ".dishes-next"
@@ -66,15 +69,15 @@ export function MainSlider({}: Props) {
                     {
                         ProductCards.map((card, index)=>{
                             return(
-                                <SwiperSlide key={index}>
+                                <SwiperSlide key={index} className={"my-3"}>
                                     <MainProductCard card={card}/>
                                 </SwiperSlide>
                             )
                         })
                     }
                 </Swiper>
-                <IconBox icon={"icon-arrow-right"} iconClassName={"hidden dishes-next text-3xl text-dark-silver hover:text-primary-100 transition hover:cursor-pointer px-1 md:inline-flex"}/>
+                <IconBox icon={"icon-arrow-right"} iconClassName={"hidden dishes-next text-3xl text-silver-300 hover:text-primary-300 transition hover:cursor-pointer px-1 md:inline-flex"}/>
             </div>
-        </Section>
+        </div>
     );
 }
