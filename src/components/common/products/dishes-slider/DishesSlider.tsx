@@ -1,4 +1,4 @@
-import {IconBox, Section} from "@/components";
+import {IconBox} from "@/components";
 import Link from "next/link";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {ProductCards} from "@/mock/ProductCards";
@@ -8,13 +8,13 @@ import {MainProductCard} from "@/components/common/products/MainProductCard";
 
 interface Props {
 }
-export function MainSlider({}: Props) {
+export function DishesSlider({}: Props) {
     return (
-        <div className="py-10 p-2 flex flex-col">
-            <h3 className="w-full text-center font-lobster font-medium font-Jost text-heading2 text-silver-500 mb-10">
+        <div className="py-4 lg:py-6 flex flex-col">
+            <h3 className="w-full text-center font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-2 sm:mb-4">
                 New Dishes
             </h3>
-            <ul className="w-full flex justify-center gap-3 gap-y-6 flex-wrap items-center mb-10">
+            <ul className="w-full flex justify-center gap-3 gap-y-6 flex-wrap items-center mb-5">
                 {
                     CateguriesMenuMock.map((item, index)=>{
                         return(

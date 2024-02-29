@@ -4,7 +4,7 @@ export const ProductCards = [
         categury: "burger",
         link: "#",
         title: "food",
-        price: 22,
+        price: 28,
         sale_price: 24,
         rate: 4,
     },

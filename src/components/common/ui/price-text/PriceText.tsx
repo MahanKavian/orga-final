@@ -14,7 +14,7 @@ export function PriceText({price, sale_price}: Props) {
                 </div>
                     :
                     <div className="font-jost">
-                        <span className="font-[500] mr-3 text-dark text-xl">{price}$</span>
+                        <span className="font-[600] mr-1 text-dark text-xl">{price}$</span>
                     </div>            }
         </>
     );

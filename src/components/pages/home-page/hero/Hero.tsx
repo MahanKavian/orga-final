@@ -7,18 +7,18 @@ import {RightHeroMock} from "@/mock/RightHeroMock";
 
 export function Hero() {
     return (
-        <section className="bg-[#F5F5F5] py-4">
-            <Section className="flex gap-4 justify-between container mx-auto max-h-[580px] overflow-hidden">
+        <section className="bg-[#F5F5F5] py-4 lg:py-6">
+            <Section className="flex gap-4 justify-between mx-auto max-h-[580px] overflow-hidden">
                 <div className="hidden xl:block w-[250px] flex-shrink-0 flex-grow-0" id="Categuries_container">
                     <CategoriesMenu/>
                 </div>
                 <div className="flex-shrink flex-grow max-h-[470px] overflow-hidden">
-                        <Swiper
-                            modules={[ Autoplay, Pagination]}
-                            autoplay={{
-                                delay: 5000
-                            }}
-                            pagination={{clickable:false}}
+                    <Swiper
+                        modules={[ Autoplay, Pagination]}
+                        autoplay={{
+                            delay: 5000
+                        }}
+                        pagination={{clickable:true}}
                         >
                         {
                             HeroMock.map((item, index)=>{
@@ -58,47 +58,45 @@ export function Hero() {
                     </div>
             </Section>
             <Section className="container m-auto mt-4">
-                    <div className="bg-white grid grid-cols-2 lg:grid-cols-4 p-4">
-                        <div className="flex gap-5 items-center p-4">
-                            <div>
-                                <IconBox icon={"icon-free-shipping text-[52px]"}/>
-
-                            </div>
-                            <div>
-                                <p className="text-md sm:text-xl">Free Shipping</p>
-                                <p className="hidden sm:block text-sm">Free Shipping On All Us</p>
-                            </div>
+                <div className="bg-white grid grid-cols-2 lg:grid-cols-4 p-4">
+                    <div className="flex gap-5 items-center p-4">
+                        <div>
+                            <IconBox icon={"icon-free-shipping text-[52px]"}/>
                         </div>
-                        <div className="flex gap-5 items-center p-4">
-                            <div>
-                                <IconBox icon={"icon-security-payment text-[52px]"}/>
-
-                            </div>
-                            <div>
-                                <p className="text-md sm:text-xl">Security Payment</p>
-                                <p className="hidden sm:block text-sm">We Ensure Secure Payment</p>
-                            </div>
-                        </div>
-                        <div className="flex gap-5 items-center p-4">
-                            <div>
-                                <IconBox icon={"icon-mony-returns text-[52px]"}/>
-                            </div>
-                            <div>
-                                <p className="text-md sm:text-xl">Money Returns</p>
-                                <p className="hidden sm:block text-sm">Return It Within 30 Days</p>
-                            </div>
-                        </div>
-                        <div className="flex gap-5 items-center p-4">
-                            <div>
-                                <IconBox icon={"icon-support text-[52px]"}/>
-                            </div>
-                            <div>
-                                <p className="text-md sm:text-xl">Support 24 / 7</p>
-                                <p className="hidden sm:block text-sm">Contact Us 24 Hours A day</p>
-                            </div>
+                        <div>
+                            <p className="text-md sm:text-xl">Free Shipping</p>
+                            <p className="hidden sm:block text-sm">Free Shipping On All Us</p>
                         </div>
                     </div>
-                </Section>
+                    <div className="flex gap-5 items-center p-4">
+                        <div>
+                            <IconBox icon={"icon-security-payment text-[52px]"}/>
+                        </div>
+                        <div>
+                            <p className="text-md sm:text-xl">Security Payment</p>
+                            <p className="hidden sm:block text-sm">We Ensure Secure Payment</p>
+                        </div>
+                    </div>
+                    <div className="flex gap-5 items-center p-4">
+                        <div>
+                            <IconBox icon={"icon-mony-returns text-[52px]"}/>
+                        </div>
+                        <div>
+                            <p className="text-md sm:text-xl">Money Returns</p>
+                            <p className="hidden sm:block text-sm">Return It Within 30 Days</p>
+                        </div>
+                    </div>
+                    <div className="flex gap-5 items-center p-4">
+                        <div>
+                            <IconBox icon={"icon-support text-[52px]"}/>
+                        </div>
+                        <div>
+                            <p className="text-md sm:text-xl">Support 24 / 7</p>
+                            <p className="hidden sm:block text-sm">Contact Us 24 Hours A day</p>
+                        </div>
+                    </div>
+                </div>
+            </Section>
         </section>
     );
 }
