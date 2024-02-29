@@ -8,13 +8,13 @@ export default function Home() {
     return (
         <>
             <Hero/>
-            <Section className={'mb-0 py-10'}>
+            <Section className={'mb-0'}>
                 <DishesSlider/>
             </Section>
             <Banner/>
             <ShopByCategory/>
             <WhatPeapleSay/>
-            <Section className={"py-4 lg:py-12"}>
+            <Section className={"py-4 lg:py-8"}>
                 <NewsRelated/>
             </Section>
         </>

@@ -4,9 +4,9 @@ import {Comments} from "@/mock/Comments";
 
 export function WhatPeapleSay() {
     return (
-        <div className="bg-silver-100 py-14">
+        <div className="bg-silver-100 py-4 md:py-8">
             <Section className="mx-auto">
-                <h2 className="w-full text-center font-lobster text-dark-gray font-[500] mb-2 md:mb-12 text-2xl md:text-4xl">What peoples say?</h2>
+                <h2 className="w-full text-center font-lobster text-dark-gray font-[500] sm:mb-2 text-2xl md:text-4xl">What peoples say?</h2>
                     <NewsSlider>
                         {
                             Comments.map((item, index)=>{

@@ -6,7 +6,7 @@ import {SwiperSlide} from "swiper/react";
 export function NewsRelated() {
     return (
         <>
-            <div className="flex justify-between items-end w-full mb-2 md:mb-10">
+            <div className="flex justify-between items-end w-full mb-2 md:mb-4">
                 <h2 className="text-2xl lg:text-4xl font-lobster">Lasted news</h2>
                 <Link href="#" className="border-b-2 border-primary-100 hover:border-b-yellow">View all posts</Link>
             </div>
