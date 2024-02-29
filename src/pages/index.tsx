@@ -8,15 +8,13 @@ export default function Home() {
     return (
         <>
             <Hero/>
-            <Section className={'mb-0'}>
+            <Section className={'mb-0 py-10'}>
                 <DishesSlider/>
             </Section>
             <Banner/>
             <ShopByCategory/>
-            <Section className={"py-4 lg:py-6"}>
-                <WhatPeapleSay/>
-            </Section>
-            <Section className={"py-4 lg:py-6"}>
+            <WhatPeapleSay/>
+            <Section className={"py-4 lg:py-12"}>
                 <NewsRelated/>
             </Section>
         </>
