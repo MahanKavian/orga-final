@@ -40,3 +40,7 @@
 .dishes_card:hover .dishes_card_link {
     display: flex;
 }
+
+#tt {
+    max-width: calc(100% - 355px);
+}

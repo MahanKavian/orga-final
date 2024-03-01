@@ -22,16 +22,16 @@ export default function Home() {
                 <DishesSlider/>
             </Section>
             <Banner/>
-            <Section className={"mb-0  py-10"}>
-                <div className={"mb-8 w-[330px]"}>
-                    <h3 className="w-full font-lobster font-medium font-Jost text-2xl md:text-4xl mb-8 text-silver-500 md:mb-12 sm:mb-10">
+            <Section className={"flex gap-5 py-4 md:py-6"}>
+                <div className={"w-[330px] flex-grow-0 flex-shrink-0"}>
+                    <h3 className="w-full font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-2 md:mb-4">
                         Deals of the week
                     </h3>
                     <DealOfWeek/>
                 </div>
-                <div>
-                    <div className={"flex items-center justify-between mb-8 lg:mb-12"}>
-                        <h3 className="font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 ">
+                <div className={"flex flex-col h-full"} id={"tt"}>
+                    <div className={"flex items-center justify-between mb-2 md:mb-4 "}>
+                        <h3 className=" font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500">
                             Feature Dishes
                         </h3>
                         <Link href={'#'}
@@ -39,11 +39,11 @@ export default function Home() {
                             View All
                         </Link>
                     </div>
-                    <FeatureDishes/>
+                    <div className={"w-full"}>
+                        <FeatureDishes/>
+                    </div>
                 </div>
-
             </Section>
-
             <ShopByCategory/>
             <WhatPeapleSay/>
             <Section className={"py-4 lg:py-12"}>
