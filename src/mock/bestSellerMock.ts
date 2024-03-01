@@ -1,11 +1,10 @@
-export const ProductCards = [
+export const bestSellerMock = [
     {
         img: "/assets/images/spaghetti-p-1.png",
         category: "burger",
         link: "#",
         title: "food",
         price: 28,
-        sale_price: 24,
         rate: 4,
     },
     {
@@ -14,9 +13,7 @@ export const ProductCards = [
         link: "#",
         title: "best pizza",
         price: 34,
-        sale_price: 32,
         rate: 5,
-        badge: "Hot"
     },
     {
         img: "/assets/images/salad-p-1.png",
@@ -24,7 +21,6 @@ export const ProductCards = [
         link: "#",
         title: "best salad",
         price: 25,
-        sale_price: 13,
         rate: 4,
     },
     {
@@ -33,9 +29,7 @@ export const ProductCards = [
         link: "#",
         title: "best food",
         price: 25,
-        sale_price: 12,
         rate: 3,
-        badge: "Hot"
     },
     {
         img: "/assets/images/cake-p-2.png",
@@ -43,7 +37,6 @@ export const ProductCards = [
         link: "#",
         title: "food",
         price: 13,
-        sale_price: 10,
         rate: 3,
     },
     {
@@ -54,4 +47,6 @@ export const ProductCards = [
         price: 32,
         rate: 5,
     },
-]
+];
+
+export default bestSellerMock;

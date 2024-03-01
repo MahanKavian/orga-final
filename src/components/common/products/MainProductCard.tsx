@@ -4,7 +4,7 @@ import Link from "next/link";
 interface Props {
     card: {
         img: string,
-        categury: string,
+        category: string,
         link: string,
         title: string,
         price: number,

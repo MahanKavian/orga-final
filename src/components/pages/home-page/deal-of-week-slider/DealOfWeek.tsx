@@ -22,7 +22,7 @@ export function DealOfWeek({}: Props) {
             {
                 dealOfWeekMock.map((card, index) => {
                     return (
-                        <SwiperSlide key={index}>
+                        <SwiperSlide key={index} className={"px-2"}>
                             <DealOfWeekCard data={card}/>
                         </SwiperSlide>
                     )

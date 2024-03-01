@@ -18,6 +18,7 @@ export function Hero() {
                         autoplay={{
                             delay: 5000
                         }}
+                        loop={true}
                         pagination={{clickable:true}}
                         >
                         {
