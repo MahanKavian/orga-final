@@ -58,7 +58,7 @@ export function Hero() {
                     </div>
             </Section>
             <Section className="container m-auto mt-4">
-                <div className="bg-white grid grid-cols-2 lg:grid-cols-4 p-4">
+                <div className="bg-white flex flex-col items-center sm:grid gjustify-center sm:grid-cols-2 lg:grid-cols-4 p-4">
                     <div className="flex gap-5 items-center p-4">
                         <div>
                             <IconBox icon={"icon-free-shipping text-[52px]"}/>
