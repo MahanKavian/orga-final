@@ -41,6 +41,8 @@
     display: flex;
 }
 
-#tt {
-    max-width: calc(100% - 355px);
+@media (min-width: 1024px) {
+    #feature_slider {
+        max-width: calc(100% - 355px)!important;
+    }
 }
