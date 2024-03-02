@@ -11,7 +11,7 @@ interface Props {
 export function DealOfWeekSlider({offers}: Props) {
     return (
         <div className={"w-[330px] flex-grow-0 flex-shrink-0 hidden lg:block"}>
-            <h3 className="w-full font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-3 md:mb-4">
+            <h3 className="w-full font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-4 md:mb-8">
                 Deals of the week
             </h3>
             <Swiper

@@ -12,7 +12,7 @@ interface Props {
 export function FeatureDishesSlider({products}: Props) {
     return (
         <div className="flex flex-col h-full w-full" id={"feature_slider"}>
-            <div className={"flex items-center justify-between mb-3 md:mb-4"}>
+            <div className={"flex items-center justify-between mb-4 md:mb-8"}>
                 <h3 className=" font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500">
                     Feature Dishes
                 </h3>

@@ -10,7 +10,7 @@ export function NewsRelated({relatedProducts}: Props) {
     return (
         <>
             <div className="flex justify-between items-end w-full mb-2 md:mb-4">
-                <h2 className="text-2xl lg:text-4xl font-lobster">Lasted news</h2>
+                <h2 className="text-2xl lg:text-4xl mb-4 font-lobster">Lasted news</h2>
                 <Link href="#" className="border-b-[3px] pb-1 px-1 border-primary-100 hover:border-b-yellow">View all posts</Link>
             </div>
             <MainSlider>
