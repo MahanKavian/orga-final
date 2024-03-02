@@ -1,20 +1,17 @@
 import {SwiperSlide} from "swiper/react";
-import {MainSlider, Rating, Section} from "@/components";
-import {CommentsType} from "@/types/CommentsType";
+import {NewsSlider, Rating, Section} from "@/components";
+import {Comments} from "@/mock/Comments";
 
-interface Props{
-    comments: Array<CommentsType>
-}
-export function WhatPeapleSay({comments}: Props) {
+export function WhatPeapleSay() {
     return (
-        <div className="bg-silver-100 py-2 lg:py-10">
+        <div className="bg-silver-100 py-14">
             <Section className="mx-auto">
-                <h2 className="w-full text-center font-lobster text-dark-gray font-[500] mb-2 md:mb-4 text-2xl md:text-4xl">What peoples say?</h2>
-                    <MainSlider>
+                <h2 className="w-full text-center font-lobster text-dark-gray font-[500] mb-2 md:mb-12 text-2xl md:text-4xl">What peoples say?</h2>
+                    <NewsSlider>
                         {
-                            comments.map((item, index)=>{
+                            Comments.map((item, index)=>{
                                 return(
-                                    <SwiperSlide key={index} className={"my-2"}>
+                                    <SwiperSlide key={index} className={"my-4"}>
                                         <div className="bg-white flex border-2 border-border shadow-md flex-col items-center gap-4 p-5">
                                             <p className="text-md font-[500] text-gray text-center min-h-[125px] overflow-hidden">
                                                 {item.massage}
@@ -29,7 +26,7 @@ export function WhatPeapleSay({comments}: Props) {
                                 )
                             })
                         }
-                    </MainSlider>
+                    </NewsSlider>
             </Section>
         </div>
     );

@@ -1,1 +1,1 @@
-export * from './FeatureDishesSlider';
+export * from './FeatureDishes';

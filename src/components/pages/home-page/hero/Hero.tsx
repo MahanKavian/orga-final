@@ -2,15 +2,12 @@ import {CategoriesMenu, IconBox, ImageView, Section} from "@/components";
 import Link from "next/link";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules"
+import {HeroMock} from "@/mock/HeroMock";
 import {RightHeroMock} from "@/mock/RightHeroMock";
-import {HeroTypes} from "@/types/HeroTypes";
 
-interface Props{
-    heroBaners: Array<HeroTypes>
-}
-export function Hero({heroBaners}: Props) {
+export function Hero() {
     return (
-        <section className="bg-[#F5F5F5] py-2 lg:py-4">
+        <section className="bg-[#F5F5F5] py-4 lg:py-6">
             <Section className="flex gap-4 justify-between mx-auto max-h-[580px] overflow-hidden">
                 <div className="hidden xl:block w-[250px] flex-shrink-0 flex-grow-0" id="Categuries_container">
                     <CategoriesMenu/>
@@ -25,7 +22,7 @@ export function Hero({heroBaners}: Props) {
                         pagination={{clickable:true}}
                         >
                         {
-                            heroBaners.map((item, index)=>{
+                            HeroMock.map((item, index)=>{
                                 return(
                                     <SwiperSlide key={index}>
                                         <div className={"relative"}>
@@ -61,11 +58,11 @@ export function Hero({heroBaners}: Props) {
                     }
                     </div>
             </Section>
-            <Section className="container m-auto mt-2 lg:mt-4">
-                <div className="bg-white flex-col items-center grid grid-cols-2 lg:grid-cols-4 p-4">
+            <Section className="container m-auto mt-4">
+                <div className="bg-white flex flex-col items-center sm:grid gjustify-center sm:grid-cols-2 lg:grid-cols-4 p-4">
                     <div className="flex gap-5 items-center p-4">
                         <div>
-                            <IconBox icon={"icon-free-shipping text-[45px]"}/>
+                            <IconBox icon={"icon-free-shipping text-[52px]"}/>
                         </div>
                         <div>
                             <p className="text-md sm:text-xl">Free Shipping</p>
@@ -74,7 +71,7 @@ export function Hero({heroBaners}: Props) {
                     </div>
                     <div className="flex gap-5 items-center p-4">
                         <div>
-                            <IconBox icon={"icon-security-payment text-[45px]"}/>
+                            <IconBox icon={"icon-security-payment text-[52px]"}/>
                         </div>
                         <div>
                             <p className="text-md sm:text-xl">Security Payment</p>
@@ -83,7 +80,7 @@ export function Hero({heroBaners}: Props) {
                     </div>
                     <div className="flex gap-5 items-center p-4">
                         <div>
-                            <IconBox icon={"icon-mony-returns text-[45px]"}/>
+                            <IconBox icon={"icon-mony-returns text-[52px]"}/>
                         </div>
                         <div>
                             <p className="text-md sm:text-xl">Money Returns</p>
@@ -92,7 +89,7 @@ export function Hero({heroBaners}: Props) {
                     </div>
                     <div className="flex gap-5 items-center p-4">
                         <div>
-                            <IconBox icon={"icon-support text-[45px]"}/>
+                            <IconBox icon={"icon-support text-[52px]"}/>
                         </div>
                         <div>
                             <p className="text-md sm:text-xl">Support 24 / 7</p>

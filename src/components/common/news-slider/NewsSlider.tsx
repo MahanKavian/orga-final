@@ -6,7 +6,7 @@ interface Props {
     children: ReactNode
 }
 
-export function MainSlider({children}: Props) {
+export function NewsSlider({children}: Props) {
     return (
             <Swiper
                 slidesPerView={1}

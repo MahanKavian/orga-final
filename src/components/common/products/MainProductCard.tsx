@@ -15,13 +15,11 @@ interface Props {
 }
 export function MainProductCard({card}: Props) {
     return (
-        <Link href={card.link} className="dishes_card overflow-hidden rounded-md flex flex-col hover:shadow-md transition duration-500 relative border border-silver-100">
-            <div className={"absolute top-[6px] left-0 w-full text-start"}>
-                <Badge badge={card.badge} sale_price={card.sale_price} price={card.price} badgeIsBig={true}/>
-            </div>
+        <Link href={card.link} className="dishes_card rounded-md flex flex-col hover:shadow-md transition duration-500 relative border border-silver-100">
+            <Badge badge={card.badge} sale_price={card.sale_price} price={card.price}/>
             <div className="w-full flex h-[258px] py-8 items-center justify-center relative border-b-[1px] border-b-gray-100">
                 <IconBox icon={"icon-heart-card"} iconClassName={"dishes-image__like dishes_card_link hidden absolute text-silver-500 top-2 right-4 border-2 border-silver-200 p-2 rounded-full hover:text-red"}/>
-                <ImageView src={card.img}  alt={card.title} width={200} height={200} className={"aspect-square w-[200px]"}/>
+                <ImageView src={card.img}  alt={card.title} width={200} height={200}/>
                 <div className="dishes_card_link absolute bottom-2 hidden gap-1 text-lg">
                     <IconBox icon={"icon-replace-card"} iconClassName={"bg-white text-silver-500 border-2 p-2 border-silver-200 hover:bg-primary-100 hover:text-white hover:border-primary-100 transition rounded-l-lg"}/>
                     <div className="bg-white flex items-center gap-2 border-2 py-1 px-5 border-lightgray hover:bg-primary-100 hover:text-white hover:border-primary-100 transition">

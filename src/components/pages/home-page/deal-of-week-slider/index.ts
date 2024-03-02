@@ -1,1 +1,1 @@
-export * from './DealOfWeekSlider';
+export * from './DealOfWeek';
