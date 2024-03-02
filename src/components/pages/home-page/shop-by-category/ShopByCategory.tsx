@@ -1,21 +1,21 @@
 import {ImageView, Section} from "@/components";
 import Link from "next/link";
-import shopByCategory from "@/mock/shopByCategory";
+import {SopByCategoryType} from "@/types/SopByCategoryType";
 
 interface Props {
-
+    productItems: Array<SopByCategoryType>
 }
 
-export function ShopByCategory({}: Props) {
+export function ShopByCategory({productItems}: Props) {
     return (
-        <section className="bg-cream py-12">
-            <Section className="py-4 lg:py-6 px-2 flex flex-col items-center">
-                <h3 className="font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 md:mb-12 sm:mb-4">
+        <section className="bg-cream">
+            <Section className="py-2 lg:py-10 px-2 flex flex-col items-center">
+                <h3 className="font-lobster font-medium font-Jost text-2xl md:text-4xl mb-2 lg:mb-4 text-silver-500">
                     Shop By Categories
                 </h3>
                 <div className="w-full flex flex-wrap gap-3 justify-center lg:gap-6">
                     {
-                        shopByCategory.map((item, index) => {
+                        productItems.map((item, index) => {
                             return (
                                 <Link href="#" className="relative flex flex-col justify-end items-center hover:shadow-xl transition duration-500  md:w-[270px]" key={index}>
                                     <ImageView src={item.image} alt={item.title} width={330} height={470}/>
