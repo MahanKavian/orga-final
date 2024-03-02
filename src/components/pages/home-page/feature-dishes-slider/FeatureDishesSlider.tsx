@@ -31,12 +31,16 @@ export function FeatureDishesSlider({products}: Props) {
                     }}
                     loop={true}
                     breakpoints={{
-                        450: {
+                        480: {
                             slidesPerView: 1.25,
+                            spaceBetween: 0
+                        },
+                        610: {
+                            slidesPerView:1.7,
                             spaceBetween: 20
                         },
-                        728: {
-                            slidesPerView:1.7,
+                        768: {
+                            slidesPerView:2,
                             spaceBetween: 20
                         },
                         1028:{
@@ -44,12 +48,12 @@ export function FeatureDishesSlider({products}: Props) {
                             spaceBetween: 20
                         },
                         1280: {
-                            slidesPerView: 2.5,
+                            slidesPerView: 2.75,
                             spaceBetween: 30
                         },
                         1650: {
-                            slidesPerView: 3.8,
-                            spaceBetween: 30
+                            slidesPerView: 3.6,
+                            spaceBetween: 0
                         },
                     }}
                 >

@@ -13,7 +13,7 @@ interface Props {
 export function DishesSlider({allProducts, listCategories}: Props) {
     return (
         <div className="py-2 lg:py-4 flex flex-col">
-            <h3 className="w-full text-center font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500">
+            <h3 className="w-full text-center font-lobster font-medium font-Jost text-2xl md:text-4xl mb-5 text-silver-500">
                 New Dishes
             </h3>
             <ul className="w-full flex justify-center gap-3 gap-y-6 flex-wrap items-center my-2 lg:my-5">

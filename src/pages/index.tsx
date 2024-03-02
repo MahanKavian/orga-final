@@ -29,7 +29,7 @@ export default function Home() {
                 <DishesSlider allProducts={ProductCards} listCategories={CateguriesMenuMock}/>
             </Section>
             <Banner/>
-            <Section className={"flex gap-5 py-2 md:py-8 w-full"}>
+            <Section className={"flex  gap-5 py-2 md:py-8 w-full"}>
                 <DealOfWeekSlider offers={dealOfWeekMock}/>
                 <FeatureDishesSlider products={ProductCards}/>
             </Section>
