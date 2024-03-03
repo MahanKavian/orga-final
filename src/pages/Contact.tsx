@@ -8,21 +8,21 @@ export function Contact() {
                 <h1 className="text-2xl md:text-4xl text-center font-lobster m-3 lg:m-6">Contact us</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 py-2 my-2 md:my-4">
                     <div className="flex gap-4 items-center">
-                        <IconBox icon={"icon-contact-page-1"} size={40}/>
+                        <IconBox icon={"icon-contact-1"} size={40}/>
                         <div>
                             <p className="font-bold">Call us</p>
                             <p className="text-sm">+45 987 368 7619</p>
                         </div>
                     </div>
                     <div className="flex gap-4 items-center">
-                            <IconBox icon={"icon-contact-page-2"} size={40}/>
+                            <IconBox icon={"icon-contact-2"} size={40}/>
                             <div>
                                 <p className="font-bold">Address</p>
                                 <p className="text-sm">29 Rue du Bourg Tibourg, 75004 Paris</p>
                             </div>
                     </div>
                     <div className="flex gap-4 items-center sm:hidden md:flex">
-                            <IconBox icon={"icon-contact-page-3"} size={40} />
+                            <IconBox icon={"icon-contact-3"} size={40}/>
                             <div>
                                 <p className="font-bold">Email</p>
                                 <p className="text-sm">organicfood@email.com</p>
