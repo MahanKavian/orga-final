@@ -2,33 +2,39 @@ import {IconBox} from "@/components";
 import Link from "next/link";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation} from "swiper/modules";
-import {MainProductCard} from "@/components/common/products/product-card/MainProductCard";
+import {MainProductCard} from "@/components/common/products/product-cards/MainProductCard";
 import {ProductsType} from "@/types/ProductsType";
 import {ListCategoriesType} from "@/types/ListCategoriesType";
 
 interface Props {
-    allProducts: Array<ProductsType>
-    listCategories: Array<ListCategoriesType>
+    Products: Array<ProductsType>
+    listCategories?: Array<ListCategoriesType>
+    title: string,
+    titleClass?: string
 }
-export function DishesSlider({allProducts, listCategories}: Props) {
+export function ProductsSlider({Products, listCategories, title, titleClass}: Props) {
     return (
         <div className="py-2 lg:py-4 flex flex-col">
-            <h3 className="w-full text-center font-lobster font-medium font-Jost text-2xl md:text-4xl mb-5 text-silver-500">
-                New Dishes
+            <h3 className={`${titleClass} w-full font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-4`}>
+                {title}
             </h3>
-            <ul className="w-full flex justify-center gap-3 gap-y-6 flex-wrap items-center my-2 lg:my-5">
-                {
-                    listCategories.map((item, index)=>{
-                        return(
-                            <li key={index}>
-                                <Link href={item.link} className="py-1 px-2 border-[1px] border-blue-silver text-sm lg:text-md font-jost bg-white text-dark-gray hover:border-primary hover:text-white hover:bg-primary-100 hover:border-primary-300 transition duration-200">
-                                    {item.title}
-                                </Link>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+            {
+                listCategories
+                &&
+                <ul className="w-full flex justify-center gap-2 gap-y-4 flex-wrap items-center lg:my-5">
+                    {
+                        listCategories.map((item, index)=>{
+                            return(
+                                <li key={index}>
+                                    <Link href={item.link} className="py-1 px-2 border-[1px] border-blue-silver text-sm lg:text-md font-jost bg-white text-dark-gray hover:border-primary hover:text-white hover:bg-primary-100 hover:border-primary-300 transition duration-200">
+                                        {item.title}
+                                    </Link>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            }
             <div className="flex items-center gap-3">
                 <span className="hidden icon-left-arrow dishes-prev text-3xl text-dark-silver hover:text-primary transition hover:cursor-pointer px-1 md:inline-flex"></span>
                 <IconBox icon={"icon-arrow-left"} iconClassName={"hidden dishes-prev text-3xl text-silver-300 hover:text-primary-300 transition hover:cursor-pointer px-1 md:inline-flex"}/>
@@ -68,7 +74,7 @@ export function DishesSlider({allProducts, listCategories}: Props) {
                     }}
                 >
                     {
-                        allProducts.map((card, index)=>{
+                        Products.map((card, index)=>{
                             return(
                                 <SwiperSlide key={index} className={"my-3"}>
                                     <MainProductCard card={card}/>

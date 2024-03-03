@@ -1,3 +1,3 @@
-export * from "./dishes-slider";
-export * from "./product-card";
-export * from './vertical-product-list'
+export * from "./products-slider";
+export * from "./product-cards";
+export * from './vertical-products-list'

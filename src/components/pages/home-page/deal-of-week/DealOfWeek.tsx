@@ -8,7 +8,7 @@ interface Props {
     offers: Array<DealsOfWeakType>
 }
 
-export function DealOfWeekSlider({offers}: Props) {
+export function DealOfWeek({offers}: Props) {
     return (
         <div className={"w-[330px] flex-grow-0 flex-shrink-0 hidden lg:block"}>
             <h3 className="w-full font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-4 md:mb-8">

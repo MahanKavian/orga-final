@@ -9,7 +9,7 @@ interface Props {
     products: Array<ProductsType>
 }
 
-export function FeatureDishesSlider({products}: Props) {
+export function FeatureDishes({products}: Props) {
     return (
         <div className="flex flex-col h-full w-full" id={"feature_slider"}>
             <div className={"flex items-center justify-between mb-4 md:mb-8"}>
