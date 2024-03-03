@@ -1,65 +1,45 @@
 import {
-    Banner, BestSeller, Contact,
-    DealOfWeek,
-    FeatureDishes,
+    Banner, BestSellerSlider,
+    DealOfWeekSlider,
+    FeatureDishesSlider,
     Hero,
     NewsRelated,
     Section,
-    ShopByCategory, UserBasket,
+    ShopByCategory,
     WhatPeapleSay
 } from "@/components";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import {DishesSlider} from "@/components/common/products";
-import Link from "next/link";
+import {ProductCards} from "@/mock/ProductCards";
+import {CateguriesMenuMock} from "@/mock/CateguriesMenuMock";
+import {HeroMock} from "@/mock/HeroMock";
+import dealOfWeekMock from "@/mock/dealOfWeekMock";
+import shopByCategory from "@/mock/shopByCategory";
+import bestSellerMock from "@/mock/bestSellerMock";
+import {Comments} from "@/mock/Comments";
+import {NewsRelatedMock} from "@/mock/NewsRelatedMock";
 
 export default function Home() {
     return (
         <>
-            <Hero/>
-            <Section className={'mb-0 py-10'}>
-                <DishesSlider/>
+            <Hero heroBaners={HeroMock}/>
+            <Section className={'mb-0 py-2 lg:py-8'}>
+                <DishesSlider allProducts={ProductCards} listCategories={CateguriesMenuMock}/>
             </Section>
             <Banner/>
-            <Section className={"flex gap-5 py-10 md:py-16"}>
-                <div className={"w-[330px] flex-grow-0 flex-shrink-0"}>
-                    <h3 className="w-full font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-2 md:mb-8">
-                        Deals of the week
-                    </h3>
-                    <DealOfWeek/>
-                </div>
-                <div className={"flex flex-col h-full"} id={"tt"}>
-                    <div className={"flex items-center justify-between mb-2 md:mb-8"}>
-                        <h3 className=" font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500">
-                            Feature Dishes
-                        </h3>
-                        <Link href={'#'}
-                              className={"text-lg font-normal border-b-yellow border-b-2 pb-1 hover:border-primary-300 transition"}>
-                            View All
-                        </Link>
-                    </div>
-                    <div className={"w-full"}>
-                        <FeatureDishes/>
-                    </div>
-                </div>
+            <Section className={"flex  gap-5 py-2 md:py-8 w-full"}>
+                <DealOfWeekSlider offers={dealOfWeekMock}/>
+                <FeatureDishesSlider products={ProductCards}/>
             </Section>
-            <ShopByCategory/>
-            <Section className={"mb-0 py-10"}>
-                <div className={"flex items-center justify-between mb-2 md:mb-8"}>
-                    <h3 className="capitalize font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500">
-                        best seller
-                    </h3>
-                    <Link href={'#'}
-                          className={"text-lg font-normal border-b-yellow border-b-2 pb-1 hover:border-primary-300 transition"}>
-                        View All
-                    </Link>
-                </div>
-                <BestSeller/>
+            <ShopByCategory productItems={shopByCategory}/>
+            <Section className={"py-2 lg:py-8"}>
+                <BestSellerSlider bestSellerProducts={bestSellerMock}/>
             </Section>
-            <WhatPeapleSay/>
-            <Section className={"py-4 lg:py-12"}>
-                <NewsRelated/>
+            <WhatPeapleSay comments={Comments}/>
+            <Section className={"py-2 lg:py-8"}>
+                <NewsRelated relatedProducts={NewsRelatedMock}/>
             </Section>
         </>
     );
