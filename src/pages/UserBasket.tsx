@@ -1,5 +1,5 @@
 import {PagesNavigation, Section} from "@/components";
-import {ShopCard} from "@/components/common/products";
+import { ShopCard } from "@/components/common/products";
 
 export function UserBasket() {
     return (

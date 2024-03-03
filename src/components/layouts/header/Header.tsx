@@ -1,4 +1,4 @@
-import {IconBox, ImageView, Section} from "@/components";
+import {IconBox, ImageView, Section, SpecialBox} from "@/components";
 import Link from "next/link";
 
 interface Props {
@@ -11,27 +11,7 @@ export function Header({}: Props) {
         <header id={"top"}>
             <div className="bg-cream overflow-hidden">
                 <Section className="flex items-center gap-4 mb-0">
-                    <ul className="flex gap-3">
-                        <li>
-                            <IconBox icon={"icon-facebook"}
-                                     iconClassName={'text-silver-500 hover:text-primary-500 transition'} size={18}
-                                     link={"#"}/>
-                        </li>
-                        <li>
-                            <IconBox icon={"icon-whatsapp"}
-                                     iconClassName={'text-silver-500 hover:text-primary-500 transition'} size={18}
-                                     link={"#"}/>
-                        </li>
-                        <li>
-                            <IconBox icon={"icon-youtube"}
-                                     iconClassName={'text-silver-500 hover:text-primary-500 transition'} size={18}
-                                     link={"#"}/>
-                        </li>
-                        <li>
-                            <IconBox icon={"icon-x"} iconClassName={'text-silver-500 hover:text-primary-500 transition'}
-                                     size={18} link={"#"}/>
-                        </li>
-                    </ul>
+                    <SpecialBox/>
                     <div className={"w-[1px] h-[38px] bg-silver-500"}></div>
                     <IconBox icon={"icon-email-top"} title={"OrganicFood@gmail.com"} size={18}
                              linkClassName={"hover:text-primary-500 transition"}
@@ -40,8 +20,7 @@ export function Header({}: Props) {
             </div>
             <Section className="flex items-center justify-between p-2 py-5 gap-4 mb-0">
                 <Link href={'#'}>
-                    <ImageView src={'/assets/images/Logo2.png'} className={'w-[150px]'} alt={"Orga Fresh"}
-                               width={150} height={55}/>
+                    <ImageView src={'/assets/images/Logo2.png'} className={'w-[150px]'} alt={"Orga Fresh"} width={150} height={55}/>
                 </Link>
                 <div>
                     <form action={"#"}

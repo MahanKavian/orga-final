@@ -54,8 +54,7 @@ const config: Config = {
                     200: "#1AB2C6",
                     300: "#046DB0"
                 },
-                yellow: "#FDA72F",
-                pageNavigation: "rgb(208, 226, 226)"
+                yellow: "#FDA72F"
             },
             boxShadow: {
                 'c-xs': '5px 5px 15px 0px rgba(24, 24, 24, 0.05)',
