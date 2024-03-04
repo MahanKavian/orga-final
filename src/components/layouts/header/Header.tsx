@@ -50,18 +50,18 @@ export function Header({}: Props) {
                             <Link href="#" className="text-white">Home</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link href="#" className="text-white flex items-center gap-2">
+                            <Link href={"#"} className="text-white flex items-center gap-2">
                                 Shop
                             </Link>
                         </li>
                         <li className="navbar-item">
-                            <Link href="#" className="text-white">About</Link>
+                            <Link href={"about"} className="text-white">About</Link>
                         </li>
                         <li className="navbar-item">
                             <Link href="#" className="text-white">Blog</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link href="#" className="text-white">Contact</Link>
+                            <Link href={"contact"} className="text-white">Contact</Link>
                         </li>
                     </ul>
 

@@ -1,7 +1,7 @@
 import {PagesNavigation, Section} from "@/components";
 import { ShopCard } from "@/components/common/products";
 
-export function UserBasket() {
+export default function basket() {
     return (
         <>
             <PagesNavigation title={"Shop Card"} home={"Home"} next={"Sop Card"}/>

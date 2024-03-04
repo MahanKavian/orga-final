@@ -2,7 +2,7 @@ interface Props {
     
 }
 
-export function About({}: Props) {
+export default function about({}: Props) {
     return (
         <div>
 

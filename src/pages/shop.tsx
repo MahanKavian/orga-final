@@ -1,7 +1,7 @@
 import {IconBox, ImageView, PagesNavigation, PriceText, Rating, Section} from "@/components";
 import {useQuentity} from "@/hooks/useQuentity";
 
-export function ShopDetail() {
+export default function shop() {
     const {counter, increment, decrement} = useQuentity()
     return (
         <>
