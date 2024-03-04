@@ -6,7 +6,6 @@ interface Props {
 }
 
 export function Header({}: Props) {
-
     return (
         <header id={"top"}>
             <div className="bg-cream overflow-hidden">

@@ -9,7 +9,7 @@ interface Props {
 export function ShopByCategory({productItems}: Props) {
     return (
         <section className="bg-cream">
-            <Section className="py-2 lg:py-10 px-2 flex flex-col items-center">
+            <Section className="py-6 lg:py-10 px-2 flex flex-col items-center">
                 <h3 className="font-lobster font-medium font-Jost text-2xl md:text-4xl mb-4 lg:mb-8 text-silver-500">
                     Shop By Categories
                 </h3>

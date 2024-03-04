@@ -62,7 +62,7 @@ export function Hero({heroBaners}: Props) {
                     </div>
             </Section>
             <Section className="container m-auto mt-2 lg:mt-4">
-                <div className="bg-white flex-col items-center grid grid-cols-2 lg:grid-cols-4 p-4">
+                <div className="bg-white items-center grid grid-cols-2 lg:grid-cols-4 p-4">
                     <div className="flex gap-5 items-center p-4">
                         <div>
                             <IconBox icon={"icon-free-shipping text-[45px]"}/>

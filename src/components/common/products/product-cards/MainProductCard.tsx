@@ -1,17 +1,9 @@
 import {Badge, IconBox, ImageView, PriceText, Rating} from "@/components";
 import Link from "next/link";
+import {ProductsType} from "@/types/ProductsType";
 
 interface Props {
-    card: {
-        img: string,
-        category: string,
-        link: string,
-        title: string,
-        price: number,
-        sale_price?: number,
-        rate: number,
-        badge?: string
-    }
+    card: ProductsType
 }
 export function MainProductCard({card}: Props) {
     return (
