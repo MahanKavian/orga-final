@@ -38,7 +38,7 @@ export function Header({}: Props) {
                     <IconBox icon={"icon-heart-header text-[21px]"} size={21} badge={2}
                              linkClassName={"hover:text-primary-200 transition text-silver-500"} link={'#'}/>
                     <IconBox icon={"icon-bascet-card text-[23px]"} badge={4}
-                             linkClassName={"hover:text-primary-200 transition text-silver-500"} link={'#'}/>
+                             linkClassName={"hover:text-primary-200 transition text-silver-500"} link={'basket'}/>
                 </div>
             </Section>
             <div className={"w-full bg-primary-300 shadow-md py-3"}>
@@ -47,21 +47,21 @@ export function Header({}: Props) {
                              linkClassName={"md:hidden"}/>
                     <ul className="hidden md:flex gap-7">
                         <li className="navbar-item">
-                            <Link href="#" className="text-white">Home</Link>
+                            <Link href={"/"} className="text-white">Home</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link href="#" className="text-white flex items-center gap-2">
+                            <Link href={""} className="text-white flex items-center gap-2">
                                 Shop
                             </Link>
                         </li>
                         <li className="navbar-item">
-                            <Link href="#" className="text-white">About</Link>
+                            <Link href={"about"} className="text-white">About</Link>
                         </li>
                         <li className="navbar-item">
                             <Link href="#" className="text-white">Blog</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link href="#" className="text-white">Contact</Link>
+                            <Link href={"contact"} className="text-white">Contact</Link>
                         </li>
                     </ul>
 
