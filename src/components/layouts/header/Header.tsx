@@ -47,7 +47,7 @@ export function Header({}: Props) {
                              linkClassName={"md:hidden"}/>
                     <ul className="hidden md:flex gap-7">
                         <li className="navbar-item">
-                            <Link href="#" className="text-white">Home</Link>
+                            <Link href={"/"} className="text-white">Home</Link>
                         </li>
                         <li className="navbar-item">
                             <Link href={"#"} className="text-white flex items-center gap-2">
