@@ -59,7 +59,7 @@ export default function about({}: Props) {
                                     aboutReasonOne.map((item, index) => {
                                         return (
                                             <div className="flex gap-6 items-center" key={index}>
-                                                <IconBox icon={`icon-${item.icon}`} size={50}/>
+                                                <IconBox icon={`icon-${item.icon} text-[50px]`}/>
                                                 <div className="flex flex-col gap-1">
                                                     <h4 className="font-lobster font-medium text-dark-gray text-xl lg:text-2xl">
                                                         {item.title}
@@ -82,7 +82,7 @@ export default function about({}: Props) {
                                     aboutReasonTwo.map((item, index) => {
                                         return (
                                             <div className="flex gap-6 items-center lg:flex-row-reverse">
-                                                <IconBox icon={`icon-${item.icon}`} size={50}/>
+                                                <IconBox icon={`icon-${item.icon} text-[50px]`} size={50}/>
                                                 <div className="flex flex-col gap-1 lg:items-end">
                                                     <h4 className="font-lobster font-[500] text-silver-500 text-lg lg:text-2xl">
                                                         {item.title}
