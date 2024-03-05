@@ -8,7 +8,7 @@ export function CategoriesMenu(){
                 CateguriesMenuMock.map((item, index)=>{
                     return(
                         <li className="flex justify-between p-1 px-4 items-center hover:text-primary-100 transition" key={index}>
-                            <IconBox icon={`${item.icon} text-[30px]`} iconClassName={"px-2"} size={40} link={item.link} title={item.title}/>
+                            <IconBox icon={`${item.icon} text-[30px]`} iconClassName={"px-2"} link={item.link} title={item.title}/>
                             <IconBox icon={"icon-arrow-right arrow"}/>
                         </li>
                     )
