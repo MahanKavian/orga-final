@@ -14,7 +14,7 @@ interface Props {
 }
 export function ProductsSlider({Products, listCategories, title, titleClass}: Props) {
     return (
-        <div className="py-2 lg:py-4 flex flex-col">
+        <div className="py-2 lg:py-4 flex gap-3 flex-col">
             <h3 className={`${titleClass} w-full font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-4`}>
                 {title}
             </h3>

@@ -10,7 +10,7 @@ export function ShopByCategory({productItems}: Props) {
     return (
         <section className="bg-cream">
             <Section className="py-6 lg:py-10 px-2 flex flex-col items-center">
-                <h3 className="font-lobster font-medium font-Jost text-2xl md:text-4xl mb-4 lg:mb-8 text-silver-500">
+                <h3 className="font-lobster font-medium font-Jost text-2xl md:text-4xl mb-8 lg:mb-8 text-silver-500">
                     Shop By Categories
                 </h3>
                 <div className="w-full flex flex-wrap gap-3 justify-center lg:gap-6">
