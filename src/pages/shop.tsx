@@ -2,7 +2,7 @@ interface Props {
     
 }
 
-export function Shop({}: Props) {
+export default function shop({}: Props) {
     return (
         <div>
 
