@@ -23,6 +23,18 @@
         width: 100%;
     }
 
+    .shop-car__option {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity .3s 0s, visibility 0s .3s;
+    }
+
+    .shop-card:hover .shop-car__option {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
 }
 
 ::-webkit-scrollbar {
