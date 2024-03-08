@@ -34,7 +34,7 @@ export function Header({}: Props) {
                              linkClassName={"hover:text-primary-200 transition text-silver-500 sm:hidden"} link={'#'}/>
                     <IconBox icon={"icon-person-header text-[21px]"} size={21} title={"login/register"}
                              linkClassName={"hover:text-primary-200 transition text-silver-500"}
-                             titleClassName={"capitalize text-small"} link={'#'} hideTitleMobile={true}/>
+                             titleClassName={"capitalize text-small"} link={"user"} hideTitleMobile={true}/>
                     <IconBox icon={"icon-heart-header text-[21px]"} size={21} badge={2}
                              linkClassName={"hover:text-primary-200 transition text-silver-500"} link={'#'}/>
                     <IconBox icon={"icon-bascet-card text-[23px]"} badge={4}
