@@ -1,4 +1,3 @@
-import { Section } from "@/components";
 import {useState} from "react";
 
 interface Props {
