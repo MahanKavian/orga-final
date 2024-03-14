@@ -4,16 +4,25 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules"
 import {RightHeroMock} from "@/mock/RightHeroMock";
 import {HeroTypes} from "@/types/HeroTypes";
+import {ResponseMenuType} from "@/types/api/MenuResponseType";
+import apiClient from "@/components/api/config/ApiClient";
+import {getApiMenu} from "@/components/api/Menu";
+import {useQuery} from "@tanstack/react-query";
+
 
 interface Props{
     heroBaners: Array<HeroTypes>
 }
 export function Hero({heroBaners}: Props) {
+    const {data: mainMenuData} = useQuery<Array<ResponseMenuType>>({queryKey:[apiClient.name], queryFn:()=>getApiMenu()})
+
     return (
         <section className="bg-silver-100 py-2 lg:py-4">
             <Section className="flex gap-4 justify-between mx-auto max-h-[580px] overflow-hidden">
-                <div className="hidden xl:block w-[250px] flex-shrink-0 flex-grow-0" id="Categuries_container">
-                    <CategoriesMenu/>
+                <div className="hidden xl:block w-[250px] flex-shrink-0 flex-grow-0">
+                    {
+                        mainMenuData && <CategoriesMenu mainMenuData={mainMenuData}/>
+                    }
                 </div>
                 <div className="max-h-[470px] overflow-hidden">
                     <Swiper
@@ -62,14 +71,14 @@ export function Hero({heroBaners}: Props) {
                     </div>
             </Section>
             <Section className="container m-auto mt-2 lg:mt-4">
-                <div className="bg-white items-center flex flex-col sm:grid grid-cols-2 xl:flex xl:flex-row justify-between p-4">
+                <div className="bg-white items-center grid grid-cols-2 md:grid-cols-4 p-4">
                     <div className="flex gap-5 items-center p-4">
                         <div>
                             <IconBox icon={"icon-free-shipping text-[45px] 2xl:text-[50px]"}/>
                         </div>
                         <div>
                             <p className="text-md sm:text-xl">Free Shipping</p>
-                            <p className="text-sm text-primary-300 2xl:text-lg">Free Shipping On All Us</p>
+                            <p className="hidden sm:block text-sm text-primary-300 2xl:text-lg">Free Shipping On All Us</p>
                         </div>
                     </div>
                     <div className="flex gap-5 items-center p-4">
@@ -78,7 +87,7 @@ export function Hero({heroBaners}: Props) {
                         </div>
                         <div>
                             <p className="text-md sm:text-xl">Security Payment</p>
-                            <p className="text-sm text-primary-300 2xl:text-lg">We Ensure Secure Payment</p>
+                            <p className="hidden sm:block text-sm text-primary-300 2xl:text-lg">We Ensure Secure Payment</p>
                         </div>
                     </div>
                     <div className="flex gap-5 items-center p-4">
@@ -87,7 +96,7 @@ export function Hero({heroBaners}: Props) {
                         </div>
                         <div>
                             <p className="text-md sm:text-xl">Money Returns</p>
-                            <p className="text-sm text-primary-300 2xl:text-lg">Return It Within 30 Days</p>
+                            <p className="hidden sm:block text-sm text-primary-300 2xl:text-lg">Return It Within 30 Days</p>
                         </div>
                     </div>
                     <div className="flex gap-5 items-center p-4">
@@ -96,7 +105,7 @@ export function Hero({heroBaners}: Props) {
                         </div>
                         <div>
                             <p className="text-md sm:text-xl">Support 24 / 7</p>
-                            <p className="text-sm text-primary-300 2xl:text-lg">Contact Us 24 Hours A day</p>
+                            <p className="hidden sm:block text-sm text-primary-300 2xl:text-lg">Contact Us 24 Hours A day</p>
                         </div>
                     </div>
                 </div>
