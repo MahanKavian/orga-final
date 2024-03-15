@@ -35,9 +35,13 @@ export default function product() {
                             <form className="flex items-center justify-between gap-2 md:gap-4">
                                 <label htmlFor="quantity">Quantity:</label>
                                 <div className="flex-shrink-0 flex-grow-0 w-[90px] sm:w-[120px] flex p-1.5 gap-2 sm:gap-5 border border-l-gray-300 justify-between items-center">
-                                    <IconBox icon={"icon-arrow-left text-gray-300 hover:text-primary-100 cursor-pointer"} size={25} functionHandler={decrement}/>
+                                    <div onClick={decrement}>
+                                        <IconBox icon={"icon-arrow-left text-gray-300 hover:text-primary-100 cursor-pointer"} size={25}/>
+                                    </div>
                                     <p className="text-md font-bold">{counter}</p>
-                                    <IconBox icon={"icon-arrow-right text-gray-300 hover:text-primary-100 cursor-pointer"} size={25} functionHandler={increment}/>
+                                    <div onClick={increment}>
+                                        <IconBox icon={"icon-arrow-right text-gray-300 hover:text-primary-100 cursor-pointer"} size={25}/>
+                                    </div>
                                 </div>
                                 <button type="button" className="text-white bg-gray-800 hover:bg-black p-3 md:py-2 ">
                                     <span className="tracking-[2px] hidden md:block">ADD TO CARD</span>

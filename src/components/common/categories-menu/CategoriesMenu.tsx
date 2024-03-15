@@ -1,25 +1,19 @@
 import {IconBox} from "@/components";
 import React from "react";
 import {EntityType, ResponseMenuType} from "@/types/api/MenuResponseType";
+import {FilterMenuPositions} from "@/utils/filterMenuPositions";
 
 interface Props{
     mainMenuData: Array<ResponseMenuType>
 }
 
 export function CategoriesMenu({mainMenuData}: Props){
-    let categoriesDataList = []
-    if(mainMenuData){
-        const mainMenu: any = mainMenuData.filter((item:any)=> item.attributes.position === "all categgories")
-        if(mainMenu.length > 0 ){
-            categoriesDataList.push(mainMenu[0].attributes)
-            categoriesDataList = categoriesDataList[0].menu_items.data
-        }
-    }
+    const categoriesDataList = FilterMenuPositions({mainMenuData: mainMenuData, position: "all categgories"})
     const clickHandler = (e:React.MouseEvent)=>{
         e.stopPropagation()
     }
     return(
-        <ul className="flex flex-col h-full py-2 bg-white justify-between gap-1 md:gap-2" onClick={clickHandler}>
+        <ul className="flex flex-col h-full py-2 bg-white justify-between gap-2 md:gap-2 border border-gray-200 rounded-md" onClick={clickHandler}>
             {
                 categoriesDataList.map((item: EntityType, index: number)=>{
                     return(

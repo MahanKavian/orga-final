@@ -1,6 +1,13 @@
 import {IconBox, ImageView, PagesNavigation, Section, SpecialBox} from "@/components";
+import {useQuery} from "@tanstack/react-query";
+import {ResponseMenuType} from "@/types/api/MenuResponseType";
+import apiClient from "@/components/api/config/ApiClient";
+import {getApiMenu} from "@/components/api/Menu";
+import {FilterMenuPositions} from "@/utils/filterMenuPositions";
 
 export default function contact() {
+    const {data: mainMenuData} = useQuery<Array<ResponseMenuType>>({queryKey:[apiClient.name], queryFn:()=>getApiMenu()})
+    const specialBoxLinks = FilterMenuPositions({mainMenuData: mainMenuData, position: "top navbar"})
     return (
         <>
             <PagesNavigation title={"Contact"} home={"Home"} next={"Contact"}/>
@@ -36,7 +43,7 @@ export default function contact() {
                     <div className="flex flex-col max-w-[350px] gap-3 sm:gap-6">
                         <h2 className="text-2xl md:text-4xl font-medium text-silver-500 font-lobster">Get in touch</h2>
                         <p className={"text-silver-300 font-normal"}>If you got any question, please to not hesitate to send us a message. We reply within 24 hours!</p>
-                        <SpecialBox/>
+                        <SpecialBox icons={specialBoxLinks}/>
                     </div>
                     <div className="max-w-[900px] flex-grow">
                         <form className="flex gap-2 sm:gap-4 w-full flex-wrap" action="">

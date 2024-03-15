@@ -1,27 +1,23 @@
 import {IconBox} from "@/components";
+import {EntityType} from "@/types/api/MenuResponseType";
 
-export function SpecialBox() {
+interface Props{
+    icons: Array<EntityType>
+}
+export function SpecialBox({icons}: Props) {
     return (
         <ul className="flex gap-3">
-            <li>
-                <IconBox icon={"icon-facebook"}
-                         iconClassName={'text-silver-500 hover:text-primary-500 transition'} size={18}
-                         link={"#"}/>
-            </li>
-            <li>
-                <IconBox icon={"icon-whatsapp"}
-                         iconClassName={'text-silver-500 hover:text-primary-500 transition'} size={18}
-                         link={"#"}/>
-            </li>
-            <li>
-                <IconBox icon={"icon-youtube"}
-                         iconClassName={'text-silver-500 hover:text-primary-500 transition'} size={18}
-                         link={"#"}/>
-            </li>
-            <li>
-                <IconBox icon={"icon-x"} iconClassName={'text-silver-500 hover:text-primary-500 transition'}
-                         size={18} link={"#"}/>
-            </li>
+            {
+                icons.map((item, index) => {
+                    return(
+                        <li key={index}>
+                            <IconBox icon={item.attributes.icon ? item.attributes.icon: ""}
+                                     iconClassName={'text-silver-500 hover:text-primary-500 transition'} size={18}
+                                     link={item.attributes.link}/>
+                        </li>
+                    )
+                })
+            }
         </ul>
     );
 }
