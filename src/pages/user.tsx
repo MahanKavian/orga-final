@@ -7,7 +7,7 @@ interface Props {
 export default function User({}: Props) {
     const [login, setLogin] = useState("login")
     return (
-        <div className="bg-[url('/assets/images/login_wallpaper.jpg')] bg-cover bg-no-repeat absolute top-0 left-0 w-screen h-screen z-10 flex items-center p-4">
+        <div className="bg-[url('/assets/images/login_wallpaper.jpg')] bg-cover bg-no-repeat absolute top-0 left-0 w-screen h-screen z-[80] flex items-center p-4">
             <div className="max-w-[450px] mx-auto flex-grow flex-shrink">
                 <div className="grid grid-cols-2 gap-2 bg-white rounded-t-lg">
                     <button type="button" className={`col-span-1 ${login === "login" ? "border-b-primary-100 text-primary-300" : "border-b-transparent  text-silver-300"} block p-2 pt-3 border-b-[4px] border-b-transparent hover:text-primary-300 transition font-normal tracking-[2px]`} onClick={()=>{setLogin("login")}}>LOGIN</button>

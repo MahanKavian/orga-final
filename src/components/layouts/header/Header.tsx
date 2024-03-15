@@ -38,7 +38,7 @@ export function Header({}: Props) {
         <header id={"top"} className="">
             <div className="bg-cream overflow-hidden">
                 <Section className="flex items-center gap-4 mb-0">
-                    <SpecialBox/>
+                    <SpecialBox icons={specialBoxLinks}/>
                     <div className={"w-[1px] h-[38px] bg-silver-500"}></div>
                     <IconBox icon={"icon-email-top"} title={"OrganicFood@gmail.com"} size={18}
                              linkClassName={"hover:text-primary-500 transition"}

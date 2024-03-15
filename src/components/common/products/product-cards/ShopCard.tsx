@@ -15,9 +15,13 @@ export function ShopCard() {
             <span className="col-span-1 flex items-center text-sm lg:text-medium text-primary-300">$30.0</span>
             <span className="col-span-2 flex justify-center items-center">
                 <div className="flex px-1.5 sm:px-4 py-0 md:py-1 gap-1.5 sm:gap-4 w-fit border border-l-gray-300 justify-between items-center">
-                    <IconBox icon={"icon-arrow-left text-gray-300 hover:text-primary-100 cursor-pointer"} functionHandler={decrement}/>
+                    <div onClick={decrement}>
+                         <IconBox icon={"icon-arrow-left text-gray-300 hover:text-primary-100 cursor-pointer"}/>
+                    </div>
                     <p className="text-sm lg:text-medium text-primary-300">{counter}</p>
-                    <IconBox icon={"icon-arrow-right text-gray-300 hover:text-primary-100 cursor-pointer"} functionHandler={increment}/>
+                   <div onClick={increment}>
+                       <IconBox icon={"icon-arrow-right text-gray-300 hover:text-primary-100 cursor-pointer"}/>
+                   </div>
                 </div>
             </span>
             <span className="col-span-1 flex items-center text-sm lg:text-medium text-primary-300">$300</span>
