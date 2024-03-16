@@ -8,14 +8,17 @@ interface Props {
     Products: Array<ProductsType>
     title: string,
     titleClass?: string
+    showCategory?: boolean
 }
-export function ProductsContainer({Products, title, titleClass}: Props) {
+export function ProductsContainer({Products, title, titleClass, showCategory = false}: Props) {
     return (
         <div className="py-2 lg:py-4 flex gap-3 flex-col">
             <h3 className={`${titleClass} w-full font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-4`}>
                 {title}
             </h3>
-            <ProductsFilterCategory/>
+            {
+                showCategory && <ProductsFilterCategory/>
+            }
             <div className="flex items-center gap-3">
                 <span className="hidden icon-left-arrow dishes-prev text-3xl text-dark-silver hover:text-primary transition hover:cursor-pointer px-1 md:inline-flex"></span>
                 <IconBox icon={"icon-arrow-left"} iconClassName={"hidden dishes-prev text-3xl text-silver-300 hover:text-primary-300 transition hover:cursor-pointer px-1 md:inline-flex"}/>

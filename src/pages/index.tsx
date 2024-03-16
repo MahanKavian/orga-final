@@ -11,7 +11,6 @@ import {
 import {HeroMock} from "@/mock/HeroMock";
 import {ProductsContainer} from "@/components/common/products";
 import {ProductCards} from "@/mock/ProductCards";
-import {CateguriesMenuMock} from "@/mock/CateguriesMenuMock";
 import dealOfWeekMock from "@/mock/dealOfWeekMock";
 import shopByCategory from "@/mock/shopByCategory";
 import bestSellerMock from "@/mock/bestSellerMock";
@@ -21,9 +20,9 @@ import {NewsRelatedMock} from "@/mock/NewsRelatedMock";
 export default function Home() {
     return (
         <>
-            <Hero heroBaners={HeroMock}/>
+            <Hero heroBaners={HeroMock} isShowCategoryMenu={true}/>
             <Section className={'mb-0 py-4 lg:py-10'}>
-                <ProductsContainer Products={ProductCards} title={"New Dishes"} titleClass={"text-center"}/>
+                <ProductsContainer Products={ProductCards} title={"New Dishes"} titleClass={"text-center"} showCategory={true}/>
             </Section>
             <Banner/>
             <Section className={"flex gap-5 py-4 md:py-10 w-full"}>

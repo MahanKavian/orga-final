@@ -8,7 +8,6 @@ import { useOverlay } from "@/hooks/use-overlay";
 
 
 interface Props {
-
 }
 
 export function Header({}: Props) {
