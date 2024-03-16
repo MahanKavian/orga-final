@@ -4,13 +4,12 @@ import {useQuery} from "@tanstack/react-query";
 import apiClient from "@/components/api/config/ApiClient";
 import {getApiMenu} from "@/components/api/Menu";
 import {EntityType, ResponseMenuType} from "@/types/api/MenuResponseType";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {FilterMenuPositions} from "@/utils/filterMenuPositions";
 import { useOverlay } from "@/hooks/use-overlay";
 
 
 interface Props {
-
 }
 
 export function Header({}: Props) {
@@ -20,13 +19,6 @@ export function Header({}: Props) {
 
     const [showMobileMenu, setShowMobileMenu] = useState(false)
     const [showCategoryMenu, setShowCategoryMenu] = useState(false)
-    const [isHomePage, setIsHomePage] = useState(true)
-
-    useEffect(() => {
-        setIsHomePage(window.location.pathname === "/");
-        !isHomePage && setShowCategoryMenu(false)
-        setShowMobileMenu(false)
-        }, [window.location.pathname ? window.location.pathname : true]);
 
     function showMenuMobileHandler (e:React.MouseEvent){
         e.stopPropagation()
@@ -39,10 +31,7 @@ export function Header({}: Props) {
     }
 
     function ShowMenuCategoryHandler(){
-        !isHomePage && setShowCategoryMenu((prevState) => !prevState)
-        if(isHomePage && window.innerWidth < 1280) {
-        setShowCategoryMenu((prevState) => !prevState)
-        }
+        (window.innerWidth < 1280) && setShowCategoryMenu((prevState) => !prevState)
     }
 
     useOverlay({
@@ -97,14 +86,12 @@ export function Header({}: Props) {
                     </button>
                     <div className={` ${showMobileMenu ? "left-0": "-left-[450px]"} flex-grow p-4 md:p-0 flex flex-col justify-start items-start md:justify-between md:flex-row gap-4 md:items-center fixed md:static top-0 h-screen md:h-fit overflow-scroll md:overflow-visible bg-white md:bg-transparent transition-all duration-500 z-50 `} onClick={bodyMenuHandler}>
                         <div className="w-[250px] md:relative h-auto">
-                            <button className="rounded-md md:rounded-none bg-cream w-full flex justify-between items-center gap-2 text-center px-6 py-2 xl:py-3 text-black" onClick={ShowMenuCategoryHandler}>
+                            <button className="xl:hidden rounded-md md:rounded-none bg-cream w-full flex justify-between items-center gap-2 text-center px-6 py-2 xl:py-3 text-black" onClick={ShowMenuCategoryHandler}>
                                 <span className={"text-lg font-[500]"}>All Categuries</span>
                                 <IconBox icon={`icon-arrow-up transition-all duration-400 ${showCategoryMenu && "rotate-180 "}`} size={24}/>
                             </button>
                             <div className={`${!showCategoryMenu && "hidden"} md:absolute left-0 top-[50px] lg:top-[60px] z-50 w-full mt-4 md:mt-0`}>
-                                {
-                                    mainMenuData && <CategoriesMenu mainMenuData={mainMenuData}/>
-                                }
+                                <CategoriesMenu/>
                             </div>
                         </div>
                         <div>
@@ -112,7 +99,7 @@ export function Header({}: Props) {
                                 {
                                     mainMenuLinks.map((item: EntityType, index: number) =>{
                                         return(
-                                            <li className="navbar-item py-2 xl:py-2 text-start" key={index}>
+                                            <li className="navbar-item py-2 xl:py-3 text-start" key={index}>
                                                 <Link href={item.attributes.link} className="text-black md:text-white">{item.attributes.title}</Link>
                                             </li>
                                         )
