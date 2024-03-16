@@ -4,9 +4,10 @@ import {useQuery} from "@tanstack/react-query";
 import apiClient from "@/components/api/config/ApiClient";
 import {getApiMenu} from "@/components/api/Menu";
 import {EntityType, ResponseMenuType} from "@/types/api/MenuResponseType";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {FilterMenuPositions} from "@/utils/filterMenuPositions";
 import { useOverlay } from "@/hooks/use-overlay";
+
 
 interface Props {
 
@@ -19,19 +20,31 @@ export function Header({}: Props) {
 
     const [showMobileMenu, setShowMobileMenu] = useState(false)
     const [showCategoryMenu, setShowCategoryMenu] = useState(false)
+    const [isHomePage, setIsHomePage] = useState(true)
+
+    useEffect(() => {
+        setIsHomePage(window.location.pathname === "/");
+        !isHomePage && setShowCategoryMenu(false)
+        setShowMobileMenu(false)
+        }, [window.location.pathname ? window.location.pathname : true]);
+
     function showMenuMobileHandler (e:React.MouseEvent){
         e.stopPropagation()
         setShowMobileMenu((prevState) => !prevState)
         !showMobileMenu && setShowCategoryMenu(false)
     }
+
     function bodyMenuHandler(e:React.MouseEvent){
         e.stopPropagation()
     }
+
     function ShowMenuCategoryHandler(){
-        if(window.innerWidth < 1280) {
-            setShowCategoryMenu((prevState) => !prevState)
+        !isHomePage && setShowCategoryMenu((prevState) => !prevState)
+        if(isHomePage && window.innerWidth < 1280) {
+        setShowCategoryMenu((prevState) => !prevState)
         }
     }
+
     useOverlay({
         onClick: ()=>{
             setShowMobileMenu(false)
@@ -56,8 +69,7 @@ export function Header({}: Props) {
                     <ImageView src={'/assets/images/Logo2.png'} className={'w-[150px]'} alt={"Orga Fresh"} width={150} height={55}/>
                 </Link>
                 <div className="hidden md:inline-block">
-                    <form action={"#"}
-                          className="w-full py-2 px-4 flex min-w-[200px] lg:min-w-[400px] items-center border-2 rounded-md">
+                    <form action={"#"} className="w-full py-2 px-4 flex min-w-[200px] lg:min-w-[400px] items-center border-2 rounded-md">
                         <input placeholder="Enyer your Keyword..." className="flex-grow focus:outline-none"/>
                         <IconBox icon={'icon-search-header text-[19px] hover:cursor-pointer hover:text-primary-200 transition'}/>
                     </form>
@@ -83,13 +95,13 @@ export function Header({}: Props) {
                     <button className="md:hidden p-3 text-white max-w-fit" onClick={showMenuMobileHandler}>
                         <IconBox icon={"icon-burger-menu-header"} size={24}/>
                     </button>
-                    <div className={` ${showMobileMenu ? "left-0": "-left-[450px]"} flex-grow p-4 md:p-0 flex flex-col justify-start items-start md:justify-between md:flex-row gap-4 md:items-center absolute md:static top-0 h-screen md:h-fit overflow-scroll md:overflow-visible bg-white md:bg-transparent transition-all duration-300 z-50 `} onClick={bodyMenuHandler}>
+                    <div className={` ${showMobileMenu ? "left-0": "-left-[450px]"} flex-grow p-4 md:p-0 flex flex-col justify-start items-start md:justify-between md:flex-row gap-4 md:items-center fixed md:static top-0 h-screen md:h-fit overflow-scroll md:overflow-visible bg-white md:bg-transparent transition-all duration-500 z-50 `} onClick={bodyMenuHandler}>
                         <div className="w-[250px] md:relative h-auto">
-                            <button className="rounded-md md:rounded-none bg-cream w-full flex justify-between items-center gap-2 text-center px-6 py-2 xl:py-3 text-black md:text-black transition-all duration-200" onClick={ShowMenuCategoryHandler}>
+                            <button className="rounded-md md:rounded-none bg-cream w-full flex justify-between items-center gap-2 text-center px-6 py-2 xl:py-3 text-black" onClick={ShowMenuCategoryHandler}>
                                 <span className={"text-lg font-[500]"}>All Categuries</span>
-                                <IconBox icon={`icon-arrow-up transition-all duration-400 xl:hidden ${showCategoryMenu && "rotate-180 "}`} size={24}/>
+                                <IconBox icon={`icon-arrow-up transition-all duration-400 ${showCategoryMenu && "rotate-180 "}`} size={24}/>
                             </button>
-                            <div className={`${!showCategoryMenu && "hidden"} md:absolute left-0 top-[50px] lg:top-[60px] z-50 w-full mt-4 md:mt-0 xl:hidden`}>
+                            <div className={`${!showCategoryMenu && "hidden"} md:absolute left-0 top-[50px] lg:top-[60px] z-50 w-full mt-4 md:mt-0`}>
                                 {
                                     mainMenuData && <CategoriesMenu mainMenuData={mainMenuData}/>
                                 }
@@ -101,7 +113,7 @@ export function Header({}: Props) {
                                     mainMenuLinks.map((item: EntityType, index: number) =>{
                                         return(
                                             <li className="navbar-item py-2 xl:py-2 text-start" key={index}>
-                                                <Link href={item.attributes.link} className=" text-black md:text-white">{item.attributes.title}</Link>
+                                                <Link href={item.attributes.link} className="text-black md:text-white">{item.attributes.title}</Link>
                                             </li>
                                         )
                                     })

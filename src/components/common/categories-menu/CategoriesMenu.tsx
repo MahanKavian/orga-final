@@ -13,7 +13,7 @@ export function CategoriesMenu({mainMenuData}: Props){
         e.stopPropagation()
     }
     return(
-        <ul className="flex flex-col h-full py-2 bg-white justify-between gap-2 md:gap-2 border border-gray-200 rounded-md" onClick={clickHandler}>
+        <ul className="flex flex-col h-full py-2 bg-white justify-between gap-2 lg:gao-2.5 xl:gap-3 border border-gray-200 rounded-md" onClick={clickHandler}>
             {
                 categoriesDataList.map((item: EntityType, index: number)=>{
                     return(

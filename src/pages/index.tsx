@@ -9,7 +9,7 @@ import {
     WhatPeapleSay
 } from "@/components";
 import {HeroMock} from "@/mock/HeroMock";
-import {ProductsSlider} from "@/components/common/products";
+import {ProductsContainer} from "@/components/common/products";
 import {ProductCards} from "@/mock/ProductCards";
 import {CateguriesMenuMock} from "@/mock/CateguriesMenuMock";
 import dealOfWeekMock from "@/mock/dealOfWeekMock";
@@ -23,7 +23,7 @@ export default function Home() {
         <>
             <Hero heroBaners={HeroMock}/>
             <Section className={'mb-0 py-4 lg:py-10'}>
-                <ProductsSlider Products={ProductCards} listCategories={CateguriesMenuMock} title={"New Dishes"} titleClass={"text-center"}/>
+                <ProductsContainer Products={ProductCards} title={"New Dishes"} titleClass={"text-center"}/>
             </Section>
             <Banner/>
             <Section className={"flex gap-5 py-4 md:py-10 w-full"}>
@@ -32,7 +32,7 @@ export default function Home() {
             </Section>
             <ShopByCategory productItems={shopByCategory}/>
             <Section className={"py-4 lg:py-10"}>
-                <ProductsSlider Products={bestSellerMock} title={ "Best Seller"}/>
+                <ProductsContainer Products={bestSellerMock} title={ "Best Seller"}/>
             </Section>
             <WhatPeapleSay comments={Comments}/>
             <Section className={"py-4 lg:py-10"}>
