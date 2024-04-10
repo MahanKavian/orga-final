@@ -1,11 +1,14 @@
 import {IconBox, ImageView, Section, SpecialBox} from "@/components";
 import Link from "next/link";
+import {useMenu} from "@/hooks/use-menu";
+import {EntityType, ItemType} from "@/types/api/Menu";
 
 interface Props {
 
 }
 
 export function Header({}: Props) {
+    const { data: mainMenuItems} = useMenu({position:"header"})
     return (
         <header id={"top"}>
             <div className="bg-cream overflow-hidden">
@@ -22,11 +25,9 @@ export function Header({}: Props) {
                     <ImageView src={'/assets/images/Logo2.png'} className={'w-[150px]'} alt={"Orga Fresh"} width={150} height={55}/>
                 </Link>
                 <div>
-                    <form action={"#"}
-                          className="w-full hidden py-2 px-4 sm:flex min-w-[200px] lg:min-w-[400px] items-center border-2 rounded-md">
+                    <form action={"#"} className="w-full hidden py-2 px-4 sm:flex min-w-[200px] lg:min-w-[400px] items-center border-2 rounded-md">
                         <input placeholder="Enyer your Keyword..." className="flex-grow focus:outline-none"/>
-                        <IconBox
-                            icon={'icon-search-header text-[19px] hover:cursor-pointer hover:text-primary-200 transition'}/>
+                        <IconBox icon={'icon-search-header text-[19px] hover:cursor-pointer hover:text-primary-200 transition'}/>
                     </form>
                 </div>
                 <div className="flex items-center gap-3 pr-3 sm:p-0">
@@ -43,33 +44,24 @@ export function Header({}: Props) {
             </Section>
             <div className={"w-full bg-primary-300 shadow-md py-3"}>
                 <Section className="bg-primary mb-0 flex justify-between gap-4 items-center">
-                    <IconBox icon={"icon-burger-menu-header text-[24px] text-white"} link={'#'}
-                             linkClassName={"md:hidden"}/>
+                    <IconBox icon={"icon-burger-menu-header text-[24px] text-white"} link={'#'} linkClassName={"md:hidden"}/>
                     <ul className="hidden md:flex gap-7">
-                        <li className="navbar-item">
-                            <Link href={"/"} className="text-white">Home</Link>
-                        </li>
-                        <li className="navbar-item">
-                            <Link href={"shop"} className="text-white flex items-center gap-2">
-                                Shop
-                            </Link>
-                        </li>
-                        <li className="navbar-item">
-                            <Link href={"about"} className="text-white">About</Link>
-                        </li>
-                        <li className="navbar-item">
-                            <Link href="#" className="text-white">Blog</Link>
-                        </li>
-                        <li className="navbar-item">
-                            <Link href={"contact"} className="text-white">Contact</Link>
-                        </li>
+                        {
+                            mainMenuItems &&
+                            mainMenuItems.map((item:EntityType<ItemType>, index:number)=>{
+                                return(
+                                    <li key={index} className="navbar-item">
+                                        <Link href={item.attributes.link} className="text-white">{item.attributes.title}</Link>
+                                    </li>
+                                )
+                            })
+                        }
                     </ul>
-
                     <Link href="tel:9584739004" className="text-white" title="contact to us">
-                            <span className="flex items-center">
-                                <span>Hotline:</span>
-                                <span className="font-semibold ml-2">(+800) 345 678</span>
-                            </span>
+                        <span className="flex items-center">
+                            <span>Hotline:</span>
+                            <span className="font-semibold ml-2">(+800) 345 678</span>
+                        </span>
                     </Link>
                 </Section>
             </div>

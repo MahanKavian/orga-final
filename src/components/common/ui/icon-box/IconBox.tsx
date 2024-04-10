@@ -58,7 +58,7 @@ export function IconBox({
         )
     } else {
         return (
-            <div className={`flex items-center gap-2 ${linkClassName}`} onClick={functionHandler}>
+            <div className={`flex items-center gap-2 ${linkClassName}`} onClick={()=> functionHandler}>
                 {
                     badge
                         ?
