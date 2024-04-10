@@ -58,7 +58,7 @@ export default function about({}: Props) {
                                 {
                                     aboutReasonOne.map((item, index) => {
                                         return (
-                                            <div className="flex gap-6 items-center" key={index}>
+                                            <div className="flex gap-6 items-center lg:flex-row-reverse" key={index}>
                                                 <IconBox icon={`icon-${item.icon} text-[50px]`}/>
                                                 <div className="flex flex-col gap-1">
                                                     <h4 className="font-lobster font-medium text-dark-gray text-xl lg:text-2xl">

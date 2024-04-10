@@ -6,11 +6,6 @@ interface Props {
     width: number;
     height: number;
 }
-// export function ImageView({ className = "", src, alt, width, height }: Props) {
-//     return (
-//         <Image className={className} src={src} alt={alt} width={width} height={height} />
-//     )
-// }
 export function ImageView({src = "", alt, width, height, className = ""}: Props) {
     const imageSrc = src ? (src.startsWith("/uploads") ? "https://cmahanali.navaxcollege.com"+ src : src) : ""
     if(src && src.length > 0) {
