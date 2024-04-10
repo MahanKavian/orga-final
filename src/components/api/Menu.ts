@@ -1,8 +1,9 @@
 import apiClient from "@/components/api/config/ApiClient";
-import {ResponseMenuType} from "@/types/api/MenuResponseType";
+import {ResponseApi} from "@/types/api/ResponseApi";
+import {MenuType} from "@/types/api/Menu";
 
 
-export async function getApiMenu():Promise<Array<ResponseMenuType>>{
+export async function getApiMenu():Promise<Array<ResponseApi<MenuType>>>{
     const response = await apiClient.get("/menus",{
         params:{
             populate: "*",
