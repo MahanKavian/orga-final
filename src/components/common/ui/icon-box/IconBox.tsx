@@ -11,6 +11,7 @@ interface Props {
     path?: number;
     linkClassName?: string;
     iconClassName?: string;
+    functionHandler?: Function
 }
 
 export function IconBox({
@@ -24,6 +25,7 @@ export function IconBox({
                             path = 0,
                             linkClassName = '',
                             iconClassName = '',
+                            functionHandler
                         }: Props) {
     let span = [];
     for (let i = 0; i <= path; i++) {
@@ -56,7 +58,7 @@ export function IconBox({
         )
     } else {
         return (
-            <div className={`flex items-center gap-2 ${linkClassName}`}>
+            <div className={`flex items-center gap-2 ${linkClassName}`} onClick={()=> functionHandler}>
                 {
                     badge
                         ?

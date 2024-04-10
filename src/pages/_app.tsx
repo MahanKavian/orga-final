@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import "@/styles/icons.css";
-import "react-toastify/dist/ReactToastify.min.css"
 import type {AppProps} from "next/app";
 import {Jost, Lobster_Two} from "next/font/google";
 import {NextFont} from "next/dist/compiled/@next/font";
@@ -22,7 +21,7 @@ const lobster = Lobster_Two({
 })
 
 export default function App({Component, pageProps}: AppProps) {
-    const queryClient = new QueryClient({
+    const queryClint = new QueryClient({
         defaultOptions:{
             queries:{
                 refetchOnWindowFocus: false,
@@ -41,12 +40,12 @@ export default function App({Component, pageProps}: AppProps) {
                   }
                 `}
             </style>
-                <QueryClientProvider client={queryClient}>
-            <Layouts>
-                <Component {...pageProps} />
-                <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false} theme={"light"} position={"top-right"}/>
-            </Layouts>
-        </QueryClientProvider>
+            <QueryClientProvider client={queryClint}>
+                <Layouts>
+                    <Component {...pageProps} />
+                    <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false} theme={"light"} position={"top-right"}/>
+                </Layouts>
+            </QueryClientProvider>
         </>
     )
 }
