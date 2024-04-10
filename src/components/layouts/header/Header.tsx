@@ -1,7 +1,8 @@
 import {IconBox, ImageView, Section, SpecialBox} from "@/components";
 import Link from "next/link";
 import {useMenu} from "@/hooks/use-menu";
-import {EntityType, ItemType} from "@/types/api/Menu";
+import {ItemType} from "@/types/api/Menu";
+import { EntityType } from "@/types/api/ResponseApi";
 
 interface Props {
 

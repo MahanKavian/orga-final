@@ -1,6 +1,7 @@
 import {IconBox} from "@/components";
 import {useMenu} from "@/hooks/use-menu";
-import {EntityType, ItemType} from "@/types/api/Menu";
+import {ItemType} from "@/types/api/Menu";
+import { EntityType } from "@/types/api/ResponseApi";
 
 
 export function CategoriesMenu(){

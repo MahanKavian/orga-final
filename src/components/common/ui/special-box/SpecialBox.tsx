@@ -1,5 +1,7 @@
 import {IconBox} from "@/components";
 import {useMenu} from "@/hooks/use-menu";
+import {EntityType} from "@/types/api/ResponseApi";
+import {ItemType} from "@/types/api/Menu";
 
 export function SpecialBox() {
     const { data: topNavbarLinks} = useMenu({position:"top navbar"})
@@ -7,7 +9,7 @@ export function SpecialBox() {
         return (
             <ul className="flex gap-3">
                 {
-                    topNavbarLinks.map((item, index) =>{
+                    topNavbarLinks.map((item:EntityType<ItemType>, index:number) =>{
                         return (
                             <li key={index}>
                                 <IconBox icon={item.attributes.icon ? item.attributes.icon : "icon-x"}
