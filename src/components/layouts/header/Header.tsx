@@ -31,7 +31,7 @@ export function Header({}: Props) {
     }
 
     function ShowMenuCategoryHandler(){
-        (window.innerWidth < 1280) && setShowCategoryMenu((prevState) => !prevState)
+        setShowCategoryMenu((prevState) => !prevState)
     }
 
     useOverlay({
@@ -75,22 +75,26 @@ export function Header({}: Props) {
             </Section>
             <div className={"w-full bg-primary-300 shadow-md"}>
                 <Section className="bg-primary flex justify-between items-center w-full">
-                    <div className="bg-white rounded text-black md:hidden max-w-fit">
-                        <form action={"#"} className="py-1 px-4 flex w-[250px] items-center rounded">
-                            <input placeholder="Enyer your Keyword..." className="flex-grow focus:outline-none bg-transparent"/>
-                            <IconBox icon={'icon-search-header text-[19px] hover:cursor-pointer hover:text-primary-200 transition'}/>
-                        </form>
-                    </div>
+                    <Link href="tel:9584739004" className="sm:w-[35%] text-white py-1 sm:py-2 flex items-center justify-end md:order-2" title="contact to us">
+                        <span>Hotline:</span>
+                        <span className="font-semibold ml-2">(+800) 345 678</span>
+                    </Link>
                     <button className="md:hidden p-3 text-white max-w-fit" onClick={showMenuMobileHandler}>
                         <IconBox icon={"icon-burger-menu-header"} size={24}/>
                     </button>
-                    <div className={` ${showMobileMenu ? "left-0": "-left-[450px]"} flex-grow p-4 md:p-0 flex flex-col justify-start items-start md:justify-between md:flex-row gap-4 md:items-center fixed md:static top-0 h-screen md:h-fit overflow-scroll md:overflow-visible bg-white md:bg-transparent transition-all duration-500 z-50 `} onClick={bodyMenuHandler}>
-                        <div className="w-[250px] md:relative h-auto">
-                            <button className="xl:hidden rounded-md md:rounded-none bg-cream w-full flex justify-between items-center gap-2 text-center px-6 py-2 xl:py-3 text-black" onClick={ShowMenuCategoryHandler}>
+                    <div className={` ${showMobileMenu ? "left-0": "-left-[450px]"} flex-grow p-4 md:p-0 flex flex-col justify-start lg:justify-between items-start md:flex-row gap-4 md:items-center fixed md:static top-0 h-screen md:h-fit overflow-scroll md:overflow-visible bg-white md:bg-transparent transition-all duration-500 z-50 `} onClick={bodyMenuHandler}>
+                        <div className="bg-white rounded text-black md:hidden max-w-fit border">
+                            <form action={"#"} className="py-2 px-4 flex w-[250px] items-center rounded">
+                                <input placeholder="Enyer your Keyword..." className="flex-grow focus:outline-none bg-transparent"/>
+                                <IconBox icon={'icon-search-header text-[19px] hover:cursor-pointer hover:text-primary-200 transition-all'}/>
+                            </form>
+                        </div>
+                        <div className="w-[250px] md:relative h-auto xl:hidden">
+                            <button className="xl:hidden rounded-md md:rounded-none bg-cream w-full flex justify-between items-center text-center px-6 py-3 xl:py-3 text-black" onClick={ShowMenuCategoryHandler}>
                                 <span className={"text-lg font-[500]"}>All Categuries</span>
                                 <IconBox icon={`icon-arrow-up transition-all duration-400 ${showCategoryMenu && "rotate-180 "}`} size={24}/>
                             </button>
-                            <div className={`${!showCategoryMenu && "hidden"} md:absolute left-0 top-[50px] lg:top-[60px] z-50 w-full mt-4 md:mt-0`}>
+                            <div className={`${!showCategoryMenu && "hidden"} md:absolute left-0 top-[42px] lg:top-[50px] z-50 w-full mt-4`}>
                                 <CategoriesMenu/>
                             </div>
                         </div>
@@ -107,10 +111,6 @@ export function Header({}: Props) {
                                 }
                             </ul>
                         </div>
-                        <Link href="tel:9584739004" className="text-black md:text-white py-1 sm:py-2 flex items-center" title="contact to us">
-                            <span>Hotline:</span>
-                            <span className="font-semibold ml-2">(+800) 345 678</span>
-                        </Link>
                     </div>
                 </Section>
             </div>
