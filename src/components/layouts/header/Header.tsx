@@ -21,9 +21,9 @@ export function Header({}: Props) {
     const [showCategoryMenu, setShowCategoryMenu] = useState(false)
 
     function showMenuMobileHandler (e:React.MouseEvent){
-        e.stopPropagation()
-        setShowMobileMenu((prevState) => !prevState)
-        !showMobileMenu && setShowCategoryMenu(false)
+        e.stopPropagation();
+        setShowMobileMenu((prevState) => !prevState);
+        !showMobileMenu && setShowCategoryMenu(false);
     }
 
     function bodyMenuHandler(e:React.MouseEvent){

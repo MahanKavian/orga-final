@@ -23,14 +23,14 @@ const lobster = Lobster_Two({
 
 export default function App({Component, pageProps}: AppProps) {
     const queryClient = new QueryClient({
-        defaultOptions:{
-            queries:{
+        defaultOptions: {
+            queries: {
                 refetchOnWindowFocus: false,
                 refetchIntervalInBackground: false,
                 retry: false
             }
         }
-    })
+    });
     return (
         <>
             <style jsx global>
@@ -41,12 +41,13 @@ export default function App({Component, pageProps}: AppProps) {
                   }
                 `}
             </style>
-                <QueryClientProvider client={queryClient}>
-            <Layouts>
-                <Component {...pageProps} />
-                <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false} theme={"light"} position={"top-right"}/>
-            </Layouts>
-        </QueryClientProvider>
+            <QueryClientProvider client={queryClient}>
+                <Layouts>
+                    <Component {...pageProps} />
+                    <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false}
+                                    theme={"light"} position={"top-right"}/>
+                </Layouts>
+            </QueryClientProvider>
         </>
     )
 }
