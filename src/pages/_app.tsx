@@ -23,8 +23,8 @@ const lobster = Lobster_Two({
 
 export default function App({Component, pageProps}: AppProps) {
     const queryClient = new QueryClient({
-        defaultOptions:{
-            queries:{
+        defaultOptions: {
+            queries: {
                 refetchOnWindowFocus: false,
                 refetchIntervalInBackground: false,
                 retry: false
