@@ -11,9 +11,9 @@ apiClient.interceptors.response.use(function (response){
 },
     function (error){
             if(error.response){
-                toast("error", error)
+                toast("error", error);
             }
-            return Promise.reject(error)
+            return Promise.reject(error);
     }
 )
 
