@@ -65,15 +65,14 @@ export default function product() {
                         <div className="flex gap-2 md:gap-4 items-center flex-wrap">
                             <form className="flex items-center justify-between gap-2 md:gap-4">
                                 <label htmlFor="quantity">Quantity:</label>
-                                <div
-                                    className="flex-shrink-0 flex-grow-0 w-[90px] sm:w-[120px] flex p-1.5 gap-2 sm:gap-5 border border-l-gray-300 justify-between items-center">
-                                    <IconBox
-                                        icon={"icon-arrow-left text-gray-300 hover:text-primary-100 cursor-pointer"}
-                                        size={25} functionHandler={decrement}/>
-                                    <span className="text-md font-normal">{counter}</span>
-                                    <IconBox
-                                        icon={"icon-arrow-right text-gray-300 hover:text-primary-100 cursor-pointer"}
-                                        size={25} functionHandler={increment}/>
+                                <div className="flex-shrink-0 flex-grow-0 w-[90px] sm:w-[120px] flex p-1.5 gap-2 sm:gap-5 border border-l-gray-300 justify-between items-center">
+                                    <div onClick={decrement}>
+                                        <IconBox icon={"icon-arrow-left text-gray-300 hover:text-primary-100 cursor-pointer"} size={25}/>
+                                    </div>
+                                    <p className="text-md font-bold">{counter}</p>
+                                    <div onClick={increment}>
+                                        <IconBox icon={"icon-arrow-right text-gray-300 hover:text-primary-100 cursor-pointer"} size={25}/>
+                                    </div>
                                 </div>
                                 <button type="button"
                                         className="text-white bg-silver-500 hover:bg-primary-300 p-3 md:py-2 transition">
