@@ -76,7 +76,7 @@
 .icon-bascet-card:before {
   content: "\e90e";
 }
-.icon-bascet-cart:before {
+.icon-basket-cart:before {
   content: "\e90f";
 }
 .icon-bullet-list:before {
@@ -150,7 +150,6 @@
 }
 .icon-grid-shop:before {
   content: "\e925";
-  color: #fff;
 }
 .icon-heart-card:before {
   content: "\e926";

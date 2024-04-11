@@ -1,3 +1,61 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body,html{
+    position: relative;
+}
+@layer utilities {
+    .navbar-item {
+        position: relative;
+    }
+    .navbar-item::before {
+        content: "";
+        width: 0;
+        position: absolute;
+        display: block;
+        bottom: -2px;
+        height: 3px;
+        border-radius: 10px;
+        background-color: white;
+        transition: .5s;
+    }
+
+    .navbar-item:hover::before {
+        width: 100%;
+    }
+
+    .shop-car__option {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity .3s 0s, visibility 0s .3s;
+    }
+
+    .shop-card:hover .shop-car__option {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dishes_card:hover .dishes_card_link {
+    display: flex;
+}
+
+@media (min-width: 1024px) {
+    #feature_slider {
+        max-width: calc(100% - 355px)!important;
+    }
+}

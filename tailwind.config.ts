@@ -7,6 +7,16 @@ const config: Config = {
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
+        fontWeight: {
+            thin: '200',
+            light: '300',
+            normal: '400',
+            medium: '500',
+            semibold: '600',
+            bold: '700',
+            extrabold: '800',
+            black: '900'
+        },
         extend: {
             fontFamily: {
                 lobster: "var(--font-lobster)"
@@ -14,10 +24,17 @@ const config: Config = {
             colors: {
                 'white': "#FFFFFF",
                 primary: {
-                    100: "#60A00C",
-                    200: "87AA3C"
+                    100: '#81B13D',
+                    200: "#88B13E",
+                    300: "#87AA3C",
+                    400: "#60A00C",
+                    500: '#3A882B',
+                    600: '#227226',
+                    700: '#1A5D2C'
                 },
                 'black': "#000000",
+                cream: "#FCEEE7",
+                red: "#AB0E17",
                 silver: {
                     'transparent': "rgba(255,255,255,0.1)",
                     100: "#F5F5F5",
@@ -25,17 +42,20 @@ const config: Config = {
                     300: "#888888",
                     400: "#333333",
                     500: "#111111",
+
                 },
                 green: {
                     100: "#223324",
                     200: "#39413A",
-                    300: "#2C332C"
+                    300: "#2C332C",
                 },
                 blue: {
                     100: "#D0E2E2",
-                    200: "#1AB2C6"
+                    200: "#1AB2C6",
+                    300: "#046DB0"
                 },
-                yellow: "#FDA72F"
+                yellow: "#FDA72F",
+                pageNavigation: "rgb(208, 226, 226)"
             },
             boxShadow: {
                 'c-xs': '5px 5px 15px 0px rgba(24, 24, 24, 0.05)',
