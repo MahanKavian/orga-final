@@ -1,5 +1,6 @@
 import {IconBox, ImageView, PagesNavigation, Section, SpecialBox} from "@/components";
 
+
 export default function contact() {
     return (
         <>

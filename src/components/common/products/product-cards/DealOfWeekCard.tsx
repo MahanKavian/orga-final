@@ -33,7 +33,7 @@ export function DealOfWeekCard({data}: Props) {
     }, []);
 
     return (
-        <div className={"max-w-[300px] h-[412px] flex flex-col gap-5"}>
+        <div className={"mx-auto max-w-[300px] h-[412px] flex flex-col gap-5"}>
             <div className={"w-full relative flex justify-center items-center border-b-2"}>
                 <ImageView src={data.image} alt={data.title} width={258} height={258} className={"aspect-square w-[250px]"}/>
                 <div className={"bg-primary-300 text-white font-medium text-lg py-1.5 px-6 rounded-lg shadow-md flex items-center gap-3 absolute -bottom-[20px]"}>
