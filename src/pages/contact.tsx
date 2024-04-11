@@ -1,14 +1,7 @@
 import {IconBox, ImageView, PagesNavigation, Section, SpecialBox} from "@/components";
-import {useQuery} from "@tanstack/react-query";
-import {ResponseMenuType} from "@/types/api/MenuResponseType";
-import apiClient from "@/components/api/config/ApiClient";
-import {getApiMenu} from "@/components/api/Menu";
-import {FilterMenuPositions} from "@/utils/filterMenuPositions";
-
 
 export default function contact() {
-    const {data: mainMenuData} = useQuery<Array<ResponseMenuType>>({queryKey:[apiClient.name], queryFn:()=>getApiMenu()})
-    const specialBoxLinks = FilterMenuPositions({mainMenuData: mainMenuData, position: "top navbar"})
+
     return (
         <>
             <PagesNavigation title={"Contact"} home={"Home"} next={"Contact"}/>
