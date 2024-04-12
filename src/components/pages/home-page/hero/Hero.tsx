@@ -14,7 +14,7 @@ interface Props{
 }
 export function Hero({isShowCategoryMenu = true}: Props) {
 
-    const { data: heroSlider} = useQuery({queryKey:[getAllProductApiCall.name], queryFn: ()=> getAllProductApiCall({populate:["thumbnail"], filters: {is_hot: true}})});
+    const { data: heroSlider} = useQuery({queryKey:[getAllProductApiCall.name], queryFn: ()=> getAllProductApiCall({populate:["thumbnail"], filters: {is_hot: {$eq: true}}})});
     return (
         <div className="bg-silver-100 py-2 lg:py-4">
             <Section className="flex gap-4 justify-between mx-auto max-h-[580px] overflow-hidden">

@@ -1,16 +1,11 @@
 import {IconBox, ImageView, PriceText, Rating} from "@/components";
 import {useEffect, useState} from "react";
 import timeHandler, {Time} from "@/utils/timer";
+import {ProductType} from "@/types/api/Product";
+import {EntityType} from "@/types/api/ResponseApi";
 
 interface Props {
-    data: {
-        image: string;
-        title: string;
-        price: number;
-        sale_price: number;
-        rate: number;
-        dead_line: string;
-    }
+    data: EntityType<ProductType>
 }
 
 export function DealOfWeekCard({data}: Props) {
@@ -24,8 +19,11 @@ export function DealOfWeekCard({data}: Props) {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const timerObj: Time = timeHandler(data.dead_line);
-            setRemainTime(timerObj);
+            let timerObj: Time;
+            if (data.attributes.off_time_limit) {
+                timerObj = timeHandler(data.attributes.off_time_limit);
+                setRemainTime(timerObj);
+            }
         }, 1000);
         return () => {
             clearInterval(interval);
@@ -35,21 +33,34 @@ export function DealOfWeekCard({data}: Props) {
     return (
         <div className={"mx-auto max-w-[300px] h-[412px] flex flex-col gap-5"}>
             <div className={"w-full relative flex justify-center items-center border-b-2"}>
-                <ImageView src={data.image} alt={data.title} width={258} height={258} className={"aspect-square w-[250px]"}/>
-                <div className={"bg-primary-300 text-white font-medium text-lg py-1.5 px-6 rounded-lg shadow-md flex items-center gap-3 absolute -bottom-[20px]"}>
-                    <span>{remainTime.days}</span>:
-                    <span>{remainTime.hours}</span>:
-                    <span>{remainTime.minutes}</span>:
-                    <span>{remainTime.seconds}</span>
+                <ImageView src={data.attributes.thumbnail.data.attributes.url}
+                           alt={data.attributes.thumbnail.data.attributes.name} width={258} height={258}
+                           className={"aspect-square w-[220px] mb-6"}/>
+                <div
+                    className={"w-full font-medium text-lg text-center justify-center rounded-lg flex items-center gap-3 absolute -bottom-[20px]"}>
+                    <span className={"bg-yellow shadow text-white  w-[40px] h-[40px] flex justify-center items-center flex-col rounded"}>
+                        {remainTime.days < 10 ? "0" + remainTime.days : remainTime.days}
+                    </span>
+                    <span className={"bg-yellow shadow text-white  w-[40px] h-[40px] flex justify-center items-center flex-col rounded"}>
+                        {remainTime.hours < 10 ? "0" + remainTime.hours : remainTime.hours}
+                    </span>
+                    <span className={"bg-yellow shadow text-white  w-[40px] h-[40px] flex justify-center items-center flex-col rounded"}>
+                        {remainTime.minutes < 10 ? "0" + remainTime.minutes : remainTime.minutes}
+                    </span>
+                    <span className={"bg-yellow shadow text-white  w-[40px] h-[40px] flex justify-center items-center flex-col rounded"}>
+                        {remainTime.seconds < 10 ? "0" + remainTime.seconds : remainTime.seconds}
+                    </span>
                 </div>
             </div>
             <div className={"w-full items-center flex justify-between py-3 px-8"}>
-                <div className={"flex flex-col gap-2"}>
-                    <Rating rate={data.rate} hideText={true}/>
-                    <span className={"mt-1 text-silver-500 font-normal text-lg"}>{data.title}</span>
-                    <PriceText price={data.price} sale_price={data.sale_price}/>
+                <div className={"flex flex-col gap-1"}>
+                    <span className={"capitalize text-silver-300"}>{data.attributes.category.data.attributes.title}</span>
+                    <Rating rate={data.attributes.rate} hideText={true}/>
+                    <span className={"text-silver-500 font-normal text-lg"}>{data.attributes.title}</span>
+                    <PriceText price={data.attributes.price} sale_price={data.attributes.sale_price}/>
                 </div>
-                <IconBox icon={"icon-bascet-card text-[24px]"} linkClassName={"p-3 rounded-full border-2 border-primary-300 bg-white text-primary-300 hover:text-white hover:bg-primary-300 transition hover:cursor-pointer"}/>
+                <IconBox icon={"icon-bascet-card text-[24px]"}
+                         linkClassName={"p-3 rounded-full border-2 border-primary-300 bg-white text-primary-300 hover:text-white hover:bg-primary-300 transition hover:cursor-pointer"}/>
             </div>
         </div>
     );

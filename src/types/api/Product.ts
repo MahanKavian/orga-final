@@ -6,7 +6,7 @@ export interface ProductType {
     title: string
     price: number
     sale_price?: number
-    rate?: number
+    rate: number
     off_time_limit?: string
     quantity: number
     description: string
