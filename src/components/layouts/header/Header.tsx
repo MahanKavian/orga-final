@@ -8,7 +8,6 @@ import { useOverlay } from "@/hooks/use-overlay";
 
 
 interface Props {
-
 }
 
 export function Header({}: Props) {
@@ -16,9 +15,9 @@ export function Header({}: Props) {
     const [showMobileMenu, setShowMobileMenu] = useState(false)
     const [showCategoryMenu, setShowCategoryMenu] = useState(false)
     function showMenuMobileHandler (e:React.MouseEvent){
-        e.stopPropagation()
-        setShowMobileMenu((prevState) => !prevState)
-        !showMobileMenu && setShowCategoryMenu(false)
+        e.stopPropagation();
+        setShowMobileMenu((prevState) => !prevState);
+        !showMobileMenu && setShowCategoryMenu(false);
     }
     function bodyMenuHandler(e:React.MouseEvent){
         e.stopPropagation()
@@ -107,7 +106,7 @@ export function Header({}: Props) {
                                     mainMenuLinks &&
                                     mainMenuLinks.map((item: EntityType<ItemType>, index: number) => {
                                         return (
-                                            <li className="navbar-item py-2 xl:py-3 text-start" key={index}>
+                                            <li className="navbar-item py-2 xl:py-3 capitalize text-start" key={index}>
                                                 <Link href={item.attributes.link}
                                                       className="text-black md:text-white">{item.attributes.title}</Link>
                                             </li>

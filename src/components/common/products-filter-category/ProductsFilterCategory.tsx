@@ -16,7 +16,7 @@ export function ProductsFilterCategory(){
                 categoryItems.map((item: EntityType<ItemType>, index:number)=>{
                     return(
                         <li key={index}>
-                            <Link href={item.attributes.link} className="py-1 px-2 border-[1px] border-blue-silver text-sm lg:text-md font-jost bg-white text-dark-gray hover:border-primary hover:text-white hover:bg-primary-100 hover:border-primary-300 transition duration-200">
+                            <Link href={item.attributes.link} className="py-1 px-2 capitalize border-[1px] border-blue-silver text-sm lg:text-md font-jost bg-white text-dark-gray hover:border-primary hover:text-white hover:bg-primary-100 hover:border-primary-300 transition duration-200">
                                 {item.attributes.title}
                             </Link>
                         </li>

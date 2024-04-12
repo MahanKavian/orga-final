@@ -11,7 +11,7 @@ interface Props {
     path?: number;
     linkClassName?: string;
     iconClassName?: string;
-    functionHandler?: Function
+    functionHandler?: Function;
 }
 
 export function IconBox({

@@ -43,7 +43,7 @@ export function DealOfWeekCard({data}: Props) {
                     <span>{remainTime.seconds}</span>
                 </div>
             </div>
-            <div className={"w-full items-center flex justify-between py-8 px-8"}>
+            <div className={"w-full items-center flex justify-between py-3 px-8"}>
                 <div className={"flex flex-col gap-2"}>
                     <Rating rate={data.rate} hideText={true}/>
                     <span className={"mt-1 text-silver-500 font-normal text-lg"}>{data.title}</span>

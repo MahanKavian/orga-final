@@ -1,7 +1,7 @@
 import {IconBox, ImageView, PagesNavigation, Section, SpecialBox} from "@/components";
 
-
 export default function contact() {
+
     return (
         <>
             <PagesNavigation title={"Contact"} home={"Home"} next={"Contact"}/>

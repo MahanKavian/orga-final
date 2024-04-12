@@ -1,5 +1,4 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-import {MainProductCard} from "@/components/common/products";
 import {ProductCards} from "@/mock/ProductCards";
 import {Autoplay} from "swiper/modules";
 
@@ -46,7 +45,7 @@ export function RelatedProductSlider({}: Props) {
                 ProductCards.map((card, index) => {
                     return (
                         <SwiperSlide key={index} className={"my-3 px-1"}>
-                            <MainProductCard card={card}/>
+                            {/*<MainProductCard card={card}/>*/}
                         </SwiperSlide>
                     )
                 })
