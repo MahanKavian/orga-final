@@ -4,14 +4,17 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules"
 import {RightHeroMock} from "@/mock/RightHeroMock";
 import {HeroTypes} from "@/types/HeroTypes";
+import {useQuery} from "@tanstack/react-query";
+import {getAllProductApiCall} from "@/api/Products";
+
 
 
 
 interface Props{
-    heroBaners: Array<HeroTypes>
     isShowCategoryMenu?: boolean
 }
-export function Hero({heroBaners, isShowCategoryMenu = true}: Props) {
+export function Hero({isShowCategoryMenu = true}: Props) {
+    const { data: heroSlider} = useQuery({queryKey:[getAllProductApiCall.name], queryFn: ()=> getAllProductApiCall({populate:["thumbnail"], filters:{is_hot: {$eq: true}}})})
     return (
         <div className="bg-silver-100 py-2 lg:py-4">
             <Section className="flex gap-4 justify-between mx-auto max-h-[580px] overflow-hidden">
@@ -32,16 +35,16 @@ export function Hero({heroBaners, isShowCategoryMenu = true}: Props) {
                         pagination={{clickable:true}}
                         >
                         {
-                            heroBaners.map((item, index)=>{
+                            heroSlider?.data.map((item, index)=>{
                                 return(
                                     <SwiperSlide key={index}>
                                         <div className={"relative rounded-md"}>
-                                            <ImageView src={item.src} className="block w-full h-full lg:h-[427px] 2xl:h-full rounded-md" alt={"pizza"} width={690} height={460}/>
+                                            <ImageView src={item.attributes.thumbnail.data.attributes.url} className="block w-full h-full lg:h-[427px] 2xl:h-full rounded-md" alt={"pizza"} width={690} height={460}/>
                                             <div className="absolute left-0 top-0 w-full md:w-1/2 xl:w-full h-full flex flex-col gap-5 p-10 justify-center items-center sm:items-start z-10">
-                                                <h1 className="text-sm md:text-base xl:text-xl font-medium text-white">{item.des}</h1>
-                                                <p className="text-heading4 sm:text-heading3 md:text-4xl font-lobster xl:text-heading2 2xl:text-heading1 font-medium text-white">{item.title}</p>
-                                                <p className="text-sm md:text-base xl:text-xl font-normal text-white">{`Discount of only ${item.price} / ${item.weight} ${item.unit}`}</p>
-                                                <Link href={item.link} className="text-md py-1 md:py-2 tracking-[1px] uppercase px-4 bg-yellow rounded-sm w-fit font-normal text-white">Order Now</Link>
+                                                <h1 className="text-sm md:text-base xl:text-xl font-medium text-white">{item.attributes.description}</h1>
+                                                <p className="text-heading4 sm:text-heading3 md:text-4xl font-lobster xl:text-heading2 2xl:text-heading1 font-medium text-white">{item.attributes.title}</p>
+                                                <p className="text-sm md:text-base xl:text-xl font-normal text-white">{`Discount of only ${item.attributes.sale_price} / ${1} ${"pices"}`}</p>
+                                                <Link href={"#"} className="text-md py-1 md:py-2 tracking-[1px] uppercase px-4 bg-yellow rounded-sm w-fit font-normal text-white">Order Now</Link>
                                             </div>
                                         </div>
                                     </SwiperSlide>

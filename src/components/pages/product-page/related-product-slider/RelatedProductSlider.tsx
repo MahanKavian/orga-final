@@ -1,5 +1,4 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-import {Navigation} from "swiper/modules";
 import {MainProductCard} from "@/components/common/products";
 import {ProductCards} from "@/mock/ProductCards";
 import {Autoplay} from "swiper/modules";
