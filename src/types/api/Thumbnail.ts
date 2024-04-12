@@ -1,4 +1,4 @@
-export interface ThumbnailAttributes {
+export interface Thumbnail {
     name: string;
     alternativeText: string | null;
     caption: string | null;
