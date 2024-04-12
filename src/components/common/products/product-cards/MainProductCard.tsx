@@ -21,7 +21,7 @@ export function MainProductCard({data}: Props) {
                 <span className={"capitalize text-silver-300"}>{data.category.data.attributes.title}</span>
                 <Rating rate={data.rate ? data.rate : 5.0} hideText={true}/>
                 <span className="text-lg text-silver-500 font-normal text-center first-letter:uppercase text-dark">{data.title}</span>
-                <PriceText price={data.price} sale_price={data.sale_price}/>
+                <PriceText price={data.price} sale_price={data.sale_price} centerText={true}/>
             </div>
         </Link>
     )

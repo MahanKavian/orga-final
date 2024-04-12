@@ -10,17 +10,30 @@ import {
 } from "@/components";
 import {ProductsContainer} from "@/components/common/products";
 import {ProductCards} from "@/mock/ProductCards";
-import dealOfWeekMock from "@/mock/dealOfWeekMock";
 import shopByCategory from "@/mock/shopByCategory";
 import {Comments} from "@/mock/Comments";
 import {NewsRelatedMock} from "@/mock/NewsRelatedMock";
-import {useProduct} from "@/hooks/use-product";
+import {ResponseApi} from "@/types/api/ResponseApi";
+import {ProductType} from "@/types/api/Product";
+import {getAllProductApiCall} from "@/api/Products";
+import {useQuery} from "@tanstack/react-query";
 
 export default function Home() {
 
-    const {data: newDishesProducts} = useProduct({title: "NewDishesProducts", populate: ["thumbnail", "category"], filters: {is_newDishes: true}});
+    const {data: newDishesProducts} = useQuery<ResponseApi<ProductType>>({
+        queryKey: [getAllProductApiCall.name, "NewDishesProducts"],
+        queryFn: () => getAllProductApiCall({populate: ["thumbnail", "category"], filters: {is_newDishes: {$eq: true}}})
+    });
 
-    const {data: bestSellerProducts} = useProduct({title: "BestSellerProducts", populate: ["thumbnail", "category"], filters: {is_bestSeller: true}});
+    const {data: bestSellerProducts} = useQuery<ResponseApi<ProductType>>({
+        queryKey: [getAllProductApiCall.name, "BestSellerProducts"],
+        queryFn: () => getAllProductApiCall({populate: ["thumbnail", "category"], filters: {is_bestSeller: {$eq: true}}})
+    });
+
+    const {data: dealOfWeek} = useQuery<ResponseApi<ProductType>>({
+        queryKey: [getAllProductApiCall.name, "DealOfWeek"],
+        queryFn: () => getAllProductApiCall({populate: ["thumbnail", "category"], filters: {off_time_limit: {$notNull: true}}})
+    });
 
     return (
         <>
@@ -34,7 +47,9 @@ export default function Home() {
             </Section>
             <Banner/>
             <Section className={"flex gap-5 py-4 md:py-10 w-full"}>
-                <DealOfWeek offers={dealOfWeekMock}/>
+                {
+                    dealOfWeek && <DealOfWeek offers={dealOfWeek.data}/>
+                }
                 <FeatureDishes products={ProductCards}/>
             </Section>
             <ShopByCategory productItems={shopByCategory}/>
