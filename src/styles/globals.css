@@ -3,6 +3,7 @@
 @tailwind utilities;
 body,html{
     position: relative;
+    scroll-behavior: smooth;
 }
 @layer utilities {
     .navbar-item {
@@ -14,9 +15,9 @@ body,html{
         position: absolute;
         display: block;
         bottom: -2px;
-        height: 3px;
+        height: 5px;
         border-radius: 10px;
-        background-color: white;
+        background-color: #fda72f;
         transition: .5s;
     }
 
@@ -50,9 +51,18 @@ body,html{
     background: transparent;
 }
 
-.dishes_card:hover .dishes_card_link {
-    display: flex;
+.dishes_card_link, .dishes-image__like {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s 0s, visibility 0s .3s;
 }
+
+.dishes_card:hover .dishes_card_link, .dishes_card:hover .dishes-image__like {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
 
 @media (min-width: 1024px) {
     #feature_slider {
