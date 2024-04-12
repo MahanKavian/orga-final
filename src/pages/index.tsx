@@ -8,7 +8,6 @@ import {
     ShopByCategory,
     WhatPeapleSay
 } from "@/components";
-import {HeroMock} from "@/mock/HeroMock";
 import {ProductsContainer} from "@/components/common/products";
 import {ProductCards} from "@/mock/ProductCards";
 import dealOfWeekMock from "@/mock/dealOfWeekMock";
@@ -20,7 +19,7 @@ import {NewsRelatedMock} from "@/mock/NewsRelatedMock";
 export default function Home() {
     return (
         <>
-            <Hero heroBaners={HeroMock} isShowCategoryMenu={true}/>
+            <Hero isShowCategoryMenu={true}/>
             <Section className={'mb-0 py-4 lg:py-10'}>
                 <ProductsContainer Products={ProductCards} title={"New Dishes"} titleClass={"text-center"} showCategory={true}/>
             </Section>

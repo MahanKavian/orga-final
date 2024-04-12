@@ -16,7 +16,7 @@ interface Props {
     }
 }
 
-export function getAllProductApiCall({populate, filters = {}, sort = [], pagination} : Props):Promise<ResponseApi<EntityType<ProductType>>> {
+export function getAllProductApiCall({populate, filters = {}, sort = [], pagination} : Props):Promise<ResponseApi<ProductType>> {
     return apiClient.get("/products",
         {
             params:{
