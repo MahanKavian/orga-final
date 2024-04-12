@@ -1,6 +1,6 @@
 import {EntityType} from "@/types/api/ResponseApi";
 import {ItemType} from "@/types/api/Menu";
-import {ThumbnailAttributes} from "@/types/ThumbNail";
+import {Thumbnail} from "@/types/api/Thumbnail";
 
 export interface ProductType {
     title: string
@@ -20,7 +20,7 @@ export interface ProductType {
     is_hotFood?: boolean
     category: Category
     thumbnail: {
-        data: EntityType<ThumbnailAttributes>;
+        data: EntityType<Thumbnail>;
     }
 }
 

@@ -10,7 +10,6 @@ import {
 } from "@/components";
 import {ProductsContainer} from "@/components/common/products";
 import {ProductCards} from "@/mock/ProductCards";
-import shopByCategory from "@/mock/shopByCategory";
 import {Comments} from "@/mock/Comments";
 import {NewsRelatedMock} from "@/mock/NewsRelatedMock";
 import {ResponseApi} from "@/types/api/ResponseApi";
@@ -52,7 +51,7 @@ export default function Home() {
                 }
                 <FeatureDishes products={ProductCards}/>
             </Section>
-            <ShopByCategory productItems={shopByCategory}/>
+            <ShopByCategory />
             <Section className={"py-4 lg:py-10"}>
                 {
                     bestSellerProducts && <ProductsContainer Products={bestSellerProducts} title={"Best Seller"}/>
