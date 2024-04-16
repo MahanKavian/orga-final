@@ -2,7 +2,6 @@ import {CategoriesMenu, HeroFooter, ImageView, Section} from "@/components";
 import Link from "next/link";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules"
-import {RightHeroMock} from "@/mock/RightHeroMock";
 import {useQuery} from "@tanstack/react-query";
 import {EntityType} from "@/types/api/ResponseApi";
 import {getAllProductApiCall} from "@/api/Products";
@@ -17,6 +16,7 @@ interface Props{
 
 export function Hero({isShowCategoryMenu = true}: Props) {
     const {data : heroData} = useQuery({queryKey:[getAllProductApiCall.name, "hero"], queryFn:()=>getAllProductApiCall({populate:["hero"], filters:{is_hot: true}})})
+    const {data : smallHero} = useQuery({queryKey:[getAllProductApiCall.name, "smallHero"], queryFn:()=>getAllProductApiCall({populate:["hero"], sort:["createdAt:desc"], filters:{is_hot: true}})})
     return (
         <div className="bg-silver-100 py-2 lg:py-4">
             <Section className="flex gap-4 justify-between mx-auto max-h-[580px] overflow-hidden">
@@ -30,7 +30,7 @@ export function Hero({isShowCategoryMenu = true}: Props) {
                     <Swiper
                         modules={[ Autoplay, Pagination]}
                         autoplay={{
-                            delay: 5000
+                            delay: 10000
                         }}
                         spaceBetween={30}
                         loop={true}
@@ -57,15 +57,15 @@ export function Hero({isShowCategoryMenu = true}: Props) {
                     </div>
                 <div className={`${isShowCategoryMenu ? "w-[31.7%] xl:w-[25.2%] max-w-[350px]" : "w-[32%] max-w-[343px] xl:max-w-[310px] 2xl:max-w-[403px]"} flex-grow flex-shrink-0 hidden lg:flex flex-col gap-3.5`}>
                     {
-                        RightHeroMock.map((cardItem, index) =>{
+                        smallHero?.data.map((cardItem, index) =>{
                             return(
                                 <div className="relative rounded-md" key={index}>
-                                    <ImageView src={cardItem.img} className="block h-full w-full rounded-md" alt={"pizza"} width={398} height={266}/>
+                                    <ImageView src={cardItem.attributes.hero.data.attributes.url} className="block h-full w-full rounded-md" alt={"pizza"} width={398} height={266}/>
                                     <div className="absolute top-0 left-0 w-full h-full flex flex-col gap-1 justify-center z-10 text-white p-4">
                                         <p>Only</p>
-                                        <span className="text-link text-primary-300 text-2xl font-medium">{cardItem.price}$</span>
-                                        <p className="text-heading2 font-medium font-lobster">{cardItem.title}</p>
-                                        <Link href={cardItem.link} className="border-b-4 text-lg border-b-yellow p-2 w-fit">Order Now</Link>
+                                        <span className="text-link text-primary-300 text-2xl font-medium">{cardItem.attributes.price}$</span>
+                                        <p className="text-heading2 font-medium font-lobster">{cardItem.attributes.title}</p>
+                                        <Link href={"#"} className="border-b-4 text-lg border-b-yellow p-2 w-fit">Order Now</Link>
                                     </div>
                                 </div>
                             )

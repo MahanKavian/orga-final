@@ -4,7 +4,7 @@ import {ProductType} from "@/types/api/Product";
 
 
 interface Props {
-    populate?: Array<"category" | "thumbnail" | "gallery" | "hero">
+    populate?: Array<"category" | "thumbnail" | "gallery" | "hero" | "*">
     filters?: {
         is_newDishes?: boolean;
         is_hot?: boolean;
