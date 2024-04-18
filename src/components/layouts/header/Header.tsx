@@ -2,32 +2,38 @@ import {CategoriesMenu, IconBox, ImageView, Section, SpecialBox} from "@/compone
 import Link from "next/link";
 import {useMenu} from "@/hooks/use-menu";
 import {ItemType} from "@/types/api/Menu";
-import { EntityType } from "@/types/api/ResponseApi";
-import { useState } from "react";
-import { useOverlay } from "@/hooks/use-overlay";
+import {EntityType} from "@/types/api/ResponseApi";
+import {useState} from "react";
+import {useOverlay} from "@/hooks/use-overlay";
+import {useRouter} from "next/router";
 
 
 interface Props {
 }
 
 export function Header({}: Props) {
-    const { data: mainMenuLinks} = useMenu({position:"header"})
-    const [showMobileMenu, setShowMobileMenu] = useState(false)
-    const [showCategoryMenu, setShowCategoryMenu] = useState(false)
-    function showMenuMobileHandler (e:React.MouseEvent){
+    const {data: mainMenuLinks} = useMenu({position: "header"});
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const [showCategoryMenu, setShowCategoryMenu] = useState(false);
+
+    const route = useRouter();
+
+    function showMenuMobileHandler(e: React.MouseEvent) {
         e.stopPropagation();
         setShowMobileMenu((prevState) => !prevState);
         !showMobileMenu && setShowCategoryMenu(false);
     }
-    function bodyMenuHandler(e:React.MouseEvent){
+
+    function bodyMenuHandler(e: React.MouseEvent) {
         e.stopPropagation()
     }
 
-    function ShowMenuCategoryHandler(){
+    function ShowMenuCategoryHandler() {
         setShowCategoryMenu((prevState) => !prevState)
     }
+
     useOverlay({
-        onClick: ()=>{
+        onClick: () => {
             setShowMobileMenu(false)
             setShowCategoryMenu(false)
         },
@@ -46,12 +52,15 @@ export function Header({}: Props) {
             </div>
             <Section className="flex items-center justify-between p-2 py-5 gap-4 mb-0">
                 <Link href={'#'}>
-                    <ImageView src={'/assets/images/Logo2.png'} className={'w-[150px]'} alt={"Orga Fresh"} width={150} height={55}/>
+                    <ImageView src={'/assets/images/Logo2.png'} className={'w-[150px]'} alt={"Orga Fresh"} width={150}
+                               height={55}/>
                 </Link>
                 <div className="hidden md:inline-block">
-                    <form action={"#"} className="w-full py-2 px-4 flex min-w-[200px] lg:min-w-[400px] items-center border-2 rounded-md">
+                    <form action={"#"}
+                          className="w-full py-2 px-4 flex min-w-[200px] lg:min-w-[400px] items-center border-2 rounded-md">
                         <input placeholder="Enyer your Keyword..." className="flex-grow focus:outline-none"/>
-                        <IconBox icon={'icon-search-header text-[19px] hover:cursor-pointer hover:text-primary-200 transition'}/>
+                        <IconBox
+                            icon={'icon-search-header text-[19px] hover:cursor-pointer hover:text-primary-200 transition'}/>
                     </form>
                 </div>
                 <div className="flex items-center gap-3 pr-3 sm:p-0">
@@ -105,8 +114,9 @@ export function Header({}: Props) {
                                 {
                                     mainMenuLinks &&
                                     mainMenuLinks.map((item: EntityType<ItemType>, index: number) => {
+
                                         return (
-                                            <li className="navbar-item py-2 xl:py-3 capitalize text-start" key={index}>
+                                            <li className={`${route.pathname === item.attributes.link ? "navbar-item__active" : "navbar-item"} py-2 xl:py-3 capitalize text-start`} key={index}>
                                                 <Link href={item.attributes.link}
                                                       className="text-black md:text-white">{item.attributes.title}</Link>
                                             </li>

@@ -1,10 +1,8 @@
-
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
 import {ProductsType} from "@/types/ProductsType";
 import {VerticalProductList} from "@/components/common/products";
 import Link from "next/link";
-import {useMenu} from "@/hooks/use-menu";
 import {useQuery} from "@tanstack/react-query";
 import {getAllProductApiCall} from "@/api/Products";
 
@@ -13,13 +11,9 @@ interface Props {
 }
 
 export function FeatureDishes({products}: Props) {
-    const { data: categoryItems} = useMenu({position:"all categgories"})
     const allData:Array<any> = []
     const {data : product} = useQuery({queryKey:[getAllProductApiCall.name, "productyy"], queryFn:()=>getAllProductApiCall({populate:["thumbnail"], sort:["category:desc"]})})
     product && allData.push(product)
-
-    console.log(allData)
-
 
     return (
         <div className="flex flex-col h-full w-full" id={"feature_slider"}>
