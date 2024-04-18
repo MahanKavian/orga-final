@@ -61,10 +61,11 @@ export function Hero({isShowCategoryMenu = true}: Props) {
                             return(
                                 <div className="relative rounded-md" key={index}>
                                     <ImageView src={cardItem.attributes.hero.data.attributes.url} className="block h-full w-full rounded-md" alt={"pizza"} width={398} height={266}/>
-                                    <div className="absolute top-0 left-0 w-full h-full flex flex-col gap-1 justify-center z-10 text-white p-4">
-                                        <p>Only</p>
-                                        <span className="text-link text-primary-300 text-2xl font-medium">{cardItem.attributes.price}$</span>
-                                        <p className="text-heading2 font-medium font-lobster">{cardItem.attributes.title}</p>
+                                    <div className="absolute top-0 left-0 w-full h-full flex flex-col gap-3 justify-center z-10 text-white p-4">
+                                        <div>
+                                            <span className="text-link text-primary-300 bg-white p-1 px-3 rounded-md text-lg font-medium">Only {cardItem.attributes.price}$</span>
+                                        </div>
+                                        <p className="text-3xl font-medium font-lobster">{cardItem.attributes.title}</p>
                                         <Link href={"#"} className="border-b-4 text-lg border-b-yellow p-2 w-fit">Order Now</Link>
                                     </div>
                                 </div>

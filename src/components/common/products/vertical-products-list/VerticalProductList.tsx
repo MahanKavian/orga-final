@@ -8,9 +8,9 @@ interface Props {
 export function VerticalProductList({products}: Props) {
     return (
         <div className={"flex flex-col gap-3 w-[320px] mb-2"}>
-            <SmallProductCard product={products[0]}/>
-            <SmallProductCard product={products[1]}/>
-            <SmallProductCard product={products[2]}/>
+            <SmallProductCard product={products[0]} key={1}/>
+            <SmallProductCard product={products[1]} key={2}/>
+            <SmallProductCard product={products[2]} key={3}/>
         </div>
     );
 }
