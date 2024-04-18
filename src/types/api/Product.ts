@@ -19,8 +19,11 @@ export interface ProductType {
     is_fresh?: boolean
     is_hotFood?: boolean
     category: Category
+    hero: {
+        data: EntityType<Thumbnail>
+    }
     thumbnail: {
-        data: EntityType<Thumbnail>;
+        data: EntityType<Thumbnail>
     }
 }
 

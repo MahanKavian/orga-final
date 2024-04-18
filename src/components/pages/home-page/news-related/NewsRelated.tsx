@@ -43,4 +43,4 @@ export function NewsRelated({relatedProducts}: Props) {
             </NewsSlider>
         </>
     );
-};
+}

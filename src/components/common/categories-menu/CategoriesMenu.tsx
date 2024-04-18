@@ -9,8 +9,7 @@ export function CategoriesMenu(){
     return(
         <ul className="flex flex-col h-full py-2 bg-white justify-between">
             {
-                categoryItems &&
-                categoryItems.map((item:EntityType<ItemType>, index:number)=>{
+                categoryItems?.map((item:EntityType<ItemType>, index:number)=>{
                     return(
                         <li className="flex justify-between p-1 px-4 items-center hover:text-primary-100 transition" key={index}>
                             <IconBox icon={`${item.attributes.icon ? item.attributes.icon : ""} text-[30px]`} iconClassName={"px-2"} link={item.attributes.link} title={item.attributes.title}/>

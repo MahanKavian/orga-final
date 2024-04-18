@@ -9,11 +9,11 @@ interface Props {
 export function SmallProductCard({product}: Props) {
     return (
         <Link href={"#"} className="flex items-center justify-between border-[1px] border-silver-200 hover:shadow-md h-fit relative transition">
-            <div className="absolute top-1 left-0 w-full px-1">
-                {
+            {
+                <div className="absolute top-0 left-0 w-full px-1">
                     <Badge price={product.price} sale_price={product.sale_price} badge={product.badge} badgeIsBig={false}/>
-                }
-            </div>
+                </div>
+            }
             <div className="max-w-[150px] md:max-w-[190px] mr-3 aspect-[1/1]">
                 <ImageView src={product.img} className="block w-full aspect-square" alt={"pic"} width={100} height={100}/>
             </div>
