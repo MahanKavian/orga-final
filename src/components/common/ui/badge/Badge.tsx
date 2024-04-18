@@ -10,7 +10,7 @@ export function Badge({badge, price, sale_price, badgeIsBig = true}: Props) {
         <div className={"flex flex-col gap-1 py-4"}>
             {
                 badge && <span
-                    className={`${badgeIsBig ? 'p-2 rounded-r-full' : 'p-0.5 px-3 rounded-md'} w-fit text-sm ${badge === "NEW" ? "bg-yellow" : badge === "FRESH" ? "bg-blue-200" : badge === "HOT" ? "bg-red" : "bg-[#333]"} text-white pr-3`}>
+                    className={`${badgeIsBig ? 'p-2 rounded-r-full' : 'p-0.5 px-3 rounded-md'} w-fit text-sm ${badge === "NEW" ? "bg-yellow" : badge === "FRESH" ? "bg-blue-200" : badge === "HOT" ? "bg-red" : "bg-red"} text-white pr-3`}>
                     {badge}
                 </span>
             }
