@@ -21,6 +21,22 @@ body,html{
         transition: .5s;
     }
 
+    .navbar-item__active {
+        position: relative;
+    }
+
+    .navbar-item__active::before {
+        content: "";
+        width: 100%;
+        position: absolute;
+        display: block;
+        bottom: -2px;
+        height: 5px;
+        border-radius: 10px;
+        background-color: #fda72f;
+        transition: .5s;
+    }
+
     .navbar-item:hover::before {
         width: 100%;
     }
