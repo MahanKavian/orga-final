@@ -1,12 +1,26 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-import {ProductCards} from "@/mock/ProductCards";
 import {Autoplay} from "swiper/modules";
+import {useQuery} from "@tanstack/react-query";
+import {EntityType, ResponseApi} from "@/types/api/ResponseApi";
+import {ProductType} from "@/types/api/Product";
+import {getAllProductApiCall} from "@/api/Products";
+import {MainProductCard} from "@/components/common/products";
 
 interface Props {
-
 }
 
 export function RelatedProductSlider({}: Props) {
+
+    const {data: relatedProduct} = useQuery<ResponseApi<ProductType>>({
+        queryKey: [getAllProductApiCall.name, "RelatedProduct"],
+        queryFn: () => getAllProductApiCall({
+            populate: ["thumbnail", "category", "gallery"],
+            filters: {is_newDishes: {$eq: true}}
+        }),
+    });
+
+    console.log(relatedProduct)
+
     return (
         <Swiper
             slidesPerView={1.05}
@@ -42,10 +56,10 @@ export function RelatedProductSlider({}: Props) {
             }}
         >
             {
-                ProductCards.map((card, index) => {
+                relatedProduct && relatedProduct.data.map((item: EntityType<ProductType>, index: number) => {
                     return (
                         <SwiperSlide key={index} className={"my-3 px-1"}>
-                            {/*<MainProductCard card={card}/>*/}
+                            <MainProductCard data={item}/>
                         </SwiperSlide>
                     )
                 })

@@ -1,65 +1,88 @@
 import {IconBox, ImageView, PagesNavigation, PriceText, Rating, RelatedProductSlider, Section} from "@/components";
 import {useQuentity} from "@/hooks/useQuentity";
+import {useQuery} from "@tanstack/react-query";
+import {EntityType, ResponseApi} from "@/types/api/ResponseApi";
+import {ProductType} from "@/types/api/Product";
+import {getAllProductApiCall} from "@/api/Products";
+import {useRouter} from "next/router";
+import {Gallery} from "@/types/api/Gallery";
+import {useState} from "react";
 
 export default function product() {
-    const {counter, increment, decrement} = useQuentity()
+    const router = useRouter();
+    const {counter, increment, decrement} = useQuentity();
+    const [imageState, setImage] = useState<string | null>(null);
+
+    const {data: productDetail} = useQuery<ResponseApi<ProductType>>({
+        queryKey: [getAllProductApiCall.name, "ProductDetail"],
+        queryFn: () => getAllProductApiCall({
+            populate: ["thumbnail", "category", "gallery"],
+            filters: {id: {$eq: router.query.id}}
+        }),
+        enabled: !!router.query.id,
+    });
+
     return (
         <>
             <PagesNavigation title={"Product Detail"} home={"Home"} next={"Product Detail"}/>
             <Section className="px-2 mb-20 py-5">
                 <div className="flex flex-col lg:flex-row gap-4 mb-20">
                     <div className="flex-grow flex-shrink lg:max-w-[50%] xl:px-8">
-                        <div
-                            className={"md:aspect-[5/3] lg:h-[420px] lg:aspect-auto flex justify-center items-center border border-silver-200"}>
-                            <ImageView src="/assets/images/burger-p-1.png" alt={"pic"} width={200} height={200}
-                                       className=""/>
-                        </div>
+                        {
+                            imageState !== null ? <div
+                                    className={"md:aspect-[5/3] lg:h-[420px] lg:aspect-auto flex justify-center items-center border border-silver-200"}>
+                                    <ImageView src={imageState}
+                                               alt={"pic"} width={200} height={200}
+                                               className=""/>
+                                </div> :
+                                <div
+                                    className={"md:aspect-[5/3] lg:h-[420px] lg:aspect-auto flex justify-center items-center border border-silver-200"}>
+                                    <ImageView
+                                        src={productDetail?.data[0].attributes.thumbnail.data.attributes.url ?? ""}
+                                        alt={"pic"} width={200} height={200}
+                                        className=""/>
+                                </div>
+                        }
                         <div className="gap-2 py-2 max-h-[120px] hidden sm:grid grid-cols-4 overflow-hidden">
-                            <div
-                                className={"flex justify-center items-center border border-silver-200 hover:border-primary-300 transition hover:cursor-pointer"}>
-                                <ImageView src="/assets/images/burger-p-1.png" alt={"pic"} width={100} height={100}
-                                           className="block aspect-square"/>
-                            </div>
-                            <div
-                                className={"flex justify-center items-center border border-silver-200 hover:border-primary-300 transition hover:cursor-pointer"}>
-                                <ImageView src="/assets/images/burger-p-1.png" alt={"pic"} width={100} height={100}
-                                           className="block aspect-square"/>
-                            </div>
-                            <div
-                                className={"flex justify-center items-center border border-silver-200 hover:border-primary-300 transition hover:cursor-pointer"}>
-                                <ImageView src="/assets/images/burger-p-1.png" alt={"pic"} width={100} height={100}
-                                           className="block aspect-square"/>
-                            </div>
-                            <div
-                                className={"flex justify-center items-center border border-silver-200 hover:border-primary-300 transition hover:cursor-pointer"}>
-                                <ImageView src="/assets/images/burger-p-1.png" alt={"pic"} width={100} height={100}
-                                           className="block aspect-square"/>
-                            </div>
+                            {
+                                productDetail && productDetail.data[0].attributes.gallery.data.map((item: EntityType<Gallery>, index: number) => {
+                                    return (
+                                        <div onClick={() => setImage(item.attributes.url)} key={index}
+                                             className={`flex justify-center items-center border hover:border-primary-300 transition hover:cursor-pointer ${imageState === item.attributes.url ? "border-primary-300" : "border-silver-200"}`}>
+                                            <ImageView src={item.attributes.url} alt={item.attributes.name} width={100}
+                                                       height={100}
+                                                       className="block aspect-square"/>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                     <div className="flex-grow flex-shrink lg:max-w-[50%] xl:px-8 flex flex-col gap-2">
                         <div className="flex flex-col gap-3">
-                            <h1 className="text-3xl capitalize text-silver-500">Exotic delicious</h1>
+                            <h1 className="text-3xl capitalize text-silver-500">{productDetail?.data[0].attributes.title}</h1>
                             <div className={"flex items-center gap-2"}>
-                                <Rating rate={3} hideText={true}/>
+                                <Rating rate={productDetail?.data[0].attributes.rate ?? 0} hideText={true}/>
                                 <span className={"text-sm text-silver-300"}>( 6 customer reviews )</span>
                             </div>
-                            <span className="font-medium mr-1 text-primary-300 text-xl">$10.0</span>
+                            <PriceText price={Number(productDetail?.data[0].attributes.price) ?? ""}/>
                         </div>
                         <hr className="text-gray-300 my-2"/>
                         <p className={"text-md font-normal text-silver-500 py-3 mb-5"}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.
+                            {productDetail?.data[0].attributes.excerpt}
                         </p>
                         <div className={"flex flex-col gap-2 mb-4"}>
                             <span className={"text-silver-300"}>
-                                <span className={"text-primary-300 text-sm font-medium mr-2"}>SKU:</span>BIA011
+                                <span className={"text-primary-300 text-sm font-medium mr-2"}>SKU:</span>
+                                {productDetail?.data[0].attributes.SKU}
+                            </span>
+                            <span className={"text-silver-300 capitalize"}>
+                                <span className={"text-primary-300 text-sm font-medium mr-2"}>Categories:</span>
+                                {productDetail?.data[0].attributes.category.data.attributes.title}
                             </span>
                             <span className={"text-silver-300"}>
-                                <span className={"text-primary-300 text-sm font-medium mr-2"}>Categories:</span>Foods, Burger
-                            </span>
-                            <span className={"text-silver-300"}>
-                                <span className={"text-primary-300 text-sm font-medium mr-2"}>Tags:</span>Delicious, Healthy
+                                <span className={"text-primary-300 text-sm font-medium mr-2"}>Tags:</span>
+                                Delicious, Healthy
                             </span>
                         </div>
                         <div className="flex gap-2 md:gap-4 items-center flex-wrap">
@@ -92,15 +115,10 @@ export default function product() {
                         <div className="flex flex-col gap-3 2xl:flex">
                             <span className="text-medium md:text-md font-medium text-primary-300">Discription</span>
                             <div className="flex flex-col text-md text-silver-500 gap-2">
-                                <p>Etiam cursus condimentum vulputate. Nulla nisi orci, vulputate at dolor et, malesuada
-                                    ultrices nisi. Ut varius ex ut purus porttitor, a facilisis orci condimentum. Nullam
-                                    in elit et sapien ornare pellentesque at ac lorem. Cras suscipit, sapien in
-                                    pellentesque hendrerit, dolor quam ornare nisl, vitae tempus nibh urna eget sem.
-                                    Duis non interdum arcu, sit amet pellentesque odio. In sit amet aliquet augue.
-                                    Sed lobortis elit nec lacus congue tristique. Sed nunc orci, imperdiet et accumsan
-                                    ac, tempor ut ante. Fusce ac magna maximus, malesuada tellus sed, sodales ligula.
-                                    Sed a justo vel erat mollis vulputate. Donec dolor justo, porta sit amet ultricies
-                                    ut, pulvinar a metus.
+                                <p>
+                                    {
+                                        productDetail?.data[0].attributes.description
+                                    }
                                 </p>
                             </div>
                         </div>
@@ -110,7 +128,7 @@ export default function product() {
                     <h3 className={`w-full text-center font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-6`}>
                         Related Products
                     </h3>
-                    <RelatedProductSlider/>
+                    <RelatedProductSlider />
                 </div>
             </Section>
         </>
