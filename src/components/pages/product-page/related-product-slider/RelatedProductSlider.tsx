@@ -19,8 +19,6 @@ export function RelatedProductSlider({}: Props) {
         }),
     });
 
-    console.log(relatedProduct)
-
     return (
         <Swiper
             slidesPerView={1.05}
