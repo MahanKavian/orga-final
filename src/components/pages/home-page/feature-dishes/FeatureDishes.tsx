@@ -1,3 +1,4 @@
+
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
 import {ProductsType} from "@/types/ProductsType";
@@ -11,10 +12,8 @@ interface Props {
 }
 
 export function FeatureDishes({products}: Props) {
-    const allData:Array<any> = []
-    const {data : product} = useQuery({queryKey:[getAllProductApiCall.name, "productyy"], queryFn:()=>getAllProductApiCall({populate:["thumbnail"], sort:["category:desc"]})})
-    product && allData.push(product)
-
+    // const {data : productsData} = useQuery({queryKey:[getAllProductApiCall.name, "productsData"], queryFn:()=>getAllProductApiCall({populate:["thumbnail", "category"], sort:["category:asc"]})})
+    // console.log(productsData)
     return (
         <div className="flex flex-col h-full w-full" id={"feature_slider"}>
             <div className={"flex items-center justify-between mb-4 md:mb-8"}>
