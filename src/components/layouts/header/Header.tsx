@@ -6,6 +6,7 @@ import {EntityType} from "@/types/api/ResponseApi";
 import {useState} from "react";
 import {useOverlay} from "@/hooks/use-overlay";
 import {useRouter} from "next/router";
+import {SearchForm} from "@/components/layouts/header/search_form/SearchForm";
 
 
 interface Props {
@@ -56,12 +57,7 @@ export function Header({}: Props) {
                                height={55}/>
                 </Link>
                 <div className="hidden md:inline-block">
-                    <form action={"#"}
-                          className="w-full py-2 px-4 flex min-w-[200px] lg:min-w-[400px] items-center border-2 rounded-md">
-                        <input placeholder="Enyer your Keyword..." className="flex-grow focus:outline-none"/>
-                        <IconBox
-                            icon={'icon-search-header text-[19px] hover:cursor-pointer hover:text-primary-200 transition'}/>
-                    </form>
+                  <SearchForm/>
                 </div>
                 <div className="flex items-center gap-3 pr-3 sm:p-0">
                     <IconBox icon={"icon-person-header text-[21px]"} size={21} title={"login/register"}
@@ -84,16 +80,9 @@ export function Header({}: Props) {
                     <button className="md:hidden p-3 text-white max-w-fit" onClick={showMenuMobileHandler}>
                         <IconBox icon={"icon-burger-menu-header"} size={24}/>
                     </button>
-                    <div
-                        className={` ${showMobileMenu ? "left-0" : "-left-[450px]"} flex-grow p-4 md:p-0 flex flex-col justify-start lg:justify-between items-start md:flex-row gap-4 md:items-center fixed md:static top-0 h-screen md:h-fit overflow-scroll md:overflow-visible bg-white md:bg-transparent transition-all duration-500 z-50 `}
-                        onClick={bodyMenuHandler}>
-                        <div className="bg-white rounded text-black md:hidden max-w-fit border">
-                            <form action={"#"} className="py-2 px-4 flex w-[250px] items-center rounded">
-                                <input placeholder="Enyer your Keyword..."
-                                       className="flex-grow focus:outline-none bg-transparent"/>
-                                <IconBox
-                                    icon={'icon-search-header text-[19px] hover:cursor-pointer hover:text-primary-200 transition-all'}/>
-                            </form>
+                    <div className={` ${showMobileMenu ? "left-0" : "-left-[450px]"} flex-grow p-4 md:p-0 flex flex-col justify-start lg:justify-between items-start md:flex-row gap-4 md:items-center fixed md:static top-0 h-screen md:h-fit overflow-scroll md:overflow-visible bg-white md:bg-transparent transition-all duration-500 z-50 `} onClick={bodyMenuHandler}>
+                        <div className="bg-white rounded text-black md:hidden w-full border">
+                            <SearchForm/>
                         </div>
                         <div className="w-[250px] md:relative h-auto xl:hidden">
                             <button
