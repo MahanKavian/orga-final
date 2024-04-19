@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import timeHandler, {Time} from "@/utils/timer";
 import {ProductType} from "@/types/api/Product";
 import {EntityType} from "@/types/api/ResponseApi";
+import Link from "next/link";
 
 interface Props {
     data: EntityType<ProductType>
@@ -31,7 +32,7 @@ export function DealOfWeekCard({data}: Props) {
     }, []);
 
     return (
-        <div className={"mx-auto max-w-[300px] h-[412px] flex flex-col gap-5"}>
+        <Link href={`/product/${data.id}`} className={"mx-auto max-w-[300px] h-[412px] flex flex-col gap-5"}>
             <div className={"w-full relative flex justify-center items-center border-b-2"}>
                 <ImageView src={data.attributes.thumbnail.data.attributes.url}
                            alt={data.attributes.thumbnail.data.attributes.name} width={258} height={258}
@@ -62,6 +63,6 @@ export function DealOfWeekCard({data}: Props) {
                 <IconBox icon={"icon-bascet-card text-[24px]"}
                          linkClassName={"p-3 rounded-full border-2 border-primary-300 bg-white text-primary-300 hover:text-white hover:bg-primary-300 transition hover:cursor-pointer"}/>
             </div>
-        </div>
+        </Link>
     );
 }

@@ -25,7 +25,7 @@ export default function shop({}: Props) {
                             {
                                 categories.map((item, index) => {
                                     return (
-                                        <li className="mb-3">
+                                        <li className="mb-3" key={index}>
                                             <Link href="#"
                                                   className="text-silver-300 hover:text-primary-300 transition">{item}</Link>
                                         </li>
@@ -62,14 +62,6 @@ export default function shop({}: Props) {
                                 Showing 1–9 of 60 results
                             </span>
                             </div>
-                            {/*<div className="flex gap-5 items-center">*/}
-                            {/*    <IconBox icon={"icon-grid-shop"}*/}
-                            {/*             iconClassName={" hover:cursor-pointer text-lg transition hover:text-primary-300"}/>*/}
-                            {/*    <Link href="#" className="hidden md:inline-flex items-center gap-2 text-silver-300 transition hover:text-primary-300 ">*/}
-                            {/*        Default sorting*/}
-                            {/*        <IconBox icon={"icon-arrow-down"}/>*/}
-                            {/*    </Link>*/}
-                            {/*</div>*/}
                         </div>
                     </div>
                     <div
@@ -77,7 +69,7 @@ export default function shop({}: Props) {
                         {
                             ProductCards.map((item, index) => {
                                 return (
-                                    <Link href="#"
+                                    <Link href="#" key={index}
                                           className="shop-card flex flex-col gap-1 hover:shadow-md  transition duration-200 border-2 border-silver-100">
                                         <div
                                             className="w-full border-b-2 border-silver-100 relative flex justify-center items-center">

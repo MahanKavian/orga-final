@@ -62,9 +62,10 @@ export function ProductsContainer({Products, title, titleClass, showCategory = f
                 >
                     {
                         Products && Products.data.map((item: EntityType<ProductType>, index: number) => {
+                            console.log(item)
                             return (
                                 <SwiperSlide key={index} className={"my-3 "}>
-                                    <MainProductCard data={item.attributes}/>
+                                    <MainProductCard data={item} />
                                 </SwiperSlide>
                             )
                         })
