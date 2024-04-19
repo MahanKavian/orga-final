@@ -1,6 +1,7 @@
 import {EntityType} from "@/types/api/ResponseApi";
 import {ItemType} from "@/types/api/Menu";
 import {Thumbnail} from "@/types/api/Thumbnail";
+import {Gallery} from "@/types/api/Gallery";
 
 export interface ProductType {
     title: string
@@ -24,6 +25,9 @@ export interface ProductType {
     }
     thumbnail: {
         data: EntityType<Thumbnail>
+    }
+    gallery: {
+        data: Array<EntityType<Gallery>>
     }
 }
 
