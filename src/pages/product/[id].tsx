@@ -6,20 +6,27 @@ import {ProductType} from "@/types/api/Product";
 import {getAllProductApiCall} from "@/api/Products";
 import {useRouter} from "next/router";
 import {Gallery} from "@/types/api/Gallery";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function product() {
     const router = useRouter();
     const {counter, increment, decrement} = useQuentity();
     const [imageState, setImage] = useState<string | null>(null);
+    const [ID, setID] = useState<string | string[] | null>(null);
+
+    useEffect(() => {
+        if (router.query.id) {
+            setID(router.query.id);
+        }
+    }, [router.query.id, "ProductDetail"])
 
     const {data: productDetail} = useQuery<ResponseApi<ProductType>>({
-        queryKey: [getAllProductApiCall.name, "ProductDetail"],
+        queryKey: [getAllProductApiCall.name, "ProductDetail", ID],
         queryFn: () => getAllProductApiCall({
             populate: ["thumbnail", "category", "gallery"],
-            filters: {id: {$eq: router.query.id}}
+            filters: {id: {$eq: ID}}
         }),
-        enabled: !!router.query.id,
+        enabled: !!ID,
     });
 
     return (
@@ -128,7 +135,7 @@ export default function product() {
                     <h3 className={`w-full text-center font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-6`}>
                         Related Products
                     </h3>
-                    <RelatedProductSlider />
+                    <RelatedProductSlider/>
                 </div>
             </Section>
         </>
