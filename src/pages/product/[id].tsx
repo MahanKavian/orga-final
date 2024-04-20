@@ -18,6 +18,7 @@ export default function product() {
         if (router.query.id) {
             setID(router.query.id);
         }
+        setImage(null);
     }, [router.query.id, "ProductDetail"])
 
     const {data: productDetail} = useQuery<ResponseApi<ProductType>>({
