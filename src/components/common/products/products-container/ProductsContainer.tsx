@@ -10,7 +10,7 @@ interface Props {
     Products: ResponseApi<ProductType>
     title: string,
     titleClass?: string
-    showCategory?: boolean
+    showCategory?: boolean,
 }
 export function ProductsContainer({Products, title, titleClass, showCategory = false}: Props) {
 
@@ -62,7 +62,6 @@ export function ProductsContainer({Products, title, titleClass, showCategory = f
                 >
                     {
                         Products && Products.data.map((item: EntityType<ProductType>, index: number) => {
-                            console.log(item)
                             return (
                                 <SwiperSlide key={index} className={"my-3 "}>
                                     <MainProductCard data={item} />

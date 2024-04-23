@@ -1,12 +1,13 @@
-import {IconBox, ImageView, PagesNavigation, PriceText, Rating, RelatedProductSlider, Section} from "@/components";
+import {IconBox, ImageView, PagesNavigation, PriceText, Rating, Section} from "@/components";
 import {useQuentity} from "@/hooks/useQuentity";
 import {useQuery} from "@tanstack/react-query";
 import {EntityType, ResponseApi} from "@/types/api/ResponseApi";
 import {ProductType} from "@/types/api/Product";
 import {getAllProductApiCall} from "@/api/Products";
 import {useRouter} from "next/router";
-import {Gallery} from "@/types/api/Gallery";
 import {useEffect, useState} from "react";
+import { Gallery } from "@/types/api/Gallery";
+import { ProductsContainer } from "@/components/common/products";
 
 export default function product() {
     const router = useRouter();
@@ -28,6 +29,14 @@ export default function product() {
             filters: {id: {$eq: ID}}
         }),
         enabled: !!ID,
+    });
+    const {data: relatedProducts} = useQuery<ResponseApi<ProductType>>({
+        queryKey: [getAllProductApiCall.name, "RelatedProduct"],
+        queryFn: () => getAllProductApiCall({
+            populate: ["thumbnail", "category", "gallery"],
+            filters: {is_newDishes: {$eq: true},
+            }
+        }),
     });
 
     return (
@@ -132,12 +141,7 @@ export default function product() {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h3 className={`w-full text-center font-lobster font-medium font-Jost text-2xl md:text-4xl text-silver-500 mb-6`}>
-                        Related Products
-                    </h3>
-                    <RelatedProductSlider/>
-                </div>
+                {relatedProducts && <ProductsContainer Products={relatedProducts} title={"Related Products"} titleClass={"text-center"}/>}
             </Section>
         </>
     );

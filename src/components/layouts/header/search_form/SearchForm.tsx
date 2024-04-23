@@ -1,4 +1,4 @@
-import {IconBox, ImageView, PriceText} from "@/components";
+import {IconBox, ImageView} from "@/components";
 import {useForm} from "react-hook-form";
 import {useMutation} from "@tanstack/react-query";
 import {useEffect, useState} from "react";
@@ -27,6 +27,7 @@ export function SearchForm({}: Props) {
     const [showResult, setShowResult] = useState(true)
 
     useEffect(() => {
+        setResultData([])
         search_text && delay()
         setShowResult(true)
     }, [search_text]);
@@ -72,12 +73,11 @@ export function SearchForm({}: Props) {
                             resultData.map((result:EntityType<ProductType>, index:number)=>{
                                 return(
                                     <Link href={"#"} key={index}>
-                                        <li className="pr-2 rounded border border-light_gray hover:bg-lime-50 text-black hover:text-black cursor-pointer flex justify-between items-center">
+                                        <li className="m-2 pr-2 rounded border border-light_gray hover:bg-lime-50 text-black hover:text-black cursor-pointer flex justify-between items-center">
                                             <div className="flex gap-4 items-center">
                                                 <ImageView src={result.attributes.thumbnail.data.attributes.url} alt={result.attributes.description} width={55} height={55}/>
                                                 <p>{result.attributes.title}</p>
                                             </div>
-                                            <PriceText price={result.attributes.price} sale_price={result.attributes.sale_price}/>
                                         </li>
                                     </Link>
                                 )
