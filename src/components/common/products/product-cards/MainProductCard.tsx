@@ -7,9 +7,8 @@ interface Props {
     data: EntityType<ProductType>;
 }
 export function MainProductCard({data}: Props) {
-
     return (
-        <Link href={`/product/${data.id}`} className="dishes_card overflow-hidden rounded-md flex flex-col hover:shadow-md transition duration-500 relative border border-silver-200">
+        <Link href={{pathname:`/products/[id]`, query:{id: data.id}}} className="dishes_card overflow-hidden rounded-md flex flex-col hover:shadow-md transition duration-500 relative border border-silver-200">
             <div className={"absolute top-[6px] left-0 w-full text-start"}>
                 <Badge badge={data.attributes.is_newDishes ? "NEW" : data.attributes.is_fresh ? "FRESH" : data.attributes.is_hotFood ? "HOT" : ""} sale_price={data.attributes.sale_price} price={data.attributes.price} badgeIsBig={true}/>
             </div>
