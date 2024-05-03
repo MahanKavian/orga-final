@@ -1,4 +1,4 @@
-import {IconBox, ImageView, PagesNavigation, PriceText, Rating, Section} from "@/components";
+import {IconBox, PagesNavigation, Section} from "@/components";
 import Link from "next/link";
 import {useMenu} from "@/hooks/use-menu";
 import {EntityType, ResponseApi} from "@/types/api/ResponseApi";
@@ -6,17 +6,19 @@ import {ItemType} from "@/types/api/Menu";
 import {useQuery} from "@tanstack/react-query";
 import {ProductType} from "@/types/api/Product";
 import {getAllProductApiCall} from "@/api/Products";
+import {ShopItemCard} from "@/components/common/products/product-cards/ShopItemCard";
 
 interface Props {
 
 }
 
 export default function index({}: Props) {
-    const { data: categoryItems} = useMenu({position:"all categgories"})
-    const {data: allProduts} = useQuery<ResponseApi<ProductType>>({
-        queryKey: [getAllProductApiCall.name, "allProduts"],
+    const {data: categoryItems} = useMenu({position: "all categgories"})
+    const {data: allProducts} = useQuery<ResponseApi<ProductType>>({
+        queryKey: [getAllProductApiCall.name, "allProducts"],
         queryFn: () => getAllProductApiCall({populate: ["thumbnail", "category"]})
     });
+
     return (
         <>
             <PagesNavigation title={"Shop"} home={"Home"} next={"Shop"}/>
@@ -38,12 +40,11 @@ export default function index({}: Props) {
                                     return (
                                         <li className="mb-3" key={index}>
                                             <Link href="#"
-                                                  className="text-silver-300 hover:text-primary-300 transition">{item.attributes.title}</Link>
+                                                  className="text-silver-300 hover:text-primary-300 capitalize transition">{item.attributes.title}</Link>
                                         </li>
                                     )
                                 })
                             }
-
                         </ul>
                     </div>
                     <div className="flex flex-col gap-8">
@@ -78,31 +79,11 @@ export default function index({}: Props) {
                     <div
                         className={"w-full grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mb-8"}>
                         {
-                            allProduts?.data.map((item: EntityType<ProductType>, index: number) => {
+                            allProducts?.data.map((item: EntityType<ProductType>, index: number) => {
                                 return (
-                                    <Link href={{pathname:"/products/[id]", query:{id: item.id}}} key={index} className="shop-card flex flex-col gap-1 hover:shadow-md  transition duration-200 border-2 border-silver-100">
-                                        <div
-                                            className="w-full border-b-2 border-silver-100 relative flex justify-center items-center">
-                                            <div
-                                                className="shop-car__option w-full shop-item-options absolute bottom-3 flex justify-center gap-2">
-                                                <IconBox icon={"icon-heart-card"}
-                                                         iconClassName={"bg-white text-silver-300 text-md shadow-md p-2 rounded-full hover:bg-primary-300 hover:text-white  transition duration-200"}/>
-                                                <IconBox icon={"icon-search-card"}
-                                                         iconClassName={"bg-white text-silver-300 text-md shadow-md p-2 rounded-full hover:bg-primary-300 hover:text-white  transition duration-200"}/>
-                                                <IconBox icon={"icon-bascet-card"}
-                                                         iconClassName={"bg-white text-silver-300 text-md shadow-md p-2 rounded-full hover:bg-primary-300 hover:text-white  transition duration-200"}/>
-                                                <IconBox icon={"icon-replace-card"}
-                                                         iconClassName={"bg-white text-silver-300 text-md shadow-md p-2 rounded-full hover:bg-primary-300 hover:text-white  transition duration-200"}/>
-                                            </div>
-                                            <ImageView src={item.attributes.thumbnail.data.attributes.url} alt="" width={250} height={250}/>
-                                        </div>
-                                        <div className="flex flex-col items-center gap-2 py-6">
-                                            <Rating rate={item.attributes.rate} hideText={true}/>
-                                            <span
-                                                className="text-silver-500 font-medium text-lg capitalize">{item.attributes.sale_price}</span>
-                                            <PriceText price={item.attributes.price} sale_price={item.attributes.sale_price}/>
-                                        </div>
-                                    </Link>
+                                    <>
+                                        <ShopItemCard product={item} key={index}/>
+                                    </>
                                 )
                             })
                         }
