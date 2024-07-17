@@ -1,19 +1,18 @@
 
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
-import {ProductsType} from "@/types/ProductsType";
 import {VerticalProductList} from "@/components/common/products";
 import Link from "next/link";
 import {useQuery} from "@tanstack/react-query";
 import {getAllProductApiCall} from "@/api/Products";
+import {useMenu} from "@/hooks/use-menu";
 
 interface Props {
-    products: Array<ProductsType>
+    products: any
 }
 
 export function FeatureDishes({products}: Props) {
-    // const {data : productsData} = useQuery({queryKey:[getAllProductApiCall.name, "productsData"], queryFn:()=>getAllProductApiCall({populate:["thumbnail", "category"], sort:["category:asc"]})})
-    // console.log(productsData)
+
     return (
         <div className="flex flex-col h-full w-full" id={"feature_slider"}>
             <div className={"flex items-center justify-between mb-4 md:mb-8"}>
@@ -62,19 +61,19 @@ export function FeatureDishes({products}: Props) {
                     }}
                 >
                     <SwiperSlide>
-                        <VerticalProductList products={products}/>
+                        <VerticalProductList products={products.data.slice(0, 3)}/>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <VerticalProductList products={products}/>
+                        <VerticalProductList products={products.data.slice(3, 6)}/>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <VerticalProductList products={products}/>
+                        <VerticalProductList products={products.data.slice(6, 9)}/>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <VerticalProductList products={products}/>
+                        <VerticalProductList products={products?.data.slice(9, 12)}/>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <VerticalProductList products={products}/>
+                        <VerticalProductList products={products?.data.slice(12, 15)}/>
                     </SwiperSlide>
                 </Swiper>
             </div>

@@ -9,7 +9,6 @@ import {
     WhatPeapleSay
 } from "@/components";
 import {ProductsContainer} from "@/components/common/products";
-import {ProductCards} from "@/mock/ProductCards";
 import {Comments} from "@/mock/Comments";
 import {NewsRelatedMock} from "@/mock/NewsRelatedMock";
 import {ResponseApi} from "@/types/api/ResponseApi";
@@ -34,14 +33,15 @@ export default function Home() {
         queryFn: () => getAllProductApiCall({populate: ["thumbnail", "category"], filters: {off_time_limit: {$notNull: true}}})
     });
 
+    const {data : productsData} = useQuery<ResponseApi<ProductType>>({queryKey:[getAllProductApiCall.name, "productsData"], queryFn:()=>getAllProductApiCall({populate:["thumbnail", "category"]})})
+
     return (
         <>
             <Hero isShowCategoryMenu={true}/>
             <Section className={'mb-0 py-4 lg:py-10'}>
                 {
                     newDishesProducts &&
-                    <ProductsContainer Products={newDishesProducts} title={"New Dishes"} titleClass={"text-center"}
-                                       showCategory={true}/>
+                    <ProductsContainer Products={newDishesProducts} title={"New Dishes"} titleClass={"text-center"} showCategory={true}/>
                 }
             </Section>
             <Banner/>
@@ -49,7 +49,10 @@ export default function Home() {
                 {
                     dealOfWeek && <DealOfWeek offers={dealOfWeek.data}/>
                 }
-                <FeatureDishes products={ProductCards}/>
+                {
+                    productsData &&
+                    <FeatureDishes products={productsData}/>
+                }
             </Section>
             <ShopByCategory />
             <Section className={"py-4 lg:py-10"}>
