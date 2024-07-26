@@ -7,6 +7,7 @@ import {useQuery} from "@tanstack/react-query";
 import {ProductType} from "@/types/api/Product";
 import {getAllProductApiCall} from "@/api/Products";
 import {ShopItemCard} from "@/components/common/products/product-cards/ShopItemCard";
+import {useSearchParams} from "next/navigation";
 
 interface Props {
 
@@ -18,6 +19,9 @@ export default function index({}: Props) {
         queryKey: [getAllProductApiCall.name, "allProducts"],
         queryFn: () => getAllProductApiCall({populate: ["thumbnail", "category"]})
     });
+    
+    const searchParams = useSearchParams();
+    console.log(searchParams.get('category'))
 
     return (
         <>

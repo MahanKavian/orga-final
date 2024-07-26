@@ -52,8 +52,7 @@ export default function Home() {
             <Section className={'mb-0 py-4 lg:py-10'}>
                 {
                     newDishesProducts &&
-                    <ProductsContainer Products={newDishesProducts} title={"New Dishes"} titleClass={"text-center"}
-                                       showCategory={true}/>
+                    <ProductsContainer Products={newDishesProducts} title={"New Dishes"} titleClass={"text-center"} showCategory={true}/>
                 }
             </Section>
             <Banner/>

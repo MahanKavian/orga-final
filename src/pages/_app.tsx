@@ -8,6 +8,9 @@ import {Layouts} from "@/components";
 import {HydrationBoundary, QueryClient, QueryClientProvider,} from "@tanstack/react-query";
 import {ToastContainer} from "react-toastify";
 import {useState} from "react";
+import {useRouter} from "next/router";
+import {ModalContextProvider} from "@/store/ModalContext";
+import {AuthContextProvider} from "@/store/AuthContext";
 
 const jost: NextFont = Jost({
     subsets: ["latin"],
@@ -23,6 +26,7 @@ const lobster = Lobster_Two({
 })
 
 export default function App({Component, pageProps}: AppProps) {
+    const router = useRouter();
     const [queryClient] = useState(() => new QueryClient({
         defaultOptions: {
             queries: {
@@ -45,11 +49,24 @@ export default function App({Component, pageProps}: AppProps) {
             </style>
             <QueryClientProvider client={queryClient}>
                 <HydrationBoundary state={pageProps.dehydratedState}>
-                    <Layouts>
-                        <Component {...pageProps} />
-                        <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false}
-                                        theme={"light"} position={"top-right"}/>
-                    </Layouts>
+                    <AuthContextProvider>
+                        <ModalContextProvider>
+                            <div id={"portal"}>
+
+                            </div>
+                            <Layouts key={router.route}>
+                                <Component {...pageProps} />
+                                <ToastContainer
+                                    autoClose={5000}
+                                    hideProgressBar={false}
+                                    closeOnClick={true}
+                                    draggable={false}
+                                    pauseOnFocusLoss={false}
+                                    pauseOnHover={false}
+                                    theme={"light"} position={"top-right"}/>
+                            </Layouts>
+                        </ModalContextProvider>
+                    </AuthContextProvider>
                 </HydrationBoundary>
             </QueryClientProvider>
         </>
