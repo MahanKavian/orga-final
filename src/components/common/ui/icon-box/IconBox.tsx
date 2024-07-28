@@ -6,6 +6,7 @@ interface Props {
     size?: number;
     title?: string;
     badge?: number;
+    onClick?: MouseEvent
     hideTitleMobile?: boolean;
     titleClassName?: string;
     path?: number;
@@ -58,7 +59,9 @@ export function IconBox({
         )
     } else {
         return (
-            <div className={`flex items-center gap-2 ${linkClassName}`} onClick={()=> functionHandler}>
+            <div className={`flex items-center gap-2 ${linkClassName}`} onClick={() => {
+                functionHandler && functionHandler();
+            }}>
                 {
                     badge
                         ?

@@ -26,7 +26,7 @@ export function ProductsContainer({Products, title, titleClass, showCategory = f
                 <span className="hidden icon-left-arrow dishes-prev text-3xl text-dark-silver hover:text-primary transition hover:cursor-pointer px-1 md:inline-flex"></span>
                 <IconBox icon={"icon-arrow-left"} iconClassName={"hidden dishes-prev text-3xl text-silver-300 hover:text-primary-300 transition hover:cursor-pointer px-1 md:inline-flex"}/>
                 <Swiper
-                    slidesPerView={1.05}
+                    slidesPerView={1}
                     spaceBetween={10}
                     modules={[Navigation]}
                     navigation={{
@@ -34,15 +34,7 @@ export function ProductsContainer({Products, title, titleClass, showCategory = f
                         prevEl: ".dishes-prev"
                     }}
                     breakpoints={{
-                        450: {
-                            slidesPerView: 1.25,
-                            spaceBetween: 20,
-                        },
-                        550: {
-                            slidesPerView: 1.5,
-                            spaceBetween: 20,
-                        },
-                        768: {
+                        640: {
                             slidesPerView: 2,
                             spaceBetween: 20,
                         },
@@ -54,7 +46,7 @@ export function ProductsContainer({Products, title, titleClass, showCategory = f
                             slidesPerView: 4,
                             spaceBetween: 10,
                         },
-                        1580: {
+                        1536: {
                             slidesPerView: 5,
                             spaceBetween: 10,
                         }

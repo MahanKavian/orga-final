@@ -9,12 +9,13 @@ interface Props {
 }
 
 export function Footer({}: Props) {
+
     return (
         <>
-            <div className={'w-full bg-silver-100 pb-10'}>
+            <div className={'w-full bg-silver-100 pb-10 relative'}>
+
                 <Section className={"mb-50 py-10"}>
-                    <div
-                        className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center gap-5 border-b-2 pb-8"}>
+                    <div className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center gap-5 border-b-2 pb-8"}>
                         <div className={'flex items-center gap-3 col-span-2 sm:col-span-1'}>
                             <div className={"bg-white p-3 rounded-full"}>
                                 <IconBox icon={"icon-call-center text-[35px]"}/>
