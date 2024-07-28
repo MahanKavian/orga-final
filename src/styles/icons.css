@@ -96,6 +96,10 @@
   content: "\e914";
   color: #e32d2d;
 }
+.icon-close:before {
+  content: "\e914";
+  color: #ffff;
+}
 .icon-category-burger:before {
   content: "\e915";
 }

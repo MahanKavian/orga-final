@@ -1,12 +1,13 @@
 import {useEffect} from "react";
 
-interface Props{
+interface Props {
     onClick: () => void
     isOverFlowHidden?: boolean
 }
-export function useOverlay({onClick, isOverFlowHidden = false}: Props){
-    useEffect(()=>{
-        const clickHandler = ()=>{
+
+export function useOverlay({onClick, isOverFlowHidden = false}: Props) {
+    useEffect(() => {
+        const clickHandler = () => {
             onClick()
         }
         document.addEventListener("click", clickHandler)
@@ -15,12 +16,12 @@ export function useOverlay({onClick, isOverFlowHidden = false}: Props){
         }
     }, [])
     useEffect(() => {
-        if(isOverFlowHidden){
+        if (isOverFlowHidden) {
             document.body.style.overflowY = "hidden"
-        }else{
+        } else {
             document.body.style.overflowY = "auto"
         }
-        return()=>{
+        return () => {
             document.body.style.overflowY = "auto"
         }
     }, [isOverFlowHidden]);

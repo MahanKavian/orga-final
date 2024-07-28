@@ -15,23 +15,35 @@ import {NewsRelatedMock} from "@/mock/NewsRelatedMock";
 import {ResponseApi} from "@/types/api/ResponseApi";
 import {ProductType} from "@/types/api/Product";
 import {getAllProductApiCall} from "@/api/Products";
-import {useQuery} from "@tanstack/react-query";
+import {dehydrate, QueryClient, useQuery} from "@tanstack/react-query";
 
 export default function Home() {
 
     const {data: newDishesProducts} = useQuery<ResponseApi<ProductType>>({
         queryKey: [getAllProductApiCall.name, "NewDishesProducts"],
-        queryFn: () => getAllProductApiCall({populate: ["thumbnail", "category"], filters: {is_newDishes: {$eq: true}}})
+        queryFn: () => getAllProductApiCall({
+            populate: ["thumbnail", "category"],
+            filters: {is_newDishes: {$eq: true}}
+        }),
+        staleTime: 60 * 1000
+        // initialData: props.products
     });
 
     const {data: bestSellerProducts} = useQuery<ResponseApi<ProductType>>({
         queryKey: [getAllProductApiCall.name, "BestSellerProducts"],
-        queryFn: () => getAllProductApiCall({populate: ["thumbnail", "category"], filters: {is_bestSeller: {$eq: true}}})
+        queryFn: () => getAllProductApiCall({
+            populate: ["thumbnail", "category"],
+            filters: {is_bestSeller: {$eq: true}}
+        }),
+        staleTime: 60 * 1000
     });
 
     const {data: dealOfWeek} = useQuery<ResponseApi<ProductType>>({
         queryKey: [getAllProductApiCall.name, "DealOfWeek"],
-        queryFn: () => getAllProductApiCall({populate: ["thumbnail", "category"], filters: {off_time_limit: {$notNull: true}}})
+        queryFn: () => getAllProductApiCall({
+            populate: ["thumbnail", "category"],
+            filters: {off_time_limit: {$notNull: true}}
+        })
     });
 
     return (
@@ -40,8 +52,7 @@ export default function Home() {
             <Section className={'mb-0 py-4 lg:py-10'}>
                 {
                     newDishesProducts &&
-                    <ProductsContainer Products={newDishesProducts} title={"New Dishes"} titleClass={"text-center"}
-                                       showCategory={true}/>
+                    <ProductsContainer Products={newDishesProducts} title={"New Dishes"} titleClass={"text-center"} showCategory={true}/>
                 }
             </Section>
             <Banner/>
@@ -51,7 +62,7 @@ export default function Home() {
                 }
                 <FeatureDishes products={ProductCards}/>
             </Section>
-            <ShopByCategory />
+            <ShopByCategory/>
             <Section className={"py-4 lg:py-10"}>
                 {
                     bestSellerProducts && <ProductsContainer Products={bestSellerProducts} title={"Best Seller"}/>
@@ -63,4 +74,34 @@ export default function Home() {
             </Section>
         </>
     );
+};
+
+export async function getStaticProps() {
+    const queryClient: QueryClient = new QueryClient();
+
+    await queryClient.prefetchQuery({
+        queryKey: [getAllProductApiCall.name, "NewDishesProducts"],
+        queryFn: () => getAllProductApiCall({
+            populate: ["thumbnail", "category"],
+            filters: {is_newDishes: {$eq: true}}
+        })
+    });
+
+    await queryClient.prefetchQuery({
+        queryKey: [getAllProductApiCall.name, "BestSellerProducts"],
+        queryFn: () => getAllProductApiCall({
+            populate: ["thumbnail", "category"],
+            filters: {is_bestSeller: {$eq: true}}
+        })
+    });
+
+    return {
+        props: {
+            dehydratedState: dehydrate(queryClient),
+        },
+    }
+
+    // ----- Initial State Way
+    // const products = await getAllProductApiCall({populate: ["thumbnail", "category"], filters: {is_newDishes: {$eq: true}}});
+    // return { props: { products } }
 }

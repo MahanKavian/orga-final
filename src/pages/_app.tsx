@@ -5,8 +5,12 @@ import type {AppProps} from "next/app";
 import {Jost, Lobster_Two} from "next/font/google";
 import {NextFont} from "next/dist/compiled/@next/font";
 import {Layouts} from "@/components";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {HydrationBoundary, QueryClient, QueryClientProvider,} from "@tanstack/react-query";
 import {ToastContainer} from "react-toastify";
+import {useState} from "react";
+import {useRouter} from "next/router";
+import {ModalContextProvider} from "@/store/ModalContext";
+import {AuthContextProvider} from "@/store/AuthContext";
 
 const jost: NextFont = Jost({
     subsets: ["latin"],
@@ -22,7 +26,8 @@ const lobster = Lobster_Two({
 })
 
 export default function App({Component, pageProps}: AppProps) {
-    const queryClient = new QueryClient({
+    const router = useRouter();
+    const [queryClient] = useState(() => new QueryClient({
         defaultOptions: {
             queries: {
                 refetchOnWindowFocus: false,
@@ -30,7 +35,7 @@ export default function App({Component, pageProps}: AppProps) {
                 retry: false
             }
         }
-    })
+    }));
 
     return (
         <>
@@ -43,11 +48,26 @@ export default function App({Component, pageProps}: AppProps) {
                 `}
             </style>
             <QueryClientProvider client={queryClient}>
-                <Layouts>
-                    <Component {...pageProps} />
-                    <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false}
+                <HydrationBoundary state={pageProps.dehydratedState}>
+                    <AuthContextProvider>
+                        <ModalContextProvider>
+                            <div id={"portal"}>
+
+                            </div>
+                            <Layouts key={router.route}>
+                                <Component {...pageProps} />
+                                <ToastContainer
+                                    autoClose={5000}
+                                    hideProgressBar={false}
+                                    closeOnClick={true}
+                                    draggable={false}
+                                    pauseOnFocusLoss={false}
+                                    pauseOnHover={false}
                                     theme={"light"} position={"top-right"}/>
-                </Layouts>
+                            </Layouts>
+                        </ModalContextProvider>
+                    </AuthContextProvider>
+                </HydrationBoundary>
             </QueryClientProvider>
         </>
     )

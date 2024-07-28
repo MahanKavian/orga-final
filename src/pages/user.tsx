@@ -5,12 +5,13 @@ interface Props {
 }
 
 export default function User({}: Props) {
-    const [login, setLogin] = useState("login")
+    const [login, setLogin] = useState("login");
+
     return (
         <div className="bg-[url('/assets/images/login_wallpaper.jpg')] bg-cover bg-no-repeat absolute top-0 left-0 w-screen h-screen z-[80] flex items-center p-4">
             <div className="max-w-[450px] mx-auto flex-grow flex-shrink">
                 <div className="grid grid-cols-2 gap-2 bg-white rounded-t-lg">
-                    <button type="button" className={`col-span-1 ${login === "login" ? "border-b-primary-100 text-primary-300" : "border-b-transparent  text-silver-300"} block p-2 pt-3 border-b-[4px] border-b-transparent hover:text-primary-300 transition font-normal tracking-[2px]`} onClick={()=>{setLogin("login")}}>LOGIN</button>
+                    <button type="button" className={`col-span-1 ${login === "login" ? "border-b-primary-100 text-primary-300" : "border-b-transparent text-silver-300"} block p-2 pt-3 border-b-[4px] border-b-transparent hover:text-primary-300 transition font-normal tracking-[2px]`} onClick={()=>{setLogin("login")}}>LOGIN</button>
                     <button type="button" className={`col-span-1 block ${login === "register" ? "border-b-primary-100 text-primary-300" : "border-b-transparent  text-silver-300"} p-2 pt-3 border-b-[4px] border-b-transparent hover:text-primary-300 transition text-silver-300 font-normal tracking-[2px]`} onClick={()=>{setLogin("register")}}>SIGN UP</button>
                 </div>
                 <form className="flex flex-col gap-2 bg-[#ffffff30] lg:gap-5 p-5 lg:p-10 rounded-b-lg">

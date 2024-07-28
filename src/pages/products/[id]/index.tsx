@@ -6,11 +6,11 @@ import {ProductType} from "@/types/api/Product";
 import {getAllProductApiCall} from "@/api/Products";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
-import { Gallery } from "@/types/api/Gallery";
-import { ProductsContainer } from "@/components/common/products";
+import {Gallery} from "@/types/api/Gallery";
 
 export default function product() {
     const router = useRouter();
+
     const {counter, increment, decrement} = useQuentity();
     const [imageState, setImage] = useState<string | null>(null);
     const [ID, setID] = useState<string | string[] | null>(null);
@@ -30,14 +30,14 @@ export default function product() {
         }),
         enabled: !!ID,
     });
-    const {data: relatedProducts} = useQuery<ResponseApi<ProductType>>({
-        queryKey: [getAllProductApiCall.name, "RelatedProduct"],
-        queryFn: () => getAllProductApiCall({
-            populate: ["thumbnail", "category", "gallery"],
-            filters: {is_newDishes: {$eq: true},
-            }
-        }),
-    });
+
+    // const {data: relatedProducts} = useQuery<ResponseApi<ProductType>>({
+    //     queryKey: [getAllProductApiCall.name, "RelatedProduct"],
+    //     queryFn: () => getAllProductApiCall({
+    //         populate: ["thumbnail", "category", "gallery"],
+    //         filters: {category: {title: {"$eq": "pizza"}}}
+    //     }),
+    // });
 
     return (
         <>
@@ -141,7 +141,8 @@ export default function product() {
                         </div>
                     </div>
                 </div>
-                {relatedProducts && <ProductsContainer Products={relatedProducts} title={"Related Products"} titleClass={"text-center"}/>}
+                {/*{relatedProducts && <ProductsContainer Products={relatedProducts} title={"Related Products"}*/}
+                {/*                                       titleClass={"text-center"}/>}*/}
             </Section>
         </>
     );
