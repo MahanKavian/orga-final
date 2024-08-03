@@ -73,6 +73,9 @@ export default function product() {
                                     onSwiper={setThumbsSwiper}
                                     spaceBetween={10}
                                     slidesPerView={4}
+                                    autoplay={{
+                                        delay: 5000
+                                    }}
                                     freeMode={true}
                                     className={"mt-2 py-3"}
                                     watchSlidesProgress={true}
