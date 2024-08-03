@@ -1,90 +1,126 @@
-import {IconBox, ImageView, PagesNavigation, PriceText, Rating, Section} from "@/components";
-import {useQuentity} from "@/hooks/useQuentity";
-import {useQuery} from "@tanstack/react-query";
-import {EntityType, ResponseApi} from "@/types/api/ResponseApi";
-import {ProductType} from "@/types/api/Product";
-import {getAllProductApiCall} from "@/api/Products";
-import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
+import { IconBox, ImageView, PagesNavigation, PriceText, Rating, Section } from "@/components";
+import { useQuentity } from "@/hooks/useQuentity";
+import { useQuery } from "@tanstack/react-query";
+import { EntityType, ResponseApi } from "@/types/api/ResponseApi";
+import { ProductType } from "@/types/api/Product";
+import { getAllProductApiCall } from "@/api/Products";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import {Autoplay, FreeMode, Navigation, Thumbs} from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import {Gallery} from "@/types/api/Gallery";
 
 export default function product() {
+    const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
     const router = useRouter();
 
-    const {counter, increment, decrement} = useQuentity();
-    const [imageState, setImage] = useState<string | null>(null);
+    const { counter, increment, decrement } = useQuentity();
     const [ID, setID] = useState<string | string[] | null>(null);
 
     useEffect(() => {
         if (router.query.id) {
             setID(router.query.id);
         }
-        setImage(null);
-    }, [router.query.id, "ProductDetail"])
+    }, [router.query.id, "ProductDetail"]);
 
-    const {data: productDetail} = useQuery<ResponseApi<ProductType>>({
+
+    const { data: productDetail } = useQuery<ResponseApi<ProductType>>({
         queryKey: [getAllProductApiCall.name, "ProductDetail", ID],
         queryFn: () => getAllProductApiCall({
             populate: ["thumbnail", "category", "gallery"],
-            filters: {id: {$eq: ID}}
+            filters: { id: { $eq: ID } }
         }),
         enabled: !!ID,
     });
 
-    // const {data: relatedProducts} = useQuery<ResponseApi<ProductType>>({
-    //     queryKey: [getAllProductApiCall.name, "RelatedProduct"],
-    //     queryFn: () => getAllProductApiCall({
-    //         populate: ["thumbnail", "category", "gallery"],
-    //         filters: {category: {title: {"$eq": "pizza"}}}
-    //     }),
-    // });
 
     return (
         <>
-            <PagesNavigation title={"Product Detail"} home={"Home"} next={"Product Detail"}/>
+            <PagesNavigation title={"Product Detail"} home={"Home"} next={"Product Detail"} />
             <Section className="px-2 mb-20 py-5">
                 <div className="flex flex-col lg:flex-row gap-4 mb-20">
                     <div className="flex-grow flex-shrink lg:max-w-[50%] xl:px-8">
-                        {
-                            imageState !== null ? <div
-                                    className={"md:aspect-[5/3] lg:h-[420px] lg:aspect-auto flex justify-center items-center border border-silver-200"}>
-                                    <ImageView src={imageState}
-                                               alt={"pic"} width={200} height={200}
-                                               className=""/>
-                                </div> :
-                                <div
-                                    className={"md:aspect-[5/3] lg:h-[420px] lg:aspect-auto flex justify-center items-center border border-silver-200"}>
-                                    <ImageView
-                                        src={productDetail?.data[0].attributes.thumbnail.data.attributes.url ?? ""}
-                                        alt={"pic"} width={200} height={200}
-                                        className=""/>
-                                </div>
-                        }
-                        <div className="gap-2 py-2 max-h-[120px] hidden sm:grid grid-cols-4 overflow-hidden">
-                            {
-                                productDetail && productDetail.data[0].attributes.gallery.data.map((item: EntityType<Gallery>, index: number) => {
-                                    return (
-                                        <div onClick={() => setImage(item.attributes.url)} key={index}
-                                             className={`flex justify-center items-center border hover:border-primary-300 transition hover:cursor-pointer ${imageState === item.attributes.url ? "border-primary-300" : "border-silver-200"}`}>
-                                            <ImageView src={item.attributes.url} alt={item.attributes.name} width={100}
-                                                       height={100}
-                                                       className="block aspect-square"/>
-                                        </div>
-                                    )
-                                })
-                            }
+                        <div className={"w-full"}>
+                            <>
+                                <Swiper
+                                    spaceBetween={10}
+                                    navigation={true}
+                                    autoplay={{
+                                        delay: 5000
+                                    }}
+                                    thumbs={{
+                                        swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+                                    }}
+                                    modules={[FreeMode, Navigation, Thumbs, Autoplay]}
+                                    className="mySwiper2"
+                                    loop
+                                >
+                                    {
+                                        productDetail?.data[0].attributes.gallery.data.map((mainSlide: EntityType<Gallery>, index: number) => {
+                                            return (
+                                                <>
+                                                    <SwiperSlide key={index} className={"w-full py-1"}>
+                                                        <div className={"lg:h-[350px] lg:aspect-auto flex justify-center items-center border border-silver-200"}>
+                                                            <ImageView src={mainSlide.attributes.url ?? ""} alt={"pic"} width={200} height={200}/>
+                                                        </div>
+                                                    </SwiperSlide>
+                                                </>
+                                            )
+                                        })
+                                    }
+                                </Swiper>
+                                <Swiper
+                                    onSwiper={setThumbsSwiper}
+                                    spaceBetween={10}
+                                    slidesPerView={4}
+                                    freeMode={true}
+                                    className={"mt-2 py-3"}
+                                    watchSlidesProgress={true}
+                                    modules={[FreeMode, Navigation, Thumbs]}
+                                >
+                                    {
+                                        productDetail?.data[0].attributes.gallery.data.map((mainSlide: EntityType<Gallery>, index: number) => {
+                                            return (
+                                                <>
+                                                    <SwiperSlide key={index} className={"w-full cursor-pointer py-2"}>
+                                                        <div className={"flex justify-center items-center border border-silver-200 hover:border-primary-100 transition"}>
+                                                            <ImageView src={mainSlide.attributes.url ?? ""} alt={"pic"} width={100} height={100}/>
+                                                        </div>
+                                                    </SwiperSlide>
+                                                </>
+                                            )
+                                        })
+                                    }
+                                </Swiper>
+                            </>
                         </div>
+                        {
+                            // <div className={"md:aspect-[5/3] lg:h-[420px] lg:aspect-auto flex justify-center items-center border border-silver-200"}>
+                            //     <ImageView
+                            //         src={productDetail?.data[0].attributes.thumbnail.data.attributes.url ?? ""}
+                            //         alt={"pic"}
+                            //         width={200}
+                            //         height={200}
+                            //         className=""
+                            //     />
+                            // </div>
+                        }
+                        {/*<div className="gap-2 py-2 max-h-[120px] hidden sm:grid grid-cols-4 overflow-hidden">*/}
+                        {/*    {*/}
+
+                        {/*    }*/}
+                        {/*</div>*/}
                     </div>
                     <div className="flex-grow flex-shrink lg:max-w-[50%] xl:px-8 flex flex-col gap-2">
                         <div className="flex flex-col gap-3">
                             <h1 className="text-3xl capitalize text-silver-500">{productDetail?.data[0].attributes.title}</h1>
                             <div className={"flex items-center gap-2"}>
-                                <Rating rate={productDetail?.data[0].attributes.rate ?? 0} hideText={true}/>
+                                <Rating rate={productDetail?.data[0].attributes.rate ?? 0} hideText={true} />
                                 <span className={"text-sm text-silver-300"}>( 6 customer reviews )</span>
                             </div>
-                            <PriceText price={Number(productDetail?.data[0].attributes.price) ?? ""}/>
+                            <PriceText price={Number(productDetail?.data[0].attributes.price) ?? ""} />
                         </div>
-                        <hr className="text-gray-300 my-2"/>
+                        <hr className="text-gray-300 my-2" />
                         <p className={"text-md font-normal text-silver-500 py-3 mb-5"}>
                             {productDetail?.data[0].attributes.excerpt}
                         </p>
@@ -109,26 +145,25 @@ export default function product() {
                                     className="flex-shrink-0 flex-grow-0 w-[90px] sm:w-[120px] flex p-1.5 gap-2 sm:gap-5 border border-l-gray-300 justify-between items-center">
                                     <IconBox
                                         icon={"icon-arrow-left text-gray-300 hover:text-primary-100 cursor-pointer"}
-                                        size={25} functionHandler={decrement}/>
+                                        size={25} functionHandler={decrement} />
                                     <span className="text-md font-normal">{counter}</span>
                                     <IconBox
                                         icon={"icon-arrow-right text-gray-300 hover:text-primary-100 cursor-pointer"}
-                                        size={25} functionHandler={increment}/>
+                                        size={25} functionHandler={increment} />
                                 </div>
-                                <button type="button"
-                                        className="text-white bg-silver-500 hover:bg-primary-300 p-3 md:py-2 transition">
+                                <button type="button" className="text-white bg-silver-500 hover:bg-primary-300 p-3 md:py-2 transition">
                                     <span className="tracking-[1px] hidden px-2 md:block">ADD TO CARD</span>
-                                    <IconBox icon={"icon-bascet-card"} linkClassName={"md:hidden"} size={20}/>
+                                    <IconBox icon={"icon-bascet-card"} linkClassName={"md:hidden"} size={20} />
                                 </button>
                             </form>
                             <div className="flex gap-2">
                                 <IconBox icon={"icon-heart-card"} size={20} link={"#"}
-                                         iconClassName={"w-fit p-3 border border-silver-200 hover:border-primary-300 transition"}/>
+                                    iconClassName={"w-fit p-3 border border-silver-200 hover:border-primary-300 transition"} />
                                 <IconBox icon={"icon-replace-card"} size={20} link={"#"}
-                                         iconClassName={"w-fit p-3 border border-silver-200 hover:border-primary-300 transition"}/>
+                                    iconClassName={"w-fit p-3 border border-silver-200 hover:border-primary-300 transition"} />
                             </div>
                         </div>
-                        <hr className="text-gray-300 my-2 mb-4"/>
+                        <hr className="text-gray-300 my-2 mb-4" />
                         <div className="flex flex-col gap-3 2xl:flex">
                             <span className="text-medium md:text-md font-medium text-primary-300">Discription</span>
                             <div className="flex flex-col text-md text-silver-500 gap-2">
@@ -141,8 +176,6 @@ export default function product() {
                         </div>
                     </div>
                 </div>
-                {/*{relatedProducts && <ProductsContainer Products={relatedProducts} title={"Related Products"}*/}
-                {/*                                       titleClass={"text-center"}/>}*/}
             </Section>
         </>
     );
