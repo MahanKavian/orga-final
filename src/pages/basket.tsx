@@ -1,8 +1,11 @@
 import {PagesNavigation, Section} from "@/components";
 import {ShopCard} from "@/components/common/products";
 import Link from "next/link";
+import {useContext} from "react";
+import {BasketCardContext} from "@/store/BasketCardContext";
 
 export default function basket() {
+    const {BasketItems, totalPrice} = useContext(BasketCardContext)
     return (
         <>
             <PagesNavigation title={"Shop Card"} home={"Home"} next={"Shop Card"}/>
@@ -16,18 +19,15 @@ export default function basket() {
                         <span className="col-span-1"></span>
                     </div>
                     <ul className={"flex flex-col gap-3"}>
-                        <li>
-                            <ShopCard/>
-                        </li>
-                        <li>
-                            <ShopCard/>
-                        </li>
-                        <li>
-                            <ShopCard/>
-                        </li>
-                        <li>
-                            <ShopCard/>
-                        </li>
+                        {
+                            BasketItems?.map((item, index)=>{
+                                return (
+                                    <li key={index}>
+                                        <ShopCard data={item}/>
+                                    </li>
+                                )
+                            })
+                        }
                     </ul>
                 </div>
                 <div
@@ -36,15 +36,15 @@ export default function basket() {
                         <button className="text-silver-500 text-medium bg-silver-100 h-fit p-2 sm:px-4 text-sm font-medium tracking-[2px] hover:brightness-95 transition">
                             UPDATE CARD
                         </button>
-                        <button className="text-silver-500 text-medium bg-silver-100 h-fit p-2 sm:px-4 text-sm font-[500] tracking-[2px] hover:brightness-95 transition">
+                        <Link href={"/products"} className="text-silver-500 text-medium bg-silver-100 h-fit p-2 sm:px-4 text-sm font-[500] tracking-[2px] hover:brightness-95 transition">
                             CONTINUE SHOPPING
-                        </button>
+                        </Link>
                     </div>
                     <div className="bg-gray-100 w-[340px] flex flex-col p-4 pb-6 gap-8 shadow-md">
                         <p className="text-md font-medium p-2 border-b border-b-black">CART TOTALS</p>
                         <div className="flex justify-between"><p className="font-medium">Total: </p><span
-                            className="font-semibold text-silver-500">365.6$</span></div>
-                        <Link href={'checkout'} className="bg-silver-500 w-full p-2 text-sm font-medium tracking-[2px] text-center text-white hover:bg-primary-300 transition">
+                            className="font-semibold text-silver-500">{totalPrice} $</span></div>
+                        <Link href={totalPrice > 0 ? 'checkout' : "/"} className="bg-silver-500 w-full p-2 text-sm font-medium tracking-[2px] text-center text-white hover:bg-primary-300 transition">
                             PROCEED
                             TO CHECKOUT
                         </Link>

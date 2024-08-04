@@ -45,7 +45,11 @@ export default function Home() {
         })
     });
 
-    const {data : productsData} = useQuery<ResponseApi<ProductType>>({queryKey:[getAllProductApiCall.name, "productsData"], queryFn:()=>getAllProductApiCall({populate:["thumbnail", "category"]})})
+    const {data : productsData} = useQuery<ResponseApi<ProductType>>({
+        queryKey:[getAllProductApiCall.name, "productsData"],
+        queryFn:()=>getAllProductApiCall(
+            {populate:["thumbnail", "category"]}
+        )})
 
     return (
         <>

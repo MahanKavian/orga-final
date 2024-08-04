@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import {useForm, SubmitHandler} from "react-hook-form";
 import {useMutation, UseMutationResult, useQueryClient} from "@tanstack/react-query";
 import { getAllProductApiCall } from "@/api/Products";
 import { EntityType, ResponseApi } from "@/types/api/ResponseApi";
@@ -43,7 +43,6 @@ export default function Index() {
     });
 
     const onChangeHandler: SubmitHandler<filterData> = (data: filterData) => {
-        setPage(0)
         const updatedFilter: filterType = { ...filter };
         if (data.search_text != "" && data.search_text.length > 3) {
             updatedFilter.title = {"$containsi": data.search_text}
@@ -76,7 +75,7 @@ export default function Index() {
 
     useEffect(() => {
         delay()
-    }, [page]);
+    }, [page, watch("search_text")]);
 
     return (
         <>
@@ -125,7 +124,7 @@ export default function Index() {
                             ))
                         }
                     </div>
-                    <PaginaitedList currentPage={page} setPage={setPage} totalPage={filteredProducts?.meta?.pagination.total ?? 0} />
+                    <PaginaitedList currentPage={page} setPage={setPage} totalPage={filteredProducts?.meta?.pagination.total!} />
                 </div>
             </Section>
         </>
