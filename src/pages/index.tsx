@@ -9,7 +9,6 @@ import {
     WhatPeapleSay
 } from "@/components";
 import {ProductsContainer} from "@/components/common/products";
-import {ProductCards} from "@/mock/ProductCards";
 import {Comments} from "@/mock/Comments";
 import {NewsRelatedMock} from "@/mock/NewsRelatedMock";
 import {ResponseApi} from "@/types/api/ResponseApi";
@@ -46,6 +45,12 @@ export default function Home() {
         })
     });
 
+    const {data : productsData} = useQuery<ResponseApi<ProductType>>({
+        queryKey:[getAllProductApiCall.name, "productsData"],
+        queryFn:()=>getAllProductApiCall(
+            {populate:["thumbnail", "category"]}
+        )})
+
     return (
         <>
             <Hero isShowCategoryMenu={true}/>
@@ -60,7 +65,10 @@ export default function Home() {
                 {
                     dealOfWeek && <DealOfWeek offers={dealOfWeek.data}/>
                 }
-                <FeatureDishes products={ProductCards}/>
+                {
+                    productsData &&
+                    <FeatureDishes products={productsData}/>
+                }
             </Section>
             <ShopByCategory/>
             <Section className={"py-4 lg:py-10"}>

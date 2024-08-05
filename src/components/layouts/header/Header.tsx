@@ -3,7 +3,7 @@ import Link from "next/link";
 import {useMenu} from "@/hooks/use-menu";
 import {ItemType} from "@/types/api/Menu";
 import {EntityType} from "@/types/api/ResponseApi";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {useOverlay} from "@/hooks/use-overlay";
 import {useRouter} from "next/router";
 import {SearchForm} from "@/components/layouts/header/search_form/SearchForm";
@@ -12,6 +12,7 @@ import {RegisterModal} from "@/components/common/auth/RegisterModal";
 import {useModal} from "@/store/ModalContext";
 import {useUser} from "@/store/AuthContext";
 import {toast} from "react-toastify";
+import {BasketCardContext} from "@/store/BasketCardContext";
 
 
 interface Props {
@@ -23,10 +24,8 @@ export function Header({}: Props) {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const [showCategoryMenu, setShowCategoryMenu] = useState(false);
     const {currentModal, openModalHandler, closeModalHandler} = useModal();
-
     const route = useRouter();
-
-
+    const {BasketItems} = useContext(BasketCardContext)
     useOverlay({
         onClick: () => {
             setShowMobileMenu(false)
@@ -88,12 +87,10 @@ export function Header({}: Props) {
                                  titleClassName={"capitalize text-small"} hideTitleMobile={true}/>
                     </li>
                     <li>
-                        <IconBox icon={"icon-heart-header text-[21px]"} size={21} badge={2}
-                                 linkClassName={"hover:text-primary-200 transition text-silver-500"} link={'#'}/>
+                        <IconBox icon={"icon-heart-header text-[21px]"} size={21} badge={2} linkClassName={"hover:text-primary-200 transition text-silver-500"} link={'#'}/>
                     </li>
                     <li>
-                        <IconBox icon={"icon-bascet-card text-[23px]"} badge={4}
-                                 linkClassName={"hover:text-primary-200 transition text-silver-500"} link={'basket'}/>
+                        <IconBox icon={"icon-bascet-card text-[23px]"} badge={BasketItems?.length} linkClassName={"hover:text-primary-200 transition text-silver-500"} link={'/basket'}/>
                     </li>
                 </ul>
             </Section>

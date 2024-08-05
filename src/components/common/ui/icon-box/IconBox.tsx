@@ -12,7 +12,7 @@ interface Props {
     path?: number;
     linkClassName?: string;
     iconClassName?: string;
-    functionHandler?: Function;
+    functionHandler?: ()=> void;
 }
 
 export function IconBox({
@@ -42,10 +42,10 @@ export function IconBox({
                         <div className="relative">
                             <span
                                 className="absolute -top-[10px] -right-[10px] w-[20px] h-[20px] bg-primary-200 rounded-full flex justify-center items-center text-white text-xsmall">{badge}</span>
-                            <i className={`${icon} text-[${size}px] ${iconClassName}`}>{span}</i>
+                            <i className={`${icon} ${iconClassName}`} style={{fontSize: size}}>{span}</i>
                         </div>
                         :
-                        <i className={`${icon} text-[${size}px] ${iconClassName}`}>{span}</i>
+                        <i className={`${icon} ${iconClassName}`} style={{fontSize: size}}>{span}</i>
                 }
                 {
                     title
@@ -59,19 +59,17 @@ export function IconBox({
         )
     } else {
         return (
-            <div className={`flex items-center gap-2 ${linkClassName}`} onClick={() => {
-                functionHandler && functionHandler();
-            }}>
+            <div className={`flex items-center gap-2 ${linkClassName}`} onClick={functionHandler}>
                 {
                     badge
                         ?
                         <div className="relative">
                         <span
                             className="absolute -top-[10px] -right-[10px] w-[20px] h-[20px] bg-green-200 rounded-full flex justify-center items-center text-white text-xsmall">{badge}</span>
-                            <i className={`${icon} text-[${size}px] ${iconClassName}`}>{span}</i>
+                            <i className={`${icon} ${iconClassName}`} style={{fontSize: size}}>{span}</i>
                         </div>
                         :
-                        <i className={`${icon} text-[${size}px] ${iconClassName}`}>{span}</i>
+                        <i className={`${icon} ${iconClassName}`} style={{fontSize: size}}>{span}</i>
                 }
                 {
                     title

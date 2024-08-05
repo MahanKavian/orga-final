@@ -1,8 +1,9 @@
-import {ProductsType} from "@/types/ProductsType";
 import { SmallProductCard } from "..";
+import {EntityType} from "@/types/api/ResponseApi";
+import {ProductType} from "@/types/api/Product";
 
 interface Props {
-    products: Array<ProductsType>
+    products: Array<EntityType<ProductType>>
 }
 
 export function VerticalProductList({products}: Props) {

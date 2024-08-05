@@ -1,8 +1,11 @@
 export interface ResponseApi<T> {
     data: Array<EntityType<T>>
-    meta: Meta
+    meta?: Meta
 }
-
+export interface ResponseApiSingle<T> {
+    data: EntityType<T>
+    meta?: Meta
+}
 export interface EntityType<T> {
     id: number
     attributes: T

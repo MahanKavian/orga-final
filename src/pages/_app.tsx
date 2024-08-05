@@ -11,6 +11,7 @@ import {useState} from "react";
 import {useRouter} from "next/router";
 import {ModalContextProvider} from "@/store/ModalContext";
 import {AuthContextProvider} from "@/store/AuthContext";
+import {CardContextProvider} from "@/store/BasketCardContext";
 
 const jost: NextFont = Jost({
     subsets: ["latin"],
@@ -48,26 +49,27 @@ export default function App({Component, pageProps}: AppProps) {
                 `}
             </style>
             <QueryClientProvider client={queryClient}>
-                <HydrationBoundary state={pageProps.dehydratedState}>
-                    <AuthContextProvider>
-                        <ModalContextProvider>
-                            <div id={"portal"}>
-
-                            </div>
-                            <Layouts key={router.route}>
-                                <Component {...pageProps} />
-                                <ToastContainer
-                                    autoClose={5000}
-                                    hideProgressBar={false}
-                                    closeOnClick={true}
-                                    draggable={false}
-                                    pauseOnFocusLoss={false}
-                                    pauseOnHover={false}
-                                    theme={"light"} position={"top-right"}/>
-                            </Layouts>
-                        </ModalContextProvider>
-                    </AuthContextProvider>
-                </HydrationBoundary>
+                <CardContextProvider>
+                    <HydrationBoundary state={pageProps.dehydratedState}>
+                        <AuthContextProvider>
+                            <ModalContextProvider>
+                                <div id={"portal"}>
+                                </div>
+                                <Layouts key={router.route}>
+                                    <Component {...pageProps} />
+                                    <ToastContainer
+                                        autoClose={3000}
+                                        hideProgressBar={true}
+                                        closeOnClick={true}
+                                        draggable={false}
+                                        pauseOnFocusLoss={false}
+                                        pauseOnHover={false}
+                                        theme={"light"} position={"top-right"}/>
+                                </Layouts>
+                            </ModalContextProvider>
+                        </AuthContextProvider>
+                    </HydrationBoundary>
+                </CardContextProvider>
             </QueryClientProvider>
         </>
     )
