@@ -35,7 +35,7 @@ export function IconBox({
 
     if (link) {
         return (
-            <Link href={link} className={`flex items-center gap-2 ${linkClassName}`}>
+            <Link href={link} className={`flex items-center gap-2 w-fit ${linkClassName}`}>
                 {
                     badge
                         ?
@@ -59,7 +59,7 @@ export function IconBox({
         )
     } else {
         return (
-            <div className={`flex items-center gap-2 ${linkClassName}`} onClick={functionHandler}>
+            <div className={`flex items-center gap-2 w-fit ${linkClassName}`} onClick={functionHandler}>
                 {
                     badge
                         ?

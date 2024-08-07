@@ -3,7 +3,7 @@ import {BasketApiCall, updateBasketApiCall} from "@/api/Basket";
 
 export function useBasket(){
     const {data: basketData} = useQuery({queryKey: ["my-basket"], queryFn: BasketApiCall})
-    const UserBasketItems = basketData?.data[0].attributes?.basket_items.data ?? []
+    const UserBasketItems = basketData?.data[0].attributes?.basket_items?.data ?? []
     const mutate = useMutation({mutationFn: updateBasketApiCall})
     const queryClient = useQueryClient()
     const addItemHandler = (productId: number)=>{

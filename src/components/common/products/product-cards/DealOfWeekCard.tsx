@@ -1,16 +1,18 @@
 import {IconBox, ImageView, PriceText, Rating} from "@/components";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import timeHandler, {Time} from "@/utils/timer";
 import {ProductType} from "@/types/api/Product";
 import {EntityType} from "@/types/api/ResponseApi";
 import Link from "next/link";
+import {BasketCardContext} from "@/store/BasketCardContext";
 
 interface Props {
     data: EntityType<ProductType>
 }
 
 export function DealOfWeekCard({data}: Props) {
-
+    const {addItem, getItem, deleteItem} = useContext(BasketCardContext)
+    const is_in_basket = getItem(data.id)
     const [remainTime, setRemainTime] = useState<Time>({
         days: 0,
         hours: 0,
@@ -32,7 +34,8 @@ export function DealOfWeekCard({data}: Props) {
     }, []);
 
     return (
-        <Link href={`/product/${data.id}`} className={"mx-auto max-w-[300px] h-[412px] flex flex-col gap-5"}>
+        <div className={"mx-auto max-w-[300px] h-[412px] flex flex-col gap-5 relative"}>
+            {is_in_basket && <p className="absolute top-0 -left-4 p-2 bg-primary-100 rounded-r-xl text-white">in your Basket</p>}
             <div className={"w-full relative flex justify-center items-center border-b-2"}>
                 <ImageView src={data.attributes.thumbnail.data.attributes.url}
                            alt={data.attributes.thumbnail.data.attributes.name} width={258} height={258}
@@ -60,9 +63,16 @@ export function DealOfWeekCard({data}: Props) {
                     <span className={"text-silver-500 font-normal text-lg"}>{data.attributes.title}</span>
                     <PriceText price={data.attributes.price} sale_price={data.attributes.sale_price}/>
                 </div>
-                <IconBox icon={"icon-bascet-card text-[24px]"}
-                         linkClassName={"p-3 rounded-full border-2 border-primary-300 bg-white text-primary-300 hover:text-white hover:bg-primary-300 transition hover:cursor-pointer"}/>
+                <div className="flex flex-col items-center justify-between h-full ">
+                    {
+                        is_in_basket ?
+                            <IconBox functionHandler={()=> deleteItem(data.id)} icon={"icon-trash"} size={24} linkClassName={"mt-4 p-3 rounded-full border-2 border-red bg-white text-red hover:text-white hover:bg-red transition hover:cursor-pointer"}/>
+                        :
+                            <IconBox functionHandler={()=> addItem(data)} icon={"icon-bascet-card"} size={24} linkClassName={"mt-4 p-3 rounded-full border-2 border-primary-300 bg-white text-primary-300 hover:text-white hover:bg-primary-300 transition hover:cursor-pointer"}/>
+                    }
+                    <Link href={`/products/${data.id}`} className="text-primary-100">Get More</Link>
+                </div>
             </div>
-        </Link>
+        </div>
     );
 }

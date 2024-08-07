@@ -1,7 +1,7 @@
 import {ImageView, Section} from "@/components";
 import Link from "next/link";
 import {useQuery} from "@tanstack/react-query";
-import {getBrowseCategory} from "@/api/config/Category";
+import {getBrowseCategory} from "@/api/Category";
 import {EntityType} from "@/types/api/ResponseApi";
 import {Category} from "@/types/api/Category";
 

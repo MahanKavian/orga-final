@@ -9,7 +9,7 @@ interface Props {
 
 export function SmallProductCard({product}: Props) {
     return (
-        <Link href={"#"} className="flex items-center justify-between border-[1px] border-silver-200 hover:shadow-md h-fit relative transition">
+        <Link href={{pathname:`/products/[id]`, query:{id: product.id}}} className="flex items-center justify-between border-[1px] border-silver-200 hover:shadow-md h-fit relative transition">
             {
                 <div className="absolute top-0 left-0 w-full px-1">
                     <Badge price={product.attributes.price} sale_price={product.attributes.sale_price} badge={""} badgeIsBig={false}/>
