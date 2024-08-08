@@ -46,11 +46,13 @@ export default function Index() {
         const updatedFilter: filterType = { ...filter };
         if (data.search_text != "" && data.search_text.length > 3) {
             updatedFilter.title = {"$containsi": data.search_text}
+            setPage(0)
         } else {
             delete updatedFilter.title
         }
         if (data.category) {
             updatedFilter.category = {title: {"$eq": data.category}}
+            setPage(0)
         } else {
             delete updatedFilter.category
         }
@@ -84,7 +86,7 @@ export default function Index() {
                 <div className="w-full lg:w-[230px] flex-col gap-6 bg-white rounded-md relative flex">
                     <form name="search-form" action={"#"} className="w-full flex flex-col gap-4">
                         <div className="w-full flex items-center border-2 border-silver-100 rounded justify-between px-3">
-                            <input {...register("search_text")} type="text" placeholder="Search" className="w-[85%] py-2 focus:outline-none"/>
+                            <input onInput={handleSubmit(onChangeHandler)} {...register("search_text")} type="text" placeholder="Search" className="w-[85%] py-2 focus:outline-none"/>
                             <div onClick={handleSubmit(onChangeHandler)}><IconBox icon={"icon-search-header"} iconClassName={"hover:cursor-pointer transition text-silver-500 hover:text-primary-300"}/></div>
                         </div>
                         <div>
