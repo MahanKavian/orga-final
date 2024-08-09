@@ -15,8 +15,7 @@ interface Props{
 }
 
 export function Hero({isShowCategoryMenu = true}: Props) {
-    const {data : heroData} = useQuery({queryKey:[getAllProductApiCall.name, "hero"], queryFn:()=>getAllProductApiCall({populate:["hero"], filters:{is_hot: true}})})
-    const {data : smallHero} = useQuery({queryKey:[getAllProductApiCall.name, "smallHero"], queryFn:()=>getAllProductApiCall({populate:["hero"], sort:["createdAt:desc"], filters:{is_hot: true}})})
+    const {data : heroData} = useQuery({queryKey:[getAllProductApiCall.name, "hero"], queryFn:()=>getAllProductApiCall({populate:["hero"], sort:["createdAt:asc"], filters:{is_hot: true}})})
     return (
         <div className="bg-silver-100 py-2 lg:py-4">
             <Section className="flex gap-4 justify-between mx-auto max-h-[580px] overflow-hidden">
@@ -57,7 +56,10 @@ export function Hero({isShowCategoryMenu = true}: Props) {
                     </div>
                 <div className={`${isShowCategoryMenu ? "w-[31.7%] xl:w-[25.2%] max-w-[350px]" : "w-[32%] max-w-[343px] xl:max-w-[310px] 2xl:max-w-[403px]"} flex-grow flex-shrink-0 hidden lg:flex flex-col gap-3.5`}>
                     {
-                        smallHero?.data.map((cardItem, index) =>{
+                        heroData?.data.map((cardItem, index) =>{
+                            if(index == 2){
+                                return
+                            }
                             return(
                                 <div className="relative rounded-md" key={index}>
                                     <ImageView src={cardItem.attributes.hero.data.attributes.url} className="block h-full w-full rounded-md" alt={"pizza"} width={398} height={266}/>
