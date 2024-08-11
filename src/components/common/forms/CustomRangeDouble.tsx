@@ -27,10 +27,10 @@ const CustomRangeDouble: React.FC<Props> = ({ min, max, onChange, width = "300px
     }, [minVal, maxVal, min, max]);
     let timer: any;
     useEffect(() => {
-        // clearTimeout(timer)
-        // timer = setTimeout(()=>{
+        clearTimeout(timer)
+        timer = setTimeout(()=>{
             onChange({ min: minVal, max: maxVal });
-        // },1000)
+        },1000)
     }, [minVal, maxVal]);
 
     return (
