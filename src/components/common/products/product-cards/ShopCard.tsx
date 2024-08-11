@@ -15,8 +15,8 @@ export function ShopCard({data}: Props) {
             <Link href={{pathname:`/products/[id]`, query:{id: data.productId}}}  className="col-span-2 sm:col-span-3 flex flex-wrap items-center gap-4">
                 {data.img && <ImageView src={data.img} alt={"pic"} width={100} height={100} className={"block max-w-[80px] aspect-square"}/>}
                 <div className="hidden md:block">
-                    <span className="text-md text-silver-500 mb-2">{data.title}</span>
-                    <Rating rate={4}/>
+                    <span className="text-md text-silver-400 mb-2">{data.title}</span>
+                    <Rating rate={data.rate} hideText={true}/>
                 </div>
             </Link>
             <PriceText price={data.price} sale_price={data.sale_price}/>
