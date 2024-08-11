@@ -14,19 +14,41 @@ import {NewsRelatedMock} from "@/mock/NewsRelatedMock";
 import {ResponseApi} from "@/types/api/ResponseApi";
 import {ProductType} from "@/types/api/Product";
 import {getAllProductApiCall} from "@/api/Products";
-import {dehydrate, QueryClient, useQuery} from "@tanstack/react-query";
+import {dehydrate, QueryClient, useMutation, UseMutationResult, useQuery} from "@tanstack/react-query";
+import {useEffect, useState} from "react";
 
+interface filterType{
+    category?:{
+        title:{
+            "$eq": string
+        }
+    }
+}
 export default function Home() {
+    const [newDishes, setNewDishes] = useState<ResponseApi<ProductType>>();
+    const [category, setCategory] = useState("");
 
-    const {data: newDishesProducts} = useQuery<ResponseApi<ProductType>>({
-        queryKey: [getAllProductApiCall.name, "NewDishesProducts"],
-        queryFn: () => getAllProductApiCall({
+    const mutate:UseMutationResult<ResponseApi<ProductType>> = useMutation({
+        mutationFn: (filter) => getAllProductApiCall({
             populate: ["thumbnail", "category"],
-            filters: {is_newDishes: {$eq: true}}
+            filters: filter as {}
         }),
-        staleTime: 60 * 1000
-        // initialData: props.products
     });
+
+    useEffect(() => {
+        const updated_filter: filterType = {};
+        if (category !== "") {
+            updated_filter.category = { title: { "$eq": category } };
+        }
+
+        mutate.mutate(updated_filter, {
+            onSuccess: (response) => {
+                setNewDishes(response);
+            }
+        });
+    }, [category]);
+
+
 
     const {data: bestSellerProducts} = useQuery<ResponseApi<ProductType>>({
         queryKey: [getAllProductApiCall.name, "BestSellerProducts"],
@@ -56,8 +78,8 @@ export default function Home() {
             <Hero isShowCategoryMenu={true}/>
             <Section className={'mb-0 py-4 lg:py-10'}>
                 {
-                    newDishesProducts &&
-                    <ProductsContainer Products={newDishesProducts} title={"New Dishes"} titleClass={"text-center"} showCategory={true}/>
+                    newDishes &&
+                    <ProductsContainer category={category} set_category={setCategory} Products={newDishes} title={"New Dishes"} titleClass={"text-center"} showCategory={true}/>
                 }
             </Section>
             <Banner/>

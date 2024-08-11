@@ -98,9 +98,9 @@ body,html{
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    height: 8px;
-    width: 8px;
-    margin-top: 4px;
+    height: 10px;
+    width: 10px;
+    margin-top: 5px;
     pointer-events: all;
     position: relative;
 }
@@ -111,9 +111,9 @@ body,html{
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    height: 8px;
-    width: 8px;
-    margin-top: 4px;
+    height: 10px;
+    width: 10px;
+    margin-top: 5px;
     pointer-events: all;
     position: relative;
 }
